@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Semar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wayang_name">Gatot Kaca</string>
+    <string name="video_name">Pementasan Wayang Kulit di Rumah Budaya Indonesia</string>
+    <string name="video_duration">51.21</string>
+    <string name="title_home">Home</string>
+    <string name="title_scan">Scan</string>
+    <string name="title_event">Event</string>
 </resources>

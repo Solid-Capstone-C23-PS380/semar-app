@@ -2,4 +2,20 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--brown-->
+    <color name="brown_100">#C6B6A8</color>
+    <color name="brown_300">#815F41</color>
+    <color name="brown_500">#6B4524</color>
+    <color name="brown_900">#1F140A</color>
+
+    <!--blue-->
+    <color name="blue_900">#285884</color>
+
+    <!--orange-->
+    <color name="orange_500">#FF8733</color>
+
+    <!--red-->
+    <color name="red_700">#B80A0A</color>
+
 </resources>
