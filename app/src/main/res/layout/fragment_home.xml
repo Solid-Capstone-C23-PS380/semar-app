@@ -77,7 +77,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/home_header_wayang" />
+                android:text="@string/home_header_wayang"
+                android:textColor="?attr/colorPrimary" />
 
             <Space
                 android:layout_width="0dp"
@@ -94,6 +95,7 @@
                 android:focusable="true"
                 android:maxLines="1"
                 android:text="@string/home_see_more"
+                android:textColor="?attr/colorPrimary"
                 tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
@@ -122,7 +124,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@string/home_header_video" />
+                android:text="@string/home_header_video"
+                android:textColor="?attr/colorPrimary" />
 
             <Space
                 android:layout_width="0dp"
@@ -139,6 +142,7 @@
                 android:focusable="true"
                 android:maxLines="1"
                 android:text="@string/home_see_more"
+                android:textColor="?attr/colorPrimary"
                 tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
