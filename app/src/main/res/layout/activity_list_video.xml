@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.ListWayangActivity"
-    android:orientation="vertical">
+    tools:context=".ui.video.ListVideoActivity">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -16,21 +16,18 @@
             style="@style/toolbar"
             app:titleTextAppearance="@style/subheader1"
             app:titleTextColor="@color/brown_500"
-            app:title="@string/wayang_list"/>
+            app:title="@string/wayang_show_videos"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <GridView
-        android:id="@+id/gv_wayang"
-        android:layout_marginHorizontal="16dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvStory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="3"
-        android:verticalSpacing="8dp"
-        android:horizontalSpacing="8dp"
-        android:layout_gravity="center"
-        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/item_wayang"/>
+        tools:listitem="@layout/item_video" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
