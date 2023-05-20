@@ -25,4 +25,11 @@
     <string name="home_header_wayang">Karakter Wayang</string>
     <string name="home_header_video">Video</string>
     <string name="home_content_desc_profile">Profile</string>
+
+    <!--  Profile  -->
+    <string name="title_profile">Profil</string>
+    <string name="settings">Pengaturan</string>
+    <string name="setting_language">Bahasa Indonesia</string>
+    <string name="setting_dark_mode">Mode Gelap</string>
+    <string name="log_out">Keluar</string>
 </resources>

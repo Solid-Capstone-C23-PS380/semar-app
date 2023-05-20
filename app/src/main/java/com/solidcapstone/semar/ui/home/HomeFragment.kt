@@ -1,5 +1,6 @@
 package com.solidcapstone.semar.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.solidcapstone.semar.adapter.HomeVideoListAdapter
 import com.solidcapstone.semar.adapter.HomeWayangListAdapter
 import com.solidcapstone.semar.databinding.FragmentHomeBinding
+import com.solidcapstone.semar.ui.profile.ProfileActivity
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -24,6 +26,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showDummyListWayang()
         showDummyListVideo()
+
+        binding.btnUserImage.setOnClickListener {
+            val intent = Intent(requireContext(), ProfileActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun showDummyListWayang() {
