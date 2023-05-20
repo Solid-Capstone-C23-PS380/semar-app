@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/navigation_scan"
-        android:name="com.solidcapstone.semar.ui.event.EventFragment"
+        android:name="com.solidcapstone.semar.ui.scan.ScanFragment"
         android:label="@string/title_scan"
         tools:layout="@layout/fragment_scan" />
 
