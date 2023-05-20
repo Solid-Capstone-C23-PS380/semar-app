@@ -15,7 +15,8 @@
             android:id="@+id/toolbar"
             style="@style/toolbar"
             app:titleTextAppearance="@style/subheader1"
-            app:titleTextColor="@color/brown_500"/>
+            app:titleTextColor="@color/brown_500"
+            app:title="Event"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

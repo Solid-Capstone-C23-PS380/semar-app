@@ -1,9 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.detail.event.EventDetailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/toolbar"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/event_name"
+                app:titleTextColor="@color/brown_500"
+                app:titleTextStyle="@style/subheader1"
+                app:layout_collapseMode="pin" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_event"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:scaleType="fitCenter"
+                android:contentDescription="@string/event_poster"
+                android:src="@drawable/ic_launcher_background"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="@color/brown_100"
+                android:layout_marginVertical="8dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price"
+                    android:gravity="start"
+                    style="@style/bold_body"/>
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price_value"
+                    android:gravity="end"
+                    android:textColor="@color/brown_500"
+                    style="@style/light_body"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="8dp"
+                android:background="@color/brown_100"
+                android:layout_marginVertical="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_event_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/regular_body"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/event_description"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+<!--    Kurang Buttom beli tiket-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
