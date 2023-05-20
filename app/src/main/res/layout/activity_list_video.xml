@@ -14,9 +14,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="@style/toolbar"
+            app:title="@string/wayang_show_videos"
             app:titleTextAppearance="@style/subheader1"
-            app:titleTextColor="@color/brown_500"
-            app:title="@string/wayang_show_videos"/>
+            app:titleTextColor="@color/brown_500" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -24,10 +24,9 @@
         android:id="@+id/rv_video"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_video" />
-
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
