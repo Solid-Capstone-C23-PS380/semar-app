@@ -8,4 +8,9 @@
     <string name="title_home">Home</string>
     <string name="title_scan">Scan</string>
     <string name="title_event">Event</string>
+    <string name="event_name">Pementasan Wayang Kulit Jombang</string>
+    <string name="event_poster">event poster</string>
+    <string name="wayang_image">wayang image</string>
+    <string name="wayang_video">wayang video</string>
+    <string name="date_event">12-11-2023</string>
 </resources>

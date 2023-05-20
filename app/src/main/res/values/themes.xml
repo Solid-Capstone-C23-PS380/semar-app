@@ -17,6 +17,18 @@
 
     <style name="Theme.Semar" parent="Base.Theme.Semar" />
 
+    <style name="layout">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="toolbar" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="titleTextAppearance">@style/subheader1</item>
+        <item name="titleTextColor">@color/brown_500</item>
+    </style>
+
     <style name="layout_wayang_item">
         <item name="android:background">@drawable/card_wayang_bg</item>
         <item name="textAllCaps">false</item>
@@ -26,6 +38,13 @@
         <item name="android:background">@drawable/card_video_bg</item>
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="layout_event_item">
+        <item name="android:background">@drawable/card_video_bg</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="round">8dp</item>
     </style>
 
     <style name="header" parent="@style/TextAppearance.AppCompat">
