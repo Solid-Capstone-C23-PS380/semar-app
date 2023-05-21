@@ -42,4 +42,12 @@
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>
     <string name="close_button">Close Button</string>
+
+    <!--  Ticket Form  -->
+    <string name="ticket_input_payment_method">Cara Pembayaran</string>
+    <string name="ticket_input_amount">Jumlah</string>
+    <string name="ticket_input_upload_proof_of_payment">Unggah Bukti Pembayaran</string>
+    <string name="ticket_buy">Beli</string>
+    <string name="ticket_input_email">Email</string>
+    <string name="ticket_input_name">Nama</string>
 </resources>
