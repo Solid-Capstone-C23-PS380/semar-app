@@ -2,11 +2,15 @@ package com.solidcapstone.semar.ui.detail.video
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.solidcapstone.semar.R
+import com.solidcapstone.semar.databinding.ActivityVideoDetailBinding
 
 class VideoDetailActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityVideoDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_video_detail)
+        binding = ActivityVideoDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }

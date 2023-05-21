@@ -14,7 +14,7 @@
         android:background="@color/design_default_color_background"
         app:titleTextAppearance="@style/header"
         app:titleTextColor="?attr/colorPrimary"
-        tools:title="Wayang" />
+        tools:title="@string/wayang_names" />
 
     <!--  Content  -->
     <ScrollView
