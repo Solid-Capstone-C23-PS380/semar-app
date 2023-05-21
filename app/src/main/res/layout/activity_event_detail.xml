@@ -12,92 +12,116 @@
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbarLayout"
+            style="@style/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            style="@style/toolbar"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
                 app:title="@string/event_name"
                 app:titleTextColor="@color/brown_500"
-                app:titleTextStyle="@style/subheader1"
-                app:layout_collapseMode="pin" />
+                app:titleTextStyle="@style/subheader1" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/iv_event"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:scaleType="fitCenter"
-                android:contentDescription="@string/event_poster"
-                android:src="@drawable/ic_launcher_background"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="8dp"
-                android:background="@color/brown_100"
-                android:layout_marginVertical="8dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="8dp">
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/price"
-                    android:gravity="start"
-                    style="@style/bold_body"/>
+                <ImageView
+                    android:id="@+id/iv_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:contentDescription="@string/event_poster"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_launcher_background"
+                    tools:ignore="ImageContrastCheck" />
 
-                <TextView
-                    android:id="@+id/tv_price"
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="@color/brown_100" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/price_value"
-                    android:gravity="end"
-                    android:textColor="@color/brown_500"
-                    style="@style/light_body"/>
+                    android:layout_marginHorizontal="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/bold_body"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:text="@string/price" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        style="@style/light_body"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/price_value"
+                        android:textColor="@color/brown_500" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="@color/brown_100" />
+
+                <TextView
+                    android:id="@+id/tv_event_description"
+                    style="@style/regular_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/lorem_ipsum" />
 
             </LinearLayout>
+        </ScrollView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="8dp"
-                android:background="@color/brown_100"
-                android:layout_marginVertical="8dp"/>
-
-            <TextView
-                android:id="@+id/tv_event_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/regular_body"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/event_description"/>
-
-        </LinearLayout>
-    </ScrollView>
-
-<!--    Kurang Buttom beli tiket-->
+        <Button
+            android:id="@+id/btn_buy_ticket"
+            style="@style/subheader2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_margin="8dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:elevation="8dp"
+            android:maxWidth="320dp"
+            android:minWidth="260dp"
+            android:padding="8dp"
+            android:stateListAnimator="@null"
+            android:text="@string/event_detail_btn_buy_ticket"
+            android:textColor="@color/white"
+            tools:ignore="TextContrastCheck" />
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
