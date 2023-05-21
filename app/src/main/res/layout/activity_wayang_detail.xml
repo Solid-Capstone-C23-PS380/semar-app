@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.detail.wayang.WayangDetailActivity">
+    <!--  Toolbar  -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_background"
+        app:titleTextAppearance="@style/header"
+        app:titleTextColor="?attr/colorPrimary"
+        tools:title="Wayang" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--  Content  -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--  Image List  -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_wayang_images"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/indicator_wayang_images"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_gravity="bottom"
+                    android:elevation="8dp" />
+            </FrameLayout>
+
+            <!--  Wayang Description  -->
+            <TextView
+                android:id="@+id/tv_wayang_description"
+                style="@style/regular_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="@string/lorem_ipsum" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!--  Search on Tokopedia button  -->
+    <Button
+        android:id="@+id/btn_search_on_tokopedia"
+        style="@style/subheader2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:drawableEnd="@drawable/baseline_logout_24"
+        android:elevation="8dp"
+        android:maxWidth="320dp"
+        android:minWidth="260dp"
+        android:padding="8dp"
+        android:stateListAnimator="@null"
+        android:text="@string/wayang_search_on_tokopedia"
+        android:textColor="@color/white"
+        tools:ignore="TextContrastCheck" />
+</LinearLayout>

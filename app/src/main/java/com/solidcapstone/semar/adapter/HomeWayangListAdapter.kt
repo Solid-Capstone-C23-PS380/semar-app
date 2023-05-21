@@ -1,10 +1,11 @@
 package com.solidcapstone.semar.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.solidcapstone.semar.databinding.ItemWayangBinding
+import com.solidcapstone.semar.ui.detail.wayang.WayangDetailActivity
 
 class HomeWayangListAdapter(
     private val listWayang: List<String>
@@ -19,12 +20,11 @@ class HomeWayangListAdapter(
     override fun getItemCount(): Int = listWayang.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.setOnClickListener {
-            Toast.makeText(
-                holder.itemView.context,
-                listWayang[position],
-                Toast.LENGTH_SHORT
-            ).show()
+        holder.itemView.apply {
+            setOnClickListener {
+                val intent = Intent(context, WayangDetailActivity::class.java)
+                context.startActivity(intent)
+            }
         }
     }
 }
