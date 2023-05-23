@@ -24,8 +24,8 @@ class RegisterFragment : DialogFragment() {
         _binding = FragmentRegisterBinding.inflate(inflater,container,false)
         return binding.root
     }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
         val dialog = super.onCreateDialog(savedInstanceState)
 
         // Mengatur lebar dan tinggi dialog

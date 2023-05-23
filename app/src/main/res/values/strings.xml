@@ -55,4 +55,8 @@
     <string name="or">OR</string>
     <string name="login_google">Log in with Google</string>
     <string name="not_account">Belum memiliki akun?</string>
+    <string name="buy_success">Pembelian Berhasil</string>
+    <string name="check_receipts">Silahkan cek resi pembelian melalui email</string>
+    <string name="icon_success">Icon Success</string>
+    <string name="finish">Selesai</string>
 </resources>
