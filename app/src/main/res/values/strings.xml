@@ -50,7 +50,7 @@
     <string name="ticket_buy">Beli</string>
     <string name="ticket_input_email">Email</string>
     <string name="ticket_input_name">Nama</string>
-    <string name="logo_desc">Aplication Logo</string>
+    <string name="logo_desc">Application Logo</string>
     <string name="login">Login</string>
     <string name="or">OR</string>
     <string name="login_google">Log in with Google</string>
@@ -59,4 +59,6 @@
     <string name="check_receipts">Silahkan cek resi pembelian melalui email</string>
     <string name="icon_success">Icon Success</string>
     <string name="finish">Selesai</string>
+    <string name="ticket_total_price">Total Harga:</string>
+    <string name="placeholder_price">Rp50.000,-</string>
 </resources>

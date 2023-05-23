@@ -115,6 +115,33 @@
         </LinearLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end|center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="0dp">
+
+        <TextView
+            style="@style/regular_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:maxLines="1"
+            android:text="@string/ticket_total_price" />
+
+        <TextView
+            android:id="@+id/tv_total_cost"
+            style="@style/subheader1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@string/placeholder_price" />
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_buy_ticket"
         style="@style/subheader2"
