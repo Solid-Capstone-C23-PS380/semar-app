@@ -1,39 +1,38 @@
 package com.solidcapstone.semar.ui.auth
 
-import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.FragmentRegisterBinding
 
 
 class RegisterFragment : DialogFragment() {
-
-    private var _binding : FragmentRegisterBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        _binding = FragmentRegisterBinding.inflate(inflater,container,false)
+    ): View {
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
-        val dialog = super.onCreateDialog(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // Mengatur lebar dan tinggi dialog
-        val width = resources.getDimensionPixelSize(R.dimen.dialog_width)
-        val height = resources.getDimensionPixelSize(R.dimen.dialog_height)
-        dialog.window?.setLayout(width, height)
+        binding.btnClose.setOnClickListener {
+            dialog?.dismiss()
+        }
+    }
 
-        return dialog
+    override fun onResume() {
+        super.onResume()
+
+        val width = (resources.displayMetrics.widthPixels * 0.95).toInt()
+        val height = ViewGroup.LayoutParams.WRAP_CONTENT
+        dialog?.window?.setLayout(width, height)
     }
 
 }

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.solidcapstone.semar.adapter.HomeVideoListAdapter
 import com.solidcapstone.semar.adapter.HomeWayangListAdapter
 import com.solidcapstone.semar.databinding.FragmentHomeBinding
+import com.solidcapstone.semar.ui.auth.AuthActivity
 import com.solidcapstone.semar.ui.profile.ProfileActivity
 
 class HomeFragment : Fragment() {
@@ -31,6 +32,9 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
             startActivity(intent)
         }
+
+        val intent = Intent(requireContext(), AuthActivity::class.java)
+        startActivity(intent)
     }
 
     private fun showDummyListWayang() {
