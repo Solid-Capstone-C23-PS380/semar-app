@@ -63,6 +63,9 @@ class ScanFragment : Fragment() {
         binding.btnCaptureImage.setOnClickListener{
             takePhoto()
         }
+//        binding.btnGalery.setOnClickListener{
+//            startGallery()
+//        }
 
         return root
     }
@@ -79,6 +82,33 @@ class ScanFragment : Fragment() {
 
         startCamera()
     }
+//    private fun startGallery() {
+//        val intent = Intent(Intent.ACTION_GET_CONTENT)
+//        intent.type = "image/*"
+//        val chooser = Intent.createChooser(intent, "Choose a Picture")
+//        launcherIntentGallery.launch(chooser)
+//    }
+//
+//    private val launcherIntentGallery = registerForActivityResult(
+//        ActivityResultContracts.StartActivityForResult()
+//    ) { result ->
+//        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+//            val selectedImg: Uri? = result.data?.data
+//            selectedImg?.let { uri ->
+//                val file = uriToFile(uri, requireContext())
+//
+//                val resultTempFragment = ResultTempFragment()
+//                val bundle = Bundle()
+//                bundle.putSerializable("file", file)
+//                resultTempFragment.arguments = bundle
+//
+//                parentFragmentManager.beginTransaction()
+//                    .replace(R.id.fragmet_scan, resultTempFragment)
+//                    .addToBackStack(null)
+//                    .commit()
+//            }
+//        }
+//    }
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
@@ -148,9 +178,9 @@ class ScanFragment : Fragment() {
         val resultFragment = ResultTempFragment()
         resultFragment.arguments = bundle
 
-        requireActivity().supportFragmentManager.beginTransaction()
+        parentFragmentManager.beginTransaction()
             .replace(R.id.fragmet_scan, resultFragment)
-            .addToBackStack(null)
+            .addToBackStack("ScanFragment")
             .commit()
     }
 
