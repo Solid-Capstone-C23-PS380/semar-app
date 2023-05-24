@@ -1,26 +1,20 @@
 package com.solidcapstone.semar.ui.scan
 
 import android.Manifest.permission.CAMERA
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.solidcapstone.semar.databinding.FragmentScanBinding
-import java.util.*
 import com.solidcapstone.semar.helper.createFile
 import java.io.File
 import com.solidcapstone.semar.R
-import com.solidcapstone.semar.helper.uriToFile
 
 
 class ScanFragment : Fragment() {
