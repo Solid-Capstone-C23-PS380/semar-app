@@ -1,15 +1,13 @@
 package com.solidcapstone.semar.ui.scan
 
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.solidcapstone.semar.databinding.FragmentResultTempBinding
+import com.solidcapstone.semar.helper.rotateBitmap
 import java.io.File
 
 
@@ -31,23 +29,21 @@ class ResultTempFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        launcherIntentCameraX
+        getPhoto()
     }
 
+    private fun getPhoto(){
+        val picturePath = arguments?.getString("picture")
+        val myFile = File(picturePath)
+        val isBackCamera = arguments?.getBoolean("isBackCamera") ?: true
+        getFile = myFile
+        val result = BitmapFactory.decodeFile(myFile.path)
+        rotateBitmap(result,isBackCamera)
+        binding.imageView.setImageBitmap(result)
+
+    }
     companion object {
         const val CAMERA_X_RESULT = 200
-        private const val ARG_IMAGE_URI = "arg_image_uri"
 
-    }
-    private val launcherIntentCameraX = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == CAMERA_X_RESULT) {
-            val myFile = it.data?.getSerializableExtra("picture") as File
-            val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
-            getFile = myFile
-            val result = BitmapFactory.decodeFile(myFile.path)
-            binding.imageView.setImageBitmap(result)
-        }
     }
 }

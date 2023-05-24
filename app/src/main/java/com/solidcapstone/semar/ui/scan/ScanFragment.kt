@@ -9,6 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
@@ -16,6 +18,9 @@ import androidx.fragment.app.Fragment
 import com.solidcapstone.semar.databinding.FragmentScanBinding
 import java.util.*
 import com.solidcapstone.semar.helper.createFile
+import java.io.File
+import com.solidcapstone.semar.R
+import com.solidcapstone.semar.helper.uriToFile
 
 
 class ScanFragment : Fragment() {
@@ -118,13 +123,13 @@ class ScanFragment : Fragment() {
             ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-
-                    val intent = Intent().apply {
-                        putExtra("picture", photoFile)
-                        putExtra("isBackCamera", cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
-                    }
-                    requireActivity().setResult(ResultTempFragment.CAMERA_X_RESULT, intent)
-                    requireActivity().finish()
+                    navigateToResultFragment(photoFile, cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
+//                    val intent = Intent().apply {
+//                        putExtra("picture", photoFile)
+//                        putExtra("isBackCamera", cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
+//                    }
+//                    requireActivity().setResult(ResultTempFragment.CAMERA_X_RESULT, intent)
+//                    requireActivity().finish()
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -132,6 +137,21 @@ class ScanFragment : Fragment() {
                 }
             }
         )
+    }
+
+    private fun navigateToResultFragment(photoFile: File, isBackCamera: Boolean) {
+        val bundle = Bundle().apply {
+            putString("picture", photoFile.absolutePath)
+            putBoolean("isBackCamera", isBackCamera)
+        }
+
+        val resultFragment = ResultTempFragment()
+        resultFragment.arguments = bundle
+
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmet_scan, resultFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     companion object {
