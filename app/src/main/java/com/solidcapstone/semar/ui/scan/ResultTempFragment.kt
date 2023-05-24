@@ -37,9 +37,14 @@ class ResultTempFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getPhoto()
+
+        val media = arguments?.getString("media")
+        if(media == "camera"){
+            getPhoto()
+        }else if(media == "gallery"){
+            getPhotoByGallery()
+        }
         onBackPressed()
-//        getPhotoByGallery()
     }
 
     private fun getPhoto(){
@@ -53,12 +58,12 @@ class ResultTempFragment : Fragment() {
 
     }
 
-//    private fun getPhotoByGallery(){
-//        val file: File? = arguments?.getSerializable("file") as? File
-//        getFile = file
-//        val result = BitmapFactory.decodeFile(file?.path)
-//        binding.imageView.setImageBitmap(result)
-//    }
+    private fun getPhotoByGallery(){
+        val myFile = arguments?.getSerializable("file") as File
+        getFile = myFile
+        val result = BitmapFactory.decodeFile(myFile.path)
+        binding.imageView.setImageBitmap(result)
+    }
 
     private fun goBackToCameraFragment() {
         parentFragmentManager.popBackStack("ScanFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)

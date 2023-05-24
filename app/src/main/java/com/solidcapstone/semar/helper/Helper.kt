@@ -65,3 +65,5 @@ fun uriToFile(selectedImg: Uri, context: Context):File{
     inputStream.close()
     return myFile
 }
+
+

@@ -1,12 +1,16 @@
 package com.solidcapstone.semar.ui.scan
 
 import android.Manifest.permission.CAMERA
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
@@ -15,6 +19,7 @@ import com.solidcapstone.semar.databinding.FragmentScanBinding
 import com.solidcapstone.semar.helper.createFile
 import java.io.File
 import com.solidcapstone.semar.R
+import com.solidcapstone.semar.helper.uriToFile
 
 
 class ScanFragment : Fragment() {
@@ -57,9 +62,9 @@ class ScanFragment : Fragment() {
         binding.btnCaptureImage.setOnClickListener{
             takePhoto()
         }
-//        binding.btnGalery.setOnClickListener{
-//            startGallery()
-//        }
+        binding.btnGalery.setOnClickListener{
+            startGallery()
+        }
 
         return root
     }
@@ -76,33 +81,36 @@ class ScanFragment : Fragment() {
 
         startCamera()
     }
-//    private fun startGallery() {
-//        val intent = Intent(Intent.ACTION_GET_CONTENT)
-//        intent.type = "image/*"
-//        val chooser = Intent.createChooser(intent, "Choose a Picture")
-//        launcherIntentGallery.launch(chooser)
-//    }
-//
-//    private val launcherIntentGallery = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) { result ->
-//        if (result.resultCode == AppCompatActivity.RESULT_OK) {
-//            val selectedImg: Uri? = result.data?.data
-//            selectedImg?.let { uri ->
-//                val file = uriToFile(uri, requireContext())
-//
-//                val resultTempFragment = ResultTempFragment()
-//                val bundle = Bundle()
-//                bundle.putSerializable("file", file)
-//                resultTempFragment.arguments = bundle
-//
-//                parentFragmentManager.beginTransaction()
-//                    .replace(R.id.fragmet_scan, resultTempFragment)
-//                    .addToBackStack(null)
-//                    .commit()
-//            }
-//        }
-//    }
+    private fun startGallery() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == AppCompatActivity.RESULT_OK) {
+            val selectedImg: Uri? = result.data?.data
+            selectedImg?.let { uri ->
+                val file = uriToFile(uri, requireContext())
+
+                val resultTempFragment = ResultTempFragment()
+                val bundle = Bundle()
+                bundle.apply {
+                    putSerializable("file", file)
+                    putString("media","gallery")
+                }
+                resultTempFragment.arguments = bundle
+
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragmet_scan, resultTempFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }
+    }
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
@@ -167,6 +175,7 @@ class ScanFragment : Fragment() {
         val bundle = Bundle().apply {
             putString("picture", photoFile.absolutePath)
             putBoolean("isBackCamera", isBackCamera)
+            putString("media","camera")
         }
 
         val resultFragment = ResultTempFragment()
