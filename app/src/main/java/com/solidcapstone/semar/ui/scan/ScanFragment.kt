@@ -106,7 +106,7 @@ class ScanFragment : Fragment() {
 
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragmet_scan, resultTempFragment)
-                    .addToBackStack(null)
+                    .addToBackStack("ScanFragment")
                     .commit()
             }
         }
