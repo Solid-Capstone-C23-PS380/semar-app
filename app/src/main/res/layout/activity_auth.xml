@@ -65,7 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:singleLine="true" />
+            android:singleLine="true"
+            tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Password"
+        android:hint="@string/password"
         android:textColorHint="@color/brown_100"
         app:boxBackgroundColor="#FFFFFF"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -104,7 +105,8 @@
             style="@style/regular_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,18 +115,17 @@
         style="@style/regular_body"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Lupa Password?"
+        android:text="@string/forgot_password"
         android:textColor="@color/brown_500"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         style="@style/subheader2"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginHorizontal="8dp"
         android:layout_marginStart="75dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="75dp"
@@ -132,14 +133,14 @@
         android:elevation="8dp"
         android:maxWidth="320dp"
         android:minWidth="260dp"
-        android:padding="8dp"
+        android:padding="16dp"
         android:stateListAnimator="@null"
         android:text="@string/login"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_forget_password"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/tv_or"
@@ -153,7 +154,7 @@
         app:layout_constraintStart_toStartOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login_google"
         style="@style/regular_body"
         android:layout_width="wrap_content"
@@ -164,18 +165,19 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="75dp"
         android:backgroundTint="?attr/colorOnPrimary"
+        android:drawableStart="@drawable/ic_google"
+        android:drawablePadding="16dp"
         android:elevation="8dp"
         android:maxWidth="320dp"
         android:minWidth="260dp"
-        android:padding="8dp"
-        android:textAllCaps="false"
-        android:drawableStart="@drawable/ic_google"
+        android:padding="16dp"
         android:text="@string/login_google"
+        android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_or"
-        tools:ignore="TextContrastCheck" />
+        tools:ignore="RtlHardcoded,TextContrastCheck" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -192,6 +194,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/not_account"
             android:textColor="@color/black" />
 
@@ -202,9 +205,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:clickable="true"
-            android:onClick="clickToRegister"
-            android:text=" Buat Akun"
-            android:textColor="@color/orange_500" />
+            android:focusable="true"
+            android:text="@string/create_account"
+            android:textColor="@color/orange_500"
+            tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
