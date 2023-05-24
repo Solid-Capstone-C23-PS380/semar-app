@@ -11,76 +11,68 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.*
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.FragmentScanBinding
 import com.solidcapstone.semar.helper.createFile
-import java.io.File
-import com.solidcapstone.semar.R
 import com.solidcapstone.semar.helper.uriToFile
+import java.io.File
 
 
 class ScanFragment : Fragment() {
-
-    private var _binding: FragmentScanBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentScanBinding
     private lateinit var cameraProvider: ProcessCameraProvider
     private var imageCapture: ImageCapture? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (!allPermissionsGranted()) {
-                Toast.makeText(
-                    requireContext(),
-                    "Tidak mendapatkan izin.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                requireActivity().finish()
-            }
-        }
-    }
-
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentScanBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        binding.btnCaptureImage.setOnClickListener{
-            takePhoto()
-        }
-        binding.btnGalery.setOnClickListener{
-            startGallery()
-        }
-
-        return root
+    ): View {
+        binding = FragmentScanBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.btnCaptureImage.setOnClickListener {
+            takePhoto()
+        }
+        binding.btnGallery.setOnClickListener {
+            startGallery()
+        }
+
         if (!allPermissionsGranted()) {
-            requestPermissions(
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
-            )
+            requestPermissionLauncher.launch(REQUIRED_PERMISSIONS)
         }
 
         startCamera()
     }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { results ->
+            if (results.containsValue(false)) {
+                Toast.makeText(
+                    requireContext(),
+                    "Tidak mendapatkan izin.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
+    }
+
     private fun startGallery() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
@@ -100,13 +92,14 @@ class ScanFragment : Fragment() {
                 val bundle = Bundle()
                 bundle.apply {
                     putSerializable("file", file)
-                    putString("media","gallery")
+                    putString("media", "gallery")
                 }
                 resultTempFragment.arguments = bundle
 
+                binding.btnGallery.isEnabled = false
+                binding.btnCaptureImage.isEnabled = false
                 parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragmet_scan, resultTempFragment)
-                    .addToBackStack("ScanFragment")
+                    .replace(R.id.fragment_scan, resultTempFragment)
                     .commit()
             }
         }
@@ -119,6 +112,7 @@ class ScanFragment : Fragment() {
             bindPreview()
         }, ContextCompat.getMainExecutor(requireContext()))
     }
+
     private fun bindPreview() {
         val preview = Preview.Builder().build().also {
             it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
@@ -155,17 +149,15 @@ class ScanFragment : Fragment() {
             ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    navigateToResultFragment(photoFile, cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
-//                    val intent = Intent().apply {
-//                        putExtra("picture", photoFile)
-//                        putExtra("isBackCamera", cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA)
-//                    }
-//                    requireActivity().setResult(ResultTempFragment.CAMERA_X_RESULT, intent)
-//                    requireActivity().finish()
+                    navigateToResultFragment(
+                        photoFile,
+                        cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA
+                    )
                 }
 
                 override fun onError(exception: ImageCaptureException) {
-                    Toast.makeText(requireContext(), "Failed to capture photo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Failed to capture photo", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         )
@@ -175,20 +167,20 @@ class ScanFragment : Fragment() {
         val bundle = Bundle().apply {
             putString("picture", photoFile.absolutePath)
             putBoolean("isBackCamera", isBackCamera)
-            putString("media","camera")
+            putString("media", "camera")
         }
 
-        val resultFragment = ResultTempFragment()
-        resultFragment.arguments = bundle
+        val resultTempFragment = ResultTempFragment()
+        resultTempFragment.arguments = bundle
 
+        binding.btnGallery.isEnabled = false
+        binding.btnCaptureImage.isEnabled = false
         parentFragmentManager.beginTransaction()
-            .replace(R.id.fragmet_scan, resultFragment)
-            .addToBackStack("ScanFragment")
+            .replace(R.id.fragment_scan, resultTempFragment)
             .commit()
     }
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(CAMERA)
-        private const val REQUEST_CODE_PERMISSIONS = 10
     }
 }
