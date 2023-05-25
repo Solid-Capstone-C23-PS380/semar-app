@@ -28,6 +28,7 @@ class ResultTempFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         val media = arguments?.getString("media")
         if (media == "camera") {
             getPhoto()

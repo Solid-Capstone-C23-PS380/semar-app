@@ -1,7 +1,9 @@
 package com.solidcapstone.semar.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.solidcapstone.semar.MainActivity
 import com.solidcapstone.semar.databinding.ActivityAuthBinding
 
 class AuthActivity : AppCompatActivity() {
@@ -15,9 +17,17 @@ class AuthActivity : AppCompatActivity() {
         binding.tvToRegister.setOnClickListener {
             clickToRegister()
         }
+        binding.btnLogin.setOnClickListener{
+            login()
+        }
     }
 
     private fun clickToRegister() {
         RegisterFragment().show(supportFragmentManager, "RegisterFragment")
+    }
+
+    private fun login(){
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
