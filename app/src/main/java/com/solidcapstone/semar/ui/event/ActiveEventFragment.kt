@@ -10,7 +10,7 @@ import com.solidcapstone.semar.databinding.FragmentActiveEventBinding
 import java.util.Date
 
 
-class ActiveEventFragment() : Fragment() {
+class ActiveEventFragment(var date: Date) : Fragment() {
 
     private var _binding: FragmentActiveEventBinding? = null
     private val binding get() = _binding!!
