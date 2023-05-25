@@ -65,6 +65,8 @@
     <string name="password">Password</string>
     <string name="forgot_password">Lupa Password?</string>
     <string name="password_confirmation">Password Confirmation</string>
+    <string name="event_tab_missed">Terlewat</string>
+    <string name="event_tab_active">Berlangsung</string>
     <string name="semar_logo">Semar Logo</string>
     <string name="app_name_tagline">App Name Tagline</string>
 </resources>
