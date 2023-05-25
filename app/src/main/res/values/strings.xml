@@ -69,4 +69,12 @@
     <string name="event_tab_active">Berlangsung</string>
     <string name="semar_logo">Semar Logo</string>
     <string name="app_name_tagline">App Name Tagline</string>
+    <string name="null_photo_message"> Choose your photo</string>
+
+    <!--Pager Title-->
+    <string-array name="tab_menu">
+        <item>Terlewat</item>
+        <item>Berlangsung</item>
+    </string-array>
+
 </resources>
