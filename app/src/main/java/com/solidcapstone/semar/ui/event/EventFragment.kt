@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.solidcapstone.semar.R
 import com.solidcapstone.semar.adapter.EventPagerAdapter
@@ -18,6 +20,8 @@ class EventFragment : Fragment() {
 
     private var _binding: FragmentEventBinding? = null
     private val binding get() = _binding!!
+    private lateinit var viewPager : ViewPager2
+    private lateinit var tabs : TabLayout
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,20 +31,23 @@ class EventFragment : Fragment() {
         return root
     }
 
-//    private fun setViewPager() {
-//        val pagerAdapter = EventPagerAdapter(Activity, date)
-//
-//        binding.apply {
-//            viewPager = viewpager
-//            tabs = tablayout
-//        }
-//
-//        viewPager.adapter = pagerAdapter
-//        val titles = resources.getStringArray(R.array.tab_menu)
-//        TabLayoutMediator(tabs, viewPager) { tab, position ->
-//            tab.text = titles[position]
-//        }.attach()
-//    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        setViewPager()
+    }
+
+    private fun setViewPager(){
+        val pagerAdapter = EventPagerAdapter(requireActivity())
+        binding.apply {
+            viewPager = viewpager
+            tabs = tablayout
+        }
+        viewPager.adapter = pagerAdapter
+        val title = resources.getStringArray(R.array.tab_menu)
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
+            tab.text = title[position]
+        }.attach()
+    }
 
 }

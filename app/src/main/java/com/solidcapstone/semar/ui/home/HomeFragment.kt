@@ -11,6 +11,7 @@ import com.solidcapstone.semar.adapter.HomeVideoListAdapter
 import com.solidcapstone.semar.adapter.HomeWayangListAdapter
 import com.solidcapstone.semar.databinding.FragmentHomeBinding
 import com.solidcapstone.semar.ui.profile.ProfileActivity
+import com.solidcapstone.semar.ui.video.ListVideoActivity
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -29,6 +30,14 @@ class HomeFragment : Fragment() {
 
         binding.btnUserImage.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnMoreWayang.setOnClickListener {
+            val intent = Intent(requireContext(), ListWayangActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnMoreVideos.setOnClickListener {
+            val intent = Intent(requireContext(), ListVideoActivity::class.java)
             startActivity(intent)
         }
     }

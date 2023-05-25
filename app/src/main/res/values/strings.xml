@@ -67,4 +67,11 @@
     <string name="password_confirmation">Password Confirmation</string>
     <string name="semar_logo">Semar Logo</string>
     <string name="app_name_tagline">App Name Tagline</string>
+
+    <!--Pager Title-->
+    <string-array name="tab_menu">
+        <item>Terlewat</item>
+        <item>Berlangsung</item>
+    </string-array>
+
 </resources>

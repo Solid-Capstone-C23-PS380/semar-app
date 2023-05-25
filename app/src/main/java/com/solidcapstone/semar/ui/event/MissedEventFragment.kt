@@ -10,7 +10,7 @@ import com.solidcapstone.semar.databinding.FragmentMissedEventBinding
 import java.util.Date
 
 
-class MissedEventFragment(var date : Date) : Fragment() {
+class MissedEventFragment() : Fragment() {
 
     private var _binding: FragmentMissedEventBinding? = null
     private val binding get() = _binding!!
