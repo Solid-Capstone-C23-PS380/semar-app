@@ -3,7 +3,6 @@ package com.solidcapstone.semar.ui.profile
 import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -12,13 +11,14 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.solidcapstone.semar.databinding.ActivityProfileBinding
-import com.solidcapstone.utils.SettingsViewModelFactory
-import com.google.android.material.switchmaterial.SwitchMaterial
+import com.solidcapstone.semar.utils.SettingsViewModelFactory
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private lateinit var settingsViewModel: ProfileViewModel
+
+    private val settingsName = "settings"
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(settingsName)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +30,11 @@ class ProfileActivity : AppCompatActivity() {
 
         initViewModel()
         observeViewModel()
-        binding.switchDarkMode.setOnCheckedChangeListener{ _: CompoundButton?, isChecked: Boolean ->
-            settingsViewModel.saveThemeSetting(isChecked)
+
+        binding.settingDarkMode.setOnClickListener {
+            val isChecked = binding.switchDarkMode.isChecked
+            binding.switchDarkMode.isChecked = !isChecked
+            settingsViewModel.saveThemeSetting(!isChecked)
         }
         binding.settingLanguage.setOnClickListener {
             Toast.makeText(this, "Language", Toast.LENGTH_SHORT).show()
@@ -49,9 +52,10 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun observeViewModel() {
-        settingsViewModel.getThemeSettings().observe(this
-        ) { isDarkModeActive: Boolean ->
-            if (isDarkModeActive) {
+        settingsViewModel.getThemeSettings().observe(
+            this
+        ) { isDarkModeActive: Boolean? ->
+            if (isDarkModeActive == true) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 binding.switchDarkMode.isChecked = true
             } else {
@@ -63,7 +67,8 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         val preferences = SettingPreferences.getInstance(this.dataStore)
-        settingsViewModel = ViewModelProvider(this,
+        settingsViewModel = ViewModelProvider(
+            this,
             SettingsViewModelFactory(preferences)
         )[ProfileViewModel::class.java]
     }

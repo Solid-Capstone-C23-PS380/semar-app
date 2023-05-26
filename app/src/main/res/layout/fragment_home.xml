@@ -2,10 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    style="@style/layout"
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
@@ -38,7 +38,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/home_content_desc_profile"
                     android:src="@mipmap/ic_launcher"
-                    tools:ignore="ImageContrastCheck"/>
+                    tools:ignore="ImageContrastCheck" />
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
@@ -79,7 +79,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/home_header_wayang"
-                android:textColor="?attr/colorPrimary" />
+                android:textColor="?attr/colorOnSurfaceVariant" />
 
             <Space
                 android:layout_width="0dp"
@@ -96,9 +96,8 @@
                 android:focusable="true"
                 android:maxLines="1"
                 android:text="@string/home_see_more"
-                android:textColor="?attr/colorPrimary"
-                tools:ignore="TouchTargetSizeCheck"
-                android:contextClickable="true"/>
+                android:textColor="?attr/colorOnSurfaceVariant"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -127,7 +126,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/home_header_video"
-                android:textColor="?attr/colorPrimary" />
+                android:textColor="?attr/colorOnSurfaceVariant" />
 
             <Space
                 android:layout_width="0dp"
@@ -144,9 +143,8 @@
                 android:focusable="true"
                 android:maxLines="1"
                 android:text="@string/home_see_more"
-                android:textColor="?attr/colorPrimary"
-                tools:ignore="TouchTargetSizeCheck"
-                android:contextClickable="true"/>
+                android:textColor="?attr/colorOnSurfaceVariant"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
