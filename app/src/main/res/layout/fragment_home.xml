@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    style="@style/layout"
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
@@ -15,10 +16,10 @@
         <!--    Top Bar    -->
         <LinearLayout
             android:id="@+id/top_bar_home"
+            style="@style/header_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:background="@drawable/top_bar_home_bg"
             android:elevation="@dimen/cardview_default_elevation"
             android:minHeight="120dp"
             android:orientation="horizontal"

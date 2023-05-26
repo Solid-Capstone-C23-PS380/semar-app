@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    style="@style/layout"
     tools:context=".ui.detail.wayang.WayangDetailActivity">
     <!--  Toolbar  -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_background"
-        app:titleTextAppearance="@style/header"
-        app:titleTextColor="?attr/colorPrimary"
+        app:titleTextAppearance="@style/subheader1"
+        style="@style/toolbar"
         tools:title="@string/wayang_names" />
 
     <!--  Content  -->
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="8dp"
-        android:backgroundTint="?attr/colorPrimary"
+        android:backgroundTint="@color/brown_500"
         android:drawableEnd="@drawable/baseline_logout_24"
         android:elevation="8dp"
         android:maxWidth="320dp"

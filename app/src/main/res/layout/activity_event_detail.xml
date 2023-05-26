@@ -23,7 +23,6 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:title="@string/event_name"
-                app:titleTextColor="@color/brown_500"
                 app:titleTextStyle="@style/subheader1" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -82,8 +81,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@string/price_value"
-                        android:textColor="@color/brown_500" />
+                        android:text="@string/price_value"/>
 
                 </LinearLayout>
 
@@ -113,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_margin="8dp"
-            android:backgroundTint="?attr/colorPrimary"
+            android:backgroundTint="@color/brown_500"
             android:elevation="8dp"
             android:maxWidth="320dp"
             android:minWidth="260dp"
