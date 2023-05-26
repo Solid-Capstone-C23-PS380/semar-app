@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
+import android.provider.MediaStore
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -79,7 +80,57 @@ fun reduceFileImg(file: File) :File{
         val bmpPicByteArray = bmpStream.toByteArray()
         streamLength =bmpPicByteArray.size
         compressQuality -= 5
-    }while (streamLength > 1000000)
+    }while (streamLength > 2000000)
     bitmap.compress(Bitmap.CompressFormat.JPEG,compressQuality,FileOutputStream(file))
     return file
+}
+
+//Downscale Image File
+fun downscaleImage(file: File): File? {
+    val targetWidth = 150
+    val targetHeight = 150
+
+    return try {
+        // Decode file gambar menjadi Bitmap
+        val options = BitmapFactory.Options().apply {
+            inJustDecodeBounds = true
+        }
+        BitmapFactory.decodeFile(file.path, options)
+
+        // Tentukan faktor skala untuk downscale
+        val scaleFactor = calculateScaleFactor(options.outWidth, options.outHeight, targetWidth, targetHeight)
+
+        // Konfigurasi opsi decoding untuk menghasilkan gambar downscale
+        val decodeOptions = BitmapFactory.Options().apply {
+            inSampleSize = scaleFactor
+        }
+
+        // Decode file gambar dengan opsi downscale
+        val bitmap = BitmapFactory.decodeFile(file.path, decodeOptions)
+
+        // Mengubah ukuran bitmap menjadi 150x150 piksel
+        val scaledBitmap = Bitmap.createScaledBitmap(bitmap, targetWidth, targetHeight, true)
+        bitmap.recycle() // Hapus bitmap asli karena kita hanya tertarik dengan yang diubah ukuran
+
+        // Membuat file untuk menyimpan gambar hasil downscale
+        val outputFile = File.createTempFile("downscaled_", ".jpg")
+        val outputStream = FileOutputStream(outputFile)
+        scaledBitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream.flush()
+        outputStream.close()
+
+        outputFile // Mengembalikan file gambar hasil downscale
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null // Mengembalikan null jika terjadi kesalahan
+    }
+}
+
+// Menghitung faktor skala untuk downscale
+private fun calculateScaleFactor(originalWidth: Int, originalHeight: Int, targetWidth: Int, targetHeight: Int): Int {
+    return when {
+        originalWidth > originalHeight -> originalWidth / targetWidth
+        originalHeight > originalWidth -> originalHeight / targetHeight
+        else -> originalWidth / targetWidth
+    }
 }

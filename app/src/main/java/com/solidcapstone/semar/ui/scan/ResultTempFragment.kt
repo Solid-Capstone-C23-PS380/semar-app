@@ -19,6 +19,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.FragmentResultTempBinding
+import com.solidcapstone.semar.helper.downscaleImage
 import com.solidcapstone.semar.helper.reduceFileImg
 import com.solidcapstone.semar.helper.rotateBitmap
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -107,12 +108,13 @@ class ResultTempFragment : Fragment() {
     private fun uploadImage() {
 
         if (getFile != null) {
-            val file = reduceFileImg(getFile as File)
+            val file = downscaleImage(getFile as File)
+            val fileReduce = reduceFileImg(file as File)
 
-            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val requestImageFile = fileReduce.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "file",
-                file.name,
+                fileReduce.name,
                 requestImageFile
             )
             viewModel.apply {
