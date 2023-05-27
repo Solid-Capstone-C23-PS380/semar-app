@@ -1,10 +1,7 @@
 package com.solidcapstone.semar.ui.scan
 
-import android.Manifest
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
-import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,16 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
-import androidx.activity.viewModels
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.solidcapstone.semar.R
+import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.FragmentResultTempBinding
 import com.solidcapstone.semar.helper.downscaleImage
 import com.solidcapstone.semar.helper.reduceFileImg
 import com.solidcapstone.semar.helper.rotateBitmap
+import com.solidcapstone.semar.ui.detail.wayang.WayangDetailActivity
+import com.solidcapstone.semar.utils.WayangViewModelFactory
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -30,7 +27,10 @@ import java.io.File
 class ResultTempFragment : Fragment() {
     private lateinit var binding: FragmentResultTempBinding
     private var getFile: File? = null
-    private val viewModel : ScanViewModel by viewModels()
+
+    private val viewModel: ScanViewModel by viewModels {
+        WayangViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +43,6 @@ class ResultTempFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val media = arguments?.getString("media")
         if (media == "camera") {
             getPhoto()
@@ -52,15 +51,15 @@ class ResultTempFragment : Fragment() {
         }
         onBackPressed()
 
-        binding.btnRemove.setOnClickListener {
+        binding.btnScanCancel.setOnClickListener {
             goBackToScanFragment()
         }
-        binding.btnOk.setOnClickListener{
+        binding.btnScanOk.setOnClickListener {
             uploadImage()
         }
-        viewModel.result.observe(viewLifecycleOwner, Observer { wayangName ->
-            Toast.makeText(requireContext(), "Result: $wayangName", Toast.LENGTH_SHORT).show()
-        })
+        binding.btnWayangDetail.setOnClickListener {
+
+        }
     }
 
     private fun getPhoto() {
@@ -70,7 +69,7 @@ class ResultTempFragment : Fragment() {
         getFile = myFile
         val result = BitmapFactory.decodeFile(myFile.path)
         rotateBitmap(result, isBackCamera)
-        binding.imageView.setImageBitmap(result)
+        binding.ivScannedPhoto.setImageBitmap(result)
     }
 
     private fun getPhotoByGallery() {
@@ -83,7 +82,7 @@ class ResultTempFragment : Fragment() {
 
         getFile = myFile
         val result = BitmapFactory.decodeFile(myFile.path)
-        binding.imageView.setImageBitmap(result)
+        binding.ivScannedPhoto.setImageBitmap(result)
     }
 
     private fun onBackPressed() {
@@ -106,7 +105,6 @@ class ResultTempFragment : Fragment() {
     }
 
     private fun uploadImage() {
-
         if (getFile != null) {
             val file = downscaleImage(getFile as File)
             val fileReduce = reduceFileImg(file as File)
@@ -117,11 +115,42 @@ class ResultTempFragment : Fragment() {
                 fileReduce.name,
                 requestImageFile
             )
-            viewModel.apply {
-                postImage(imageMultipart, requireContext())
+            viewModel.predictWayang(imageMultipart).observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        binding.cardPrediction.visibility = View.GONE
+                        binding.loadingScan.visibility = View.VISIBLE
+                    }
+
+                    is Result.Success -> {
+                        val wayangName = result.data.result
+                        binding.tvPredictionResult.text = wayangName
+                        binding.cardPrediction.visibility = View.VISIBLE
+                        binding.loadingScan.visibility = View.GONE
+
+                        binding.btnWayangDetail.setOnClickListener {
+                            val intent = Intent(requireActivity(), WayangDetailActivity::class.java)
+                            intent.putExtra(WayangDetailActivity.WAYANG_ID, result.data.id)
+                            startActivity(intent)
+                        }
+                    }
+
+                    is Result.Error -> {
+                        showToast("Prediction failed")
+                        binding.loadingScan.visibility = View.GONE
+                    }
+                }
             }
         } else {
-            Toast.makeText(requireContext(), resources.getString(R.string.null_photo_message), Toast.LENGTH_SHORT).show()
+            showToast(resources.getString(R.string.null_photo_message))
         }
+    }
+
+    private fun showToast(text: String) {
+        Toast.makeText(
+            requireContext(),
+            text,
+            Toast.LENGTH_LONG
+        ).show()
     }
 }

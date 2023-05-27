@@ -72,6 +72,9 @@
     <string name="null_photo_message"> Choose your photo</string>
     <string name="ticket_form">Ticket Form</string>
     <string name="scheadule_description">Scheadule Description</string>
+    <string name="detail">Detail</string>
+    <string name="prediction_result">Hasil prediksi:</string>
+    <string name="scanning">Memindai…</string>
 
     <!--Pager Title-->
     <string-array name="tab_menu">

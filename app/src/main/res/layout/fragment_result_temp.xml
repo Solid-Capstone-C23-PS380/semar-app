@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragment_result_temp"
@@ -8,40 +8,109 @@
     android:background="@color/black"
     tools:context=".ui.scan.ResultTempFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/iv_scanned_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/black">
+        android:importantForAccessibility="no"
+        app:srcCompat="@drawable/ic_place_holder" />
 
-        <ImageView
-            android:id="@+id/imageView"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_scan_ok"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="end"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:foreground="?attr/selectableItemBackground"
+        android:importantForAccessibility="no"
+        android:src="@drawable/baseline_check_24"
+        tools:ignore="UnusedAttribute" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_scan_cancel"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="start"
+        android:layout_margin="16dp"
+        android:background="@null"
+        android:foreground="?attr/selectableItemBackground"
+        android:importantForAccessibility="no"
+        android:src="@drawable/baseline_close_24"
+        tools:ignore="UnusedAttribute" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_prediction"
+        style="@style/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="32dp"
+        android:visibility="gone"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:importantForAccessibility="no"
-            app:srcCompat="@drawable/ic_place_holder" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/btn_ok"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:importantForAccessibility="no"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_check_24" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/btn_remove"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:importantForAccessibility="no"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_close_24" />
+                <TextView
+                    style="@style/regular_body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/prediction_result" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_prediction_result"
+                    style="@style/subheader1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/prediction_result" />
 
-</LinearLayout>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_wayang_detail"
+                style="@style/regular_body"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:backgroundTint="?attr/colorPrimary"
+                android:drawableEnd="@drawable/baseline_chevron_right_24"
+                android:gravity="center_vertical"
+                android:padding="16dp"
+                android:text="@string/detail"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/loading_scan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:background="@color/black"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/regular_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/scanning"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</FrameLayout>

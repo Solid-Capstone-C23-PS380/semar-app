@@ -8,6 +8,7 @@ import com.solidcapstone.semar.data.local.entity.WayangEntity
 import com.solidcapstone.semar.data.local.room.WayangDatabase
 import com.solidcapstone.semar.data.remote.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 
@@ -63,6 +64,16 @@ class WayangRepository private constructor(
         val localData: LiveData<Result<WayangEntity>> =
             database.wayangDao().getWayang(id).map { Result.Success(it) }
         emitSource(localData)
+    }
+
+    fun predictWayang(imgMultipart: MultipartBody.Part) = liveData {
+        emit(Result.Loading)
+        try {
+            val response = apiService.predictWayang(imgMultipart)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
     }
 
     companion object {
