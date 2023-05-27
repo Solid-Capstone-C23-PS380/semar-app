@@ -5,15 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    style="@style/layout"
     tools:context=".ui.event.ticket.TicketFormActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:titleTextAppearance="@style/header"
-        app:titleTextColor="?attr/colorPrimary"
-        tools:title="@string/wayang_names" />
+        app:titleTextAppearance="@style/subheader1"
+        style="@style/toolbar"
+        tools:title="@string/ticket_form" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -149,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
-        android:backgroundTint="?attr/colorPrimary"
+        android:backgroundTint="@color/brown_500"
         android:elevation="8dp"
         android:maxWidth="320dp"
         android:minWidth="260dp"

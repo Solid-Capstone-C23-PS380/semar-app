@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    style="@style/layout"
     tools:context=".ui.event.EventFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -13,14 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="Event"
-        app:titleTextAppearance="@style/subheader1"
-        app:titleTextColor="@color/brown_500" />
+        app:titleTextAppearance="@style/subheader1"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemTextColor="@drawable/bottom_nav_icon_color_selector" />
+        app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
+        style="@style/nav"
+        android:contentDescription="@string/scheadule_description"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"

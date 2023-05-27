@@ -8,8 +8,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.solidcapstone.semar.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/layout"
     tools:context=".ui.detail.video.VideoDetailActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -22,7 +23,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:title="@string/event_name"
-                app:titleTextColor="@color/brown_500"
                 app:titleTextStyle="@style/subheader1"
                 app:layout_collapseMode="pin" />
 

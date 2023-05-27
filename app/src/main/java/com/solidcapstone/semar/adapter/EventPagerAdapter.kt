@@ -8,7 +8,7 @@ import com.solidcapstone.semar.ui.event.ActiveEventFragment
 import com.solidcapstone.semar.ui.event.MissedEventFragment
 import java.util.Date
 
-class EventPagerAdapter(fragment : FragmentActivity) : FragmentStateAdapter(fragment) {
+class EventPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
 
     override fun createFragment(position: Int): Fragment {
         var fragment: Fragment? = null
