@@ -28,6 +28,10 @@
         <item name="titleTextColor">@color/white</item>
     </style>
 
+    <style name="image_galery">
+        <item name="srcCompat">@drawable/ic_gallery_dark</item>
+    </style>
+
     <style name="toolbar" parent="@style/Widget.AppCompat.Toolbar">
         <item name="android:background">@color/brown_500</item>
         <item name="android:layout_width">match_parent</item>
