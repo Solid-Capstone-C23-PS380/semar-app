@@ -5,10 +5,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.solidcapstone.semar.data.PredictResponse
+import com.solidcapstone.semar.data.remote.response.PredictResponse
 import com.solidcapstone.semar.data.remote.retrofit.ApiConfig
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +20,7 @@ class ScanViewModel : ViewModel() {
     val result : LiveData<String> = _result
 
     fun postImage(imgMultipart : MultipartBody.Part, context: Context){
-        ApiConfig.getApiService(context)
+        ApiConfig.getApiService()
             .postImage(imgMultipart)
             .enqueue(object : Callback<PredictResponse> {
                 override fun onResponse(call: Call<PredictResponse>, response: Response<PredictResponse>){
