@@ -1,11 +1,13 @@
 package com.solidcapstone.semar.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.solidcapstone.semar.data.local.entity.WayangEntity
 import com.solidcapstone.semar.databinding.ItemWayangBinding
+import com.solidcapstone.semar.ui.detail.wayang.WayangDetailActivity
 
 class HomeWayangListAdapter(
     private val listWayangItem: List<WayangEntity>
@@ -29,7 +31,9 @@ class HomeWayangListAdapter(
                 .into(binding.ivWayang)
 
             itemView.setOnClickListener {
-
+                val intent = Intent(it.context, WayangDetailActivity::class.java)
+                intent.putExtra(WayangDetailActivity.WAYANG_ID, currentItem.id)
+                it.context.startActivity(intent)
             }
         }
     }

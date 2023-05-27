@@ -1,16 +1,13 @@
 package com.solidcapstone.semar.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.solidcapstone.semar.R
+import com.bumptech.glide.Glide
 import com.solidcapstone.semar.databinding.ItemImageBinding
 
 class WayangDetailImageAdapter(
-    private val context: Context,
-    private var imageList: ArrayList<Int>
+    private val listImage: List<String>
 ) : RecyclerView.Adapter<WayangDetailImageAdapter.ViewHolder>() {
     class ViewHolder(var binding: ItemImageBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -23,14 +20,13 @@ class WayangDetailImageAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.image.setImageDrawable(
-            ContextCompat.getDrawable(
-                context,
-                R.drawable.ic_launcher_background
-            )
-        )
+        holder.apply {
+            Glide.with(itemView.context)
+                .load(listImage[position])
+                .into(binding.image)
+        }
     }
 
-    override fun getItemCount(): Int = imageList.size
+    override fun getItemCount(): Int = listImage.size
 
 }

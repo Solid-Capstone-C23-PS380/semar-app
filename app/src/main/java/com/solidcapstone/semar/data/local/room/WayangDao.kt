@@ -10,10 +10,13 @@ import com.solidcapstone.semar.data.local.entity.WayangEntity
 @Dao
 interface WayangDao {
     @Query("SELECT * FROM wayangs")
-    fun getWayang(): LiveData<List<WayangEntity>>
+    fun getListWayang(): LiveData<List<WayangEntity>>
 
     @Query("SELECT * FROM wayangs ORDER BY RANDOM() LIMIT :limit")
-    fun getWayang(limit: Int): LiveData<List<WayangEntity>>
+    fun getListWayang(limit: Int): LiveData<List<WayangEntity>>
+
+    @Query("SELECT * FROM wayangs WHERE `id` = :id")
+    fun getWayang(id: Int): LiveData<WayangEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertWayangs(wayangs: List<WayangEntity>)

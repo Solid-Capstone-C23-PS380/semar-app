@@ -7,6 +7,8 @@ import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.data.local.entity.WayangEntity
 import com.solidcapstone.semar.data.local.room.WayangDatabase
 import com.solidcapstone.semar.data.remote.retrofit.ApiService
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 
 
 class WayangRepository private constructor(
@@ -35,10 +37,31 @@ class WayangRepository private constructor(
 
         // Get wayang list from local database
         val localData: LiveData<Result<List<WayangEntity>>> = if (showLimit != null) {
-            database.wayangDao().getWayang(showLimit).map { Result.Success(it) }
+            database.wayangDao().getListWayang(showLimit).map { Result.Success(it) }
         } else {
-            database.wayangDao().getWayang().map { Result.Success(it) }
+            database.wayangDao().getListWayang().map { Result.Success(it) }
         }
+        emitSource(localData)
+    }
+
+    fun getWayang(id: Int) = liveData {
+        emit(Result.Loading)
+        try {
+            val requestBody = id.toString().toRequestBody("text/plain".toMediaType())
+            val wayangResponse = apiService.getWayang(requestBody)
+            val wayangEntity = WayangEntity(
+                wayangResponse.id,
+                wayangResponse.name,
+                wayangResponse.photoUrl,
+                wayangResponse.description,
+            )
+            database.wayangDao().insertWayangs(listOf(wayangEntity))
+        } catch (e: Exception) {
+            emit(Result.Error(e.toString()))
+        }
+
+        val localData: LiveData<Result<WayangEntity>> =
+            database.wayangDao().getWayang(id).map { Result.Success(it) }
         emitSource(localData)
     }
 
