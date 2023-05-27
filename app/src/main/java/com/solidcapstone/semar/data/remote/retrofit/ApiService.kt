@@ -11,7 +11,7 @@ import retrofit2.http.Part
 
 interface ApiService {
     @Multipart
-    @POST("predict")
+    @POST("https://wayang-prediction-mrlpwmp4cq-et.a.run.app/predict")
     fun postImage(
         @Part file: MultipartBody.Part,
     ): Call<PredictResponse>

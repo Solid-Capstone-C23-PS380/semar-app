@@ -13,29 +13,32 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ScanViewModel : ViewModel() {
-    private var _state  = MutableLiveData<Boolean>()
-    val state : LiveData<Boolean> = _state
+    private var _state = MutableLiveData<Boolean>()
+    val state: LiveData<Boolean> = _state
 
     private var _result = MutableLiveData<String>()
-    val result : LiveData<String> = _result
+    val result: LiveData<String> = _result
 
-    fun postImage(imgMultipart : MultipartBody.Part, context: Context){
+    fun postImage(imgMultipart: MultipartBody.Part, context: Context) {
         ApiConfig.getApiService()
             .postImage(imgMultipart)
             .enqueue(object : Callback<PredictResponse> {
-                override fun onResponse(call: Call<PredictResponse>, response: Response<PredictResponse>){
-                    if(response.isSuccessful){
-                        if(response.body() != null){
+                override fun onResponse(
+                    call: Call<PredictResponse>,
+                    response: Response<PredictResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        if (response.body() != null) {
                             _state.postValue(true)
                             _result.postValue(response.body()?.result)
                         }
-                    }else{
+                    } else {
                         _state.postValue(false)
                     }
                 }
 
                 override fun onFailure(call: Call<PredictResponse>, t: Throwable) {
-                    t.message?.let{ Log.d("Failure Post",it)}
+                    t.message?.let { Log.d("Failure Post", it) }
                 }
             })
     }
