@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.solidcapstone.semar.data.Result
+import com.solidcapstone.semar.data.local.entity.VideoEntity
 import com.solidcapstone.semar.data.local.entity.WayangEntity
 import com.solidcapstone.semar.data.local.room.WayangDatabase
 import com.solidcapstone.semar.data.remote.retrofit.ApiService
@@ -75,6 +76,57 @@ class WayangRepository private constructor(
             emit(Result.Error(e.message.toString()))
         }
     }
+
+    fun getListVideo(showLimit: Int? = null) = liveData {
+        emit(Result.Loading)
+        try {
+            val listVideoResponse = apiService.getListVideo()
+
+            // Save with DAO
+            val listVideo = listVideoResponse.map { videoResponse ->
+                VideoEntity(
+                    videoResponse.id,
+                    videoResponse.name,
+                    videoResponse.photoUrl,
+                    videoResponse.videoUrl,
+                )
+            }
+            database.videoDao().deleteAllVideos()
+            database.videoDao().insertVideos(listVideo)
+        } catch (e: Exception) {
+            emit(Result.Error(e.toString()))
+        }
+
+        // Get wayang list from local database
+        val localData: LiveData<Result<List<VideoEntity>>> = if (showLimit != null) {
+            database.videoDao().getListVideo(showLimit).map { Result.Success(it) }
+        } else {
+            database.videoDao().getListVideo().map { Result.Success(it) }
+        }
+        emitSource(localData)
+    }
+
+    fun getVideo(id: Int) = liveData {
+        emit(Result.Loading)
+        try {
+            val requestBody = id.toString().toRequestBody("text/plain".toMediaType())
+            val videoResponse = apiService.getVideo(requestBody)
+            val videoEntity = VideoEntity(
+                videoResponse.id,
+                videoResponse.name,
+                videoResponse.photoUrl,
+                videoResponse.videoUrl,
+            )
+            database.videoDao().insertVideos(listOf(videoEntity))
+        } catch (e: Exception) {
+            emit(Result.Error(e.toString()))
+        }
+
+        val localData: LiveData<Result<VideoEntity>> =
+            database.videoDao().getVideo(id).map { Result.Success(it) }
+        emitSource(localData)
+    }
+
 
     companion object {
         @Volatile

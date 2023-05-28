@@ -17,7 +17,7 @@
         android:orientation="horizontal">
         
         <ImageView
-            android:id="@+id/iv_video"
+            android:id="@+id/iv_video_image"
             android:layout_width="80dp"
             android:layout_height="96dp"
             android:src="@drawable/ic_launcher_background"

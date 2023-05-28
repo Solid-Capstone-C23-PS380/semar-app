@@ -34,7 +34,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showListWayang()
-        showDummyListVideo()
+        showListVideo()
 
         binding.btnUserImage.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
@@ -75,14 +75,29 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun showDummyListVideo() {
-        val dummyListVideo = HomeVideoListAdapter(
-            listOf("A", "B", "C", "D", "E")
-        )
-
+    private fun showListVideo() {
         binding.rvVideos.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = dummyListVideo
+            layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+            viewModel.getListVideo(2).observe(viewLifecycleOwner){ result ->
+                when (result) {
+                    is Result.Loading -> binding.pbVideo.visibility = View.VISIBLE
+
+                    is Result.Success -> {
+                        val videoListAdapter = HomeVideoListAdapter(result.data)
+                        binding.rvVideos.adapter = videoListAdapter
+                        binding.pbVideo.visibility = View.GONE
+                    }
+
+                    is Result.Error -> {
+                        binding.pbVideo.visibility = View.GONE
+                        Log.d("HomeFragmentWayang", result.toString())
+                    }
+                }
+            }
         }
     }
 

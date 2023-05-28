@@ -1,6 +1,7 @@
 package com.solidcapstone.semar.data.remote.retrofit
 
 import com.solidcapstone.semar.data.remote.response.PredictResponse
+import com.solidcapstone.semar.data.remote.response.VideoResponse
 import com.solidcapstone.semar.data.remote.response.WayangResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -23,4 +24,13 @@ interface ApiService {
     suspend fun getWayang(
         @Part("field_id") id: RequestBody,
     ): WayangResponse
+
+    @POST("videolist")
+    suspend fun getListVideo(): List<VideoResponse>
+
+    @Multipart
+    @POST("video")
+    suspend fun getVideo(
+        @Part("field_id") id : RequestBody,
+    ): VideoResponse
 }

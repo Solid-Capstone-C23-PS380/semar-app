@@ -27,5 +27,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_video" />
 
+    <ProgressBar
+        android:id="@+id/pb_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="?attr/actionBarSize" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

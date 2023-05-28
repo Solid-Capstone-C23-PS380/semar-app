@@ -13,4 +13,7 @@ class VideoDetailActivity : AppCompatActivity() {
         binding = ActivityVideoDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
+    companion object {
+        const val VIDEO_ID = "video_id"
+    }
 }
