@@ -16,6 +16,9 @@ data class VideoEntity(
     @ColumnInfo(name = "photo_url")
     val photoUrl: String,
 
+    @ColumnInfo(name = "video_duration")
+    val videoDuration: String,
+
     @ColumnInfo(name = "video_url")
     val videoUrl: String,
 )

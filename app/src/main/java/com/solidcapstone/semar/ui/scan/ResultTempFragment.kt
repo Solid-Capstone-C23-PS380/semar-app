@@ -32,6 +32,7 @@ class ResultTempFragment : Fragment() {
         WayangViewModelFactory.getInstance(requireContext())
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

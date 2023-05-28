@@ -26,6 +26,7 @@ class HomeVideoListAdapter(
 
         holder.apply {
             binding.tvNameVideo.text = currentItem.name
+            binding.tvDurationVideo.text = currentItem.videoDuration
             Glide.with(itemView.context)
                 .load(currentItem.photoUrl)
                 .into(binding.ivVideoImage)

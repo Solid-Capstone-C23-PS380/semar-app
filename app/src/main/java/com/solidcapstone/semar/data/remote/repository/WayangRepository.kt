@@ -88,6 +88,7 @@ class WayangRepository private constructor(
                     videoResponse.id,
                     videoResponse.name,
                     videoResponse.photoUrl,
+                    videoResponse.videoDuration,
                     videoResponse.videoUrl,
                 )
             }
@@ -115,6 +116,7 @@ class WayangRepository private constructor(
                 videoResponse.id,
                 videoResponse.name,
                 videoResponse.photoUrl,
+                videoResponse.videoDuration,
                 videoResponse.videoUrl,
             )
             database.videoDao().insertVideos(listOf(videoEntity))
