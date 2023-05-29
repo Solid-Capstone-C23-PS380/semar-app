@@ -5,12 +5,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.ActivityVideoDetailBinding
 import com.solidcapstone.semar.ui.detail.DetailViewModel
@@ -54,7 +50,7 @@ class VideoDetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     private fun showWayangDetail() {
-        val videoId = intent.getIntExtra(VideoDetailActivity.VIDEO_ID, 1)
+        val videoId = intent.getIntExtra(VIDEO_ID, 1)
         viewModel.getVideo(videoId).observe(this) { result ->
             when (result) {
                 is Result.Loading -> binding.pbVideoDetail.visibility = View.VISIBLE
