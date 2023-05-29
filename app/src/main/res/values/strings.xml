@@ -3,7 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="wayang_name">Gatot Kaca</string>
-    <string name="video_name">Pementasan Wayang Kulit di Rumah Budaya Indonesia</string>
+    <string name="video_name">Video Pementasan</string>
     <string name="video_duration">51.21</string>
     <string name="title_home">Beranda</string>
     <string name="title_scan">Pindai</string>
@@ -75,6 +75,7 @@
     <string name="detail">Detail</string>
     <string name="prediction_result">Hasil prediksi:</string>
     <string name="scanning">Memindai…</string>
+    <string name="videos">Video Pementasan</string>
 
     <!--Pager Title-->
     <string-array name="tab_menu">

@@ -107,6 +107,13 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="subheader2_black" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/hanumanbold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
     <style name="regular_body" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">14sp</item>
         <item name="android:includeFontPadding">false</item>

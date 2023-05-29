@@ -89,7 +89,7 @@ class WayangRepository private constructor(
                     videoResponse.name,
                     videoResponse.photoUrl,
                     videoResponse.videoDuration,
-                    videoResponse.videoUrl,
+                    videoResponse.videoId,
                 )
             }
             database.videoDao().deleteAllVideos()
@@ -117,7 +117,7 @@ class WayangRepository private constructor(
                 videoResponse.name,
                 videoResponse.photoUrl,
                 videoResponse.videoDuration,
-                videoResponse.videoUrl,
+                videoResponse.videoId,
             )
             database.videoDao().insertVideos(listOf(videoEntity))
         } catch (e: Exception) {

@@ -19,6 +19,6 @@ data class VideoEntity(
     @ColumnInfo(name = "video_duration")
     val videoDuration: String,
 
-    @ColumnInfo(name = "video_url")
-    val videoUrl: String,
+    @ColumnInfo(name = "video_id")
+    val videoId: String,
 )

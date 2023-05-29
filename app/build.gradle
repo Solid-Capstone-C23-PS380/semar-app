@@ -54,8 +54,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.15.0'
 
     // Video Streaming
-    implementation 'com.google.android.exoplayer:exoplayer-core:2.18.7'
-    implementation 'com.google.android.exoplayer:exoplayer-ui:2.18.7'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0'
 
     // Vector Drawable
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
