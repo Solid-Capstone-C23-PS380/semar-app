@@ -37,26 +37,6 @@ class ActiveEventFragment : Fragment() {
         showListEvent()
     }
 
-//    private fun showDummyListEvent() {
-//        val dummyEventList: ArrayList<Date> = arrayListOf()
-//        val cal = Calendar.getInstance()
-//        cal.add(Calendar.DAY_OF_YEAR, -3)
-//        for (i in 1..10) {
-//            cal.add(Calendar.HOUR, 17)
-//            dummyEventList.add(cal.time)
-//        }
-//        cal.time = Calendar.getInstance().time
-//
-//        val eventListAdapter = EventListAdapter(
-//            dummyEventList.filter {
-//                it.after(cal.time)
-//            }
-//        )
-//        binding.rvEvent.apply {
-//            layoutManager = LinearLayoutManager(requireContext())
-//            adapter = eventListAdapter
-//        }
-//    }
     private fun showListEvent() {
         val currentTime = Date()
         val dateFormat = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH)
@@ -74,7 +54,7 @@ class ActiveEventFragment : Fragment() {
                 is Result.Success -> {
                     val filteredEvents = result.data.filter {
                         val eventTime = dateFormat.parse(it.time)
-                        eventTime !=null && eventTime.after(currentTime)
+                        eventTime != null && eventTime.after(currentTime)
                     }
                     val eventListAdapter = EventListAdapter(filteredEvents)
                     binding.rvEvent.adapter = eventListAdapter
