@@ -1,45 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/layout"
     tools:context=".ui.detail.event.EventDetailActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <!--  Toolbar  -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextAppearance="@style/subheader_ellipses"
+        tools:title="@string/event_name" />
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbarLayout"
-            style="@style/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:title="@string/event_name"
-                app:titleTextStyle="@style/subheader1" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <LinearLayout
+    <!--  Content  -->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +45,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginHorizontal="8dp"
-                    android:layout_marginVertical="8dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/brown_100" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:background="@color/brown_100" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/event_name"
+                    android:gravity="center"
+                    style="@style/subheader2_black"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:background="@color/brown_100" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="8dp"
                     android:background="@color/brown_100" />
 
                 <LinearLayout
@@ -103,22 +120,29 @@
 
             </LinearLayout>
         </ScrollView>
-        <Button
-            android:id="@+id/btn_buy_ticket"
-            style="@style/subheader2"
+
+        <ProgressBar
+            android:id="@+id/pb_event_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/brown_500"
-            android:elevation="8dp"
-            android:maxWidth="320dp"
-            android:minWidth="260dp"
-            android:padding="8dp"
-            android:stateListAnimator="@null"
-            android:text="@string/event_detail_btn_buy_ticket"
-            android:textColor="@color/white"
-            tools:ignore="TextContrastCheck" />
-    </LinearLayout>
+            android:layout_gravity="center" />
+    </FrameLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <Button
+        android:id="@+id/btn_buy_ticket"
+        style="@style/subheader2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="8dp"
+        android:backgroundTint="@color/brown_500"
+        android:elevation="8dp"
+        android:maxWidth="320dp"
+        android:minWidth="260dp"
+        android:padding="8dp"
+        android:stateListAnimator="@null"
+        android:text="@string/event_detail_btn_buy_ticket"
+        android:textColor="@color/white"
+        tools:ignore="TextContrastCheck" />
+
+</LinearLayout>

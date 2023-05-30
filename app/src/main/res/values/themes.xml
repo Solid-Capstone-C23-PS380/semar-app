@@ -101,6 +101,15 @@
         <item name="android:textColor">@color/brown_500</item>
     </style>
 
+    <style name="subheader_ellipses" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textSize">18sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/hanumanbold</item>
+        <item name="android:textColor">@color/brown_500</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
     <style name="subheader2" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">16sp</item>
         <item name="android:includeFontPadding">false</item>

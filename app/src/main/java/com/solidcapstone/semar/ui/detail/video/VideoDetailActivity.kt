@@ -58,6 +58,7 @@ class VideoDetailActivity : AppCompatActivity() {
                 is Result.Success -> {
                     val videoData = result.data
                     videos_id = videoData.videoId
+                    supportActionBar?.title = videoData.name
                     binding.tvNameVideo.text = videoData.name
                     binding.pbVideoDetail.visibility = View.GONE
                 }

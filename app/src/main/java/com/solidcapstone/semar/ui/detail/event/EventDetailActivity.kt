@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
+import android.view.View
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.solidcapstone.semar.R
@@ -44,7 +44,7 @@ class EventDetailActivity : AppCompatActivity() {
         val eventId = intent.getIntExtra(EVENT_ID,1)
         viewModel.getEvent(eventId).observe(this) { result ->
             when (result) {
-                is Result.Loading -> Toast.makeText(this,"Loading...",Toast.LENGTH_SHORT).show()
+                is Result.Loading -> binding.pbEventDetail.visibility = View.VISIBLE
 
                 is Result.Success -> {
                     val eventData = result.data
@@ -55,9 +55,10 @@ class EventDetailActivity : AppCompatActivity() {
                     Glide.with(this)
                         .load(eventData.photoUrl)
                         .into(binding.ivEvent)
-                    binding.tvPrice.text = eventData.price.toString()
+                    binding.tvPrice.text ="Rp ${eventData.price}"
 
                     supportActionBar?.title = eventData.name
+                    binding.tvName.text = eventData.name
                     binding.tvEventDescription.text = eventData.description
 
                     if (dateEvent != null) {
@@ -68,9 +69,11 @@ class EventDetailActivity : AppCompatActivity() {
                             binding.btnBuyTicket.setBackgroundColor(resources.getColor(R.color.brown_100))
                         }
                     }
+                    binding.pbEventDetail.visibility = View.GONE
                 }
 
                 is Result.Error -> {
+                    binding.pbEventDetail.visibility = View.GONE
                     Log.d("EventDetailActivity", result.toString())
                 }
             }
