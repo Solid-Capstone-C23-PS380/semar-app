@@ -4,16 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
 import com.solidcapstone.semar.R
-import com.solidcapstone.semar.adapter.WayangDetailImageAdapter
 import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.ActivityEventDetailBinding
 import com.solidcapstone.semar.ui.detail.DetailViewModel
-import com.solidcapstone.semar.ui.detail.wayang.WayangDetailActivity
 import com.solidcapstone.semar.utils.WayangViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -62,7 +59,15 @@ class EventDetailActivity : AppCompatActivity() {
 
                     supportActionBar?.title = eventData.name
                     binding.tvEventDescription.text = eventData.description
-                    binding.btnBuyTicket.isEnabled = dateEvent.after(currentTime)
+
+                    if (dateEvent != null) {
+                        if(dateEvent.after(currentTime)){
+                            binding.btnBuyTicket.isEnabled = true
+                        }else{
+                            binding.btnBuyTicket.isEnabled = false
+                            binding.btnBuyTicket.setBackgroundColor(resources.getColor(R.color.brown_100))
+                        }
+                    }
                 }
 
                 is Result.Error -> {
