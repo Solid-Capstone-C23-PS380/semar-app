@@ -1,5 +1,7 @@
 package com.solidcapstone.semar.ui.detail.video
 
+import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -7,6 +9,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.FullscreenListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.ActivityVideoDetailBinding
 import com.solidcapstone.semar.ui.detail.DetailViewModel
@@ -15,13 +19,14 @@ import com.solidcapstone.semar.utils.WayangViewModelFactory
 
 class VideoDetailActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityVideoDetailBinding
+    private lateinit var binding: ActivityVideoDetailBinding
 
     private val viewModel: DetailViewModel by viewModels {
         WayangViewModelFactory.getInstance(this)
     }
 
-    private var videos_id : String? = null
+    private var videoIdYoutube: String? = null
+    private var videoIsFullscreen: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +39,37 @@ class VideoDetailActivity : AppCompatActivity() {
         showWayangDetail()
         lifecycle.addObserver(binding.youtubePlayerView)
 
-//        frameControl()
-        binding.youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-                val videoId = videos_id!!
-                youTubePlayer.loadVideo(videoId, 0f)
-            }
-        })
+        val iFramePlayerOptions: IFramePlayerOptions = IFramePlayerOptions.Builder()
+            .controls(1)
+            .fullscreen(1)
+            .build()
+
+        binding.apply {
+            youtubePlayerView.addFullscreenListener(object : FullscreenListener {
+                override fun onEnterFullscreen(fullscreenView: View, exitFullscreen: () -> Unit) {
+                    youtubePlayerView.visibility = View.GONE
+                    fullScreenViewContainer.visibility = View.VISIBLE
+                    fullScreenViewContainer.addView(fullscreenView)
+                    videoIsFullscreen = true
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                }
+
+                @SuppressLint("SourceLockedOrientationActivity")
+                override fun onExitFullscreen() {
+                    youtubePlayerView.visibility = View.VISIBLE
+                    fullScreenViewContainer.visibility = View.GONE
+                    fullScreenViewContainer.removeAllViews()
+                    videoIsFullscreen = false
+                    requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+                }
+            })
+
+            youtubePlayerView.initialize(object : AbstractYouTubePlayerListener() {
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youTubePlayer.loadVideo(videoIdYoutube ?: "dQw4w9WgXcQ", 0f)
+                }
+            }, iFramePlayerOptions)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -49,6 +78,7 @@ class VideoDetailActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun showWayangDetail() {
         val videoId = intent.getIntExtra(VIDEO_ID, 1)
         viewModel.getVideo(videoId).observe(this) { result ->
@@ -57,7 +87,7 @@ class VideoDetailActivity : AppCompatActivity() {
 
                 is Result.Success -> {
                     val videoData = result.data
-                    videos_id = videoData.videoId
+                    videoIdYoutube = videoData.videoId
                     supportActionBar?.title = videoData.name
                     binding.tvNameVideo.text = videoData.name
                     binding.pbVideoDetail.visibility = View.GONE
@@ -69,46 +99,12 @@ class VideoDetailActivity : AppCompatActivity() {
             }
         }
     }
-//    private fun frameControl(){
-//        val iFramePlayerOptions = IFramePlayerOptions.Builder()
-//            .controls(1)
-//            .fullscreen(1)
-//            .build()
-//
-//       binding.youtubePlayerView.addFullscreenListener(object : FullscreenListener {
-//            override fun onEnterFullscreen(fullscreenView: View, exitFullscreen: Function0<Unit>) {}
-//            override fun onExitFullscreen() {}
-//        })
-//
-//        binding.youtubePlayerView.initialize(object : YouTubePlayerListener {
-//            override fun onApiChange(youTubePlayer: YouTubePlayer) {}
-//            override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {}
-//            override fun onError(youTubePlayer: YouTubePlayer, error: PlayerConstants.PlayerError) {}
-//
-//            override fun onPlaybackQualityChange(
-//                youTubePlayer: YouTubePlayer,
-//                playbackQuality: PlayerConstants.PlaybackQuality
-//            ) {}
-//            override fun onPlaybackRateChange(
-//                youTubePlayer: YouTubePlayer,
-//                playbackRate: PlayerConstants.PlaybackRate
-//            ) {}
-//
-//            override fun onReady(youTubePlayer: YouTubePlayer) {}
-//            override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerConstants.PlayerState) {}
-//            override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {}
-//            override fun onVideoId(youTubePlayer: YouTubePlayer, videoId: String) {}
-//            override fun onVideoLoadedFraction(
-//                youTubePlayer: YouTubePlayer,
-//                loadedFraction: Float
-//            ) {}
-//        }, iFramePlayerOptions)
-//    }
 
     override fun onDestroy() {
         super.onDestroy()
         binding.youtubePlayerView.release()
     }
+
     companion object {
         const val VIDEO_ID = "video_id"
     }

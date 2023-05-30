@@ -37,7 +37,10 @@
             android:exported="false" />
         <activity
             android:name=".ui.detail.video.VideoDetailActivity"
-            android:exported="false" />
+            android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"
+            android:exported="false"
+            android:screenOrientation="sensorPortrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.detail.event.EventDetailActivity"
             android:exported="false" />
@@ -52,11 +55,10 @@
         </activity>
         <activity
             android:name=".ui.auth.AuthActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
     </application>
 
 </manifest>
