@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import com.solidcapstone.semar.data.Result
+import com.solidcapstone.semar.data.local.entity.EventEntity
 import com.solidcapstone.semar.data.local.entity.VideoEntity
 import com.solidcapstone.semar.data.local.entity.WayangEntity
 import com.solidcapstone.semar.data.local.room.WayangDatabase
@@ -98,7 +99,7 @@ class WayangRepository private constructor(
             emit(Result.Error(e.toString()))
         }
 
-        // Get wayang list from local database
+        // Get video list from local database
         val localData: LiveData<Result<List<VideoEntity>>> = if (showLimit != null) {
             database.videoDao().getListVideo(showLimit).map { Result.Success(it) }
         } else {
@@ -126,6 +127,57 @@ class WayangRepository private constructor(
 
         val localData: LiveData<Result<VideoEntity>> =
             database.videoDao().getVideo(id).map { Result.Success(it) }
+        emitSource(localData)
+    }
+
+    fun getListEvent() = liveData {
+        emit(Result.Loading)
+        try {
+            val listEventResponse = apiService.getListEvent()
+
+            // Save with DAO
+            val listEvent = listEventResponse.map { eventResponse ->
+                EventEntity(
+                    eventResponse.id,
+                    eventResponse.name,
+                    eventResponse.photoUrl,
+                    eventResponse.description,
+                    eventResponse.price,
+                    eventResponse.time,
+                )
+            }
+            database.eventDao().deleteAllEvents()
+            database.eventDao().insertEvents(listEvent)
+        } catch (e: Exception) {
+            emit(Result.Error(e.toString()))
+        }
+
+        // Get event list from local database
+        val localData: LiveData<Result<List<EventEntity>>> =
+            database.eventDao().getListEvent().map { Result.Success(it) }
+        emitSource(localData)
+    }
+
+    fun getEvent(id: Int) = liveData {
+        emit(Result.Loading)
+        try {
+            val requestBody = id.toString().toRequestBody("text/plain".toMediaType())
+            val eventResponse = apiService.getEvent(requestBody)
+            val eventEntity = EventEntity(
+                eventResponse.id,
+                eventResponse.name,
+                eventResponse.photoUrl,
+                eventResponse.description,
+                eventResponse.price,
+                eventResponse.time,
+            )
+            database.eventDao().insertEvents(listOf(eventEntity))
+        } catch (e: Exception) {
+            emit(Result.Error(e.toString()))
+        }
+
+        val localData: LiveData<Result<EventEntity>> =
+            database.eventDao().getEvent(id).map { Result.Success(it) }
         emitSource(localData)
     }
 

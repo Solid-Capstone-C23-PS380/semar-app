@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.solidcapstone.semar.data.remote.repository.WayangRepository
 import com.solidcapstone.semar.di.Injection
 import com.solidcapstone.semar.ui.detail.DetailViewModel
+import com.solidcapstone.semar.ui.event.EventViewModel
 import com.solidcapstone.semar.ui.home.HomeViewModel
 import com.solidcapstone.semar.ui.scan.ScanViewModel
 
@@ -19,6 +20,8 @@ class WayangViewModelFactory private constructor(private val wayangRepository: W
             return DetailViewModel(wayangRepository) as T
         } else if (modelClass.isAssignableFrom(ScanViewModel::class.java)) {
             return ScanViewModel(wayangRepository) as T
+        }else if(modelClass.isAssignableFrom(EventViewModel::class.java)){
+            return EventViewModel(wayangRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

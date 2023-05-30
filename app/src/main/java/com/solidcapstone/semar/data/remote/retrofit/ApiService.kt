@@ -1,5 +1,6 @@
 package com.solidcapstone.semar.data.remote.retrofit
 
+import com.solidcapstone.semar.data.remote.response.EventResponse
 import com.solidcapstone.semar.data.remote.response.PredictResponse
 import com.solidcapstone.semar.data.remote.response.VideoResponse
 import com.solidcapstone.semar.data.remote.response.WayangResponse
@@ -33,4 +34,13 @@ interface ApiService {
     suspend fun getVideo(
         @Part("field_id") id : RequestBody,
     ): VideoResponse
+
+    @POST("eventlist")
+    suspend fun getListEvent(): List<EventResponse>
+
+    @Multipart
+    @POST("event")
+    suspend fun getEvent(
+        @Part("field_id") id : RequestBody,
+    ): EventResponse
 }

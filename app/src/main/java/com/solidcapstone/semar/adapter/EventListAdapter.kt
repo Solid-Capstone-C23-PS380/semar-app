@@ -1,14 +1,21 @@
 package com.solidcapstone.semar.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.solidcapstone.semar.data.local.entity.EventEntity
 import com.solidcapstone.semar.databinding.ItemEventBinding
+import com.solidcapstone.semar.ui.detail.event.EventDetailActivity
+import com.solidcapstone.semar.ui.detail.wayang.WayangDetailActivity
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 class EventListAdapter(
-    private val listEvent: List<Date>
+    private val listEventItem: List<EventEntity>
 ) : RecyclerView.Adapter<EventListAdapter.ViewHolder>() {
     class ViewHolder(var binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -17,11 +24,24 @@ class EventListAdapter(
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = listEvent.size
+    override fun getItemCount(): Int = listEventItem.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = listEvent[position]
-        val dateFormatted = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT)
-        holder.binding.tvDateEvent.text = dateFormatted.format(currentItem.time)
+        val currentItem = listEventItem[position]
+
+        holder.apply {
+            binding.tvNameEvent.text = currentItem.name
+            Glide.with(itemView.context)
+                .load(currentItem.photoUrl)
+                .into(binding.ivEvent)
+            binding.tvDateEvent.text = currentItem.time
+
+            itemView.setOnClickListener {
+                val intent = Intent(it.context, EventDetailActivity::class.java)
+                intent.putExtra(EventDetailActivity.EVENT_ID, currentItem.id)
+                it.context.startActivity(intent)
+            }
+        }
+
     }
 }
