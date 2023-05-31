@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.solidcapstone.semar.adapter.HomeVideoListAdapter
 import com.solidcapstone.semar.adapter.HomeWayangListAdapter
 import com.solidcapstone.semar.data.Result
@@ -19,6 +22,7 @@ import com.solidcapstone.semar.utils.WayangViewModelFactory
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var auth: FirebaseAuth
 
     private val viewModel: HomeViewModel by viewModels {
         WayangViewModelFactory.getInstance(requireContext())
@@ -29,12 +33,16 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        auth = Firebase.auth
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showListWayang()
         showListVideo()
+
+        val currentUser = auth.currentUser
+        binding.tvUserName.text = currentUser?.displayName
 
         binding.btnUserImage.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
@@ -82,7 +90,7 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            viewModel.getListVideo(2).observe(viewLifecycleOwner){ result ->
+            viewModel.getListVideo(2).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Loading -> binding.pbVideo.visibility = View.VISIBLE
 

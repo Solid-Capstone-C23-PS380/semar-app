@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "810953403143",
+    "project_id": "semar-cloud-section",
+    "storage_bucket": "semar-cloud-section.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810953403143:android:766fb2e0b65a3355e3b3a2",
+        "android_client_info": {
+          "package_name": "com.solidcapstone.semar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810953403143-3tncpfccge04l581pkqm8il44u9grb1n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.solidcapstone.semar",
+            "certificate_hash": "2c2857c517320a66bf1d5c8aed2ffb7005c42980"
+          }
+        },
+        {
+          "client_id": "810953403143-20eo6l7la1h0kchr99ogcj018elqt4fk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgfGCwXEi2KAzIG8dR-Nd1u4-Js3cy440"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810953403143-20eo6l7la1h0kchr99ogcj018elqt4fk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

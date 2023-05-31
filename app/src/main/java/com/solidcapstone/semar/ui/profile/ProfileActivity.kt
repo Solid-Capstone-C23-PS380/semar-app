@@ -1,6 +1,7 @@
 package com.solidcapstone.semar.ui.profile
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -10,12 +11,17 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.solidcapstone.semar.databinding.ActivityProfileBinding
+import com.solidcapstone.semar.ui.splash.SplashActivity
 import com.solidcapstone.semar.utils.SettingsViewModelFactory
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
     private lateinit var settingsViewModel: ProfileViewModel
+    private lateinit var auth: FirebaseAuth
 
     private val settingsName = "settings"
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(settingsName)
@@ -27,6 +33,12 @@ class ProfileActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        auth = Firebase.auth
+
+        val currentUser = auth.currentUser
+        binding.tvName.text = currentUser?.displayName
+        binding.tvEmail.text = currentUser?.email
 
         initViewModel()
         observeViewModel()
@@ -40,7 +52,10 @@ class ProfileActivity : AppCompatActivity() {
             Toast.makeText(this, "Language", Toast.LENGTH_SHORT).show()
         }
         binding.btnLogout.setOnClickListener {
-            Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT).show()
+            auth.signOut()
+            val intent = Intent(this, SplashActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 

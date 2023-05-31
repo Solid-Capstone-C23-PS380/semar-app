@@ -15,6 +15,10 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.solidcapstone.semar.MainActivity
 import com.solidcapstone.semar.databinding.ActivitySplashBinding
 import com.solidcapstone.semar.ui.auth.AuthActivity
 import com.solidcapstone.semar.ui.profile.ProfileViewModel
@@ -27,10 +31,21 @@ class SplashActivity : AppCompatActivity() {
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(settingsName)
 
     private lateinit var binding: ActivitySplashBinding
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Authentication checking
+        auth = Firebase.auth
+        val firebaseUser = auth.currentUser
+        val nextIntent = if (firebaseUser == null) {
+            Intent(this, AuthActivity::class.java)
+        } else {
+            Intent(this, MainActivity::class.java)
+        }
 
         // Dark mode preferences
         val pref = SettingPreferences.getInstance(dataStore)
@@ -60,7 +75,7 @@ class SplashActivity : AppCompatActivity() {
 
         // Splash screen loading
         Handler(mainLooper).postDelayed({
-            startActivity(Intent(this, AuthActivity::class.java))
+            startActivity(nextIntent)
             finish()
         }, 2000)
         playAnimation()

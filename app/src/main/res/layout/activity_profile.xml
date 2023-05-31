@@ -81,6 +81,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <TextView
+                    android:id="@+id/tv_name"
                     style="@style/subheader2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -90,6 +91,7 @@
                     android:textColor="?attr/colorPrimary" />
 
                 <TextView
+                    android:id="@+id/tv_email"
                     style="@style/regular_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
