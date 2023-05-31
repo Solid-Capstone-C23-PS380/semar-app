@@ -11,4 +11,7 @@ data class PredictResponse(
 
     @field:SerializedName("result")
     val result: String,
+
+    @field:SerializedName("score")
+    val score : Float,
 )
