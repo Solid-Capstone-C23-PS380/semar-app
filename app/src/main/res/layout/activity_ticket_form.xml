@@ -32,7 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:enabled="false"
                 android:hint="@string/ticket_input_name">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -41,8 +40,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:alpha="0.6"
-                    android:enabled="false"
                     android:textColor="?attr/colorOnSurface"
+                    android:inputType="textPersonName"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,7 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:enabled="false"
                 android:hint="@string/ticket_input_email">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +58,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:alpha="0.6"
-                    android:enabled="false"
                     android:inputType="textEmailAddress"
                     tools:ignore="TextContrastCheck,VisualLintTextFieldSize" />
             </com.google.android.material.textfield.TextInputLayout>

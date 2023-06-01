@@ -1,5 +1,6 @@
 package com.solidcapstone.semar.ui.detail.event
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import com.solidcapstone.semar.R
 import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.ActivityEventDetailBinding
 import com.solidcapstone.semar.ui.detail.DetailViewModel
+import com.solidcapstone.semar.ui.event.ticket.TicketFormActivity
 import com.solidcapstone.semar.utils.WayangViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -23,6 +25,8 @@ class EventDetailActivity : AppCompatActivity() {
     private val viewModel: DetailViewModel by viewModels {
         WayangViewModelFactory.getInstance(this)
     }
+    private var eventIdTemp : Int? = null
+    private var eventPriceTemp : Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
@@ -32,6 +36,13 @@ class EventDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         showEventDetail()
+
+        binding.btnBuyTicket.setOnClickListener {
+            val intent = Intent(this, TicketFormActivity::class.java)
+            intent.putExtra(TicketFormActivity.EVENT_ID, eventIdTemp)
+            intent.putExtra(TicketFormActivity.EVENT_PRICE, eventPriceTemp)
+            startActivity(intent)
+        }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
@@ -48,6 +59,8 @@ class EventDetailActivity : AppCompatActivity() {
 
                 is Result.Success -> {
                     val eventData = result.data
+                    eventIdTemp = eventData.id
+                    eventPriceTemp = eventData.price
                     val currentTime = Date()
                     val dateFormat = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH)
                     val dateEvent = dateFormat.parse(eventData.time)

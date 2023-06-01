@@ -60,7 +60,7 @@
     <string name="icon_success">Icon Success</string>
     <string name="finish">Selesai</string>
     <string name="ticket_total_price">Total Harga:</string>
-    <string name="placeholder_price">Rp50.000,-</string>
+    <string name="placeholder_price">Rp0,00</string>
     <string name="create_account"> Buat Akun</string>
     <string name="password">Password</string>
     <string name="forgot_password">Lupa Password?</string>

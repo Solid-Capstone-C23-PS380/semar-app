@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
-import android.provider.MediaStore
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -17,6 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import com.solidcapstone.semar.R
 import java.io.ByteArrayOutputStream
+import java.text.NumberFormat
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 
@@ -133,4 +133,11 @@ private fun calculateScaleFactor(originalWidth: Int, originalHeight: Int, target
         originalHeight > originalWidth -> originalHeight / targetHeight
         else -> originalWidth / targetWidth
     }
+}
+
+// Format mata uang
+fun String.withCurrencyFormat(): String {
+    val amount = this.toDoubleOrNull() ?: 0.0
+    val format = NumberFormat.getCurrencyInstance(Locale("id", "ID"))
+    return format.format(amount)
 }
