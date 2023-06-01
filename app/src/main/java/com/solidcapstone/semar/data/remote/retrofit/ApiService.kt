@@ -33,7 +33,7 @@ interface ApiService {
     @Multipart
     @POST("video")
     suspend fun getVideo(
-        @Part("field_id") id : RequestBody,
+        @Part("field_id") id: RequestBody,
     ): VideoResponse
 
     @POST("eventlist")
@@ -42,18 +42,18 @@ interface ApiService {
     @Multipart
     @POST("event")
     suspend fun getEvent(
-        @Part("field_id") id : RequestBody,
+        @Part("field_id") id: RequestBody,
     ): EventResponse
 
     @Multipart
-    @POST("ticket_event/{event_id}")
+    @POST("ticket_event")
     suspend fun uploadTicketEvent(
-        @Part("event_id") eventId : RequestBody,
+        @Part("event_id") eventId: RequestBody,
         @Part("tickets_bought") ticketsBought: RequestBody,
-        @Part("name") name : RequestBody,
-        @Part("email") email : RequestBody,
-        @Part("payment_method") paymentMethod : RequestBody,
-        @Part("file") file: MultipartBody.Part,
-    ) : TicketResponse
+        @Part("name") name: RequestBody,
+        @Part("email") email: RequestBody,
+        @Part("payment_method") paymentMethod: RequestBody,
+        @Part file: MultipartBody.Part,
+    ): TicketResponse
 
 }

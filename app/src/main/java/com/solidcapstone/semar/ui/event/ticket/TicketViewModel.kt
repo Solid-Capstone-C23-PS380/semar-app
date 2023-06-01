@@ -23,5 +23,12 @@ class TicketViewModel(private val repository: WayangRepository) : ViewModel() {
         return (price * amount)
     }
 
-    fun buyTicket(eventId : Int,ticketsBought : Int, name : String, email : String,paymentMethod : String,imgMultipart: MultipartBody.Part) = repository.buyTicket(eventId,ticketsBought, name, email, paymentMethod, imgMultipart)
+    fun buyTicket(
+        eventId: Int,
+        ticketsBought: Int,
+        name: String,
+        email: String,
+        paymentMethod: String,
+        imgMultipart: MultipartBody.Part
+    ) = repository.buyTicket(eventId, ticketsBought, name, email, paymentMethod, imgMultipart)
 }

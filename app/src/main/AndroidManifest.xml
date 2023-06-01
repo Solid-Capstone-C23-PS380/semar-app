@@ -43,7 +43,8 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.detail.event.EventDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">

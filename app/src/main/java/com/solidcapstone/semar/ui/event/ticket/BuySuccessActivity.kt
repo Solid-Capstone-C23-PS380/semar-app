@@ -1,16 +1,14 @@
 package com.solidcapstone.semar.ui.event.ticket
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.solidcapstone.semar.R
+import androidx.appcompat.app.AppCompatActivity
 import com.solidcapstone.semar.databinding.ActivityBuySuccessBinding
 import com.solidcapstone.semar.ui.detail.event.EventDetailActivity
-import com.solidcapstone.semar.ui.detail.wayang.WayangDetailActivity
 
 class BuySuccessActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityBuySuccessBinding
 
-    private lateinit var binding : ActivityBuySuccessBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBuySuccessBinding.inflate(layoutInflater)
@@ -25,7 +23,7 @@ class BuySuccessActivity : AppCompatActivity() {
         setContentView(binding.root)
     }
 
-    companion object{
+    companion object {
         const val EVENT_ID = "event_id"
     }
 }

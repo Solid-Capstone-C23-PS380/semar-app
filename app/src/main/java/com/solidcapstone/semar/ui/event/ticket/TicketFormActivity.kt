@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -28,11 +29,11 @@ import java.io.File
 
 class TicketFormActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTicketFormBinding
-    private val viewModel: TicketViewModel by viewModels{
+    private val viewModel: TicketViewModel by viewModels {
         WayangViewModelFactory.getInstance(this@TicketFormActivity)
     }
-    private var getFile : File? = null
-    private var getPaymentMethod : String? = null
+    private var getFile: File? = null
+    private var getPaymentMethod: String? = null
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +50,8 @@ class TicketFormActivity : AppCompatActivity() {
             "GoPay - 0895606819311 (a.n. Bahrum Nisar)",
             "BNI - 3012830193 (a.n. Bahrum Nisar)",
             "BRI - 187439402423042 (a.n. Bahrum Nisar)",
-            "Jago - 173210392 (a.n. Bahrum Nisar)")
+            "Jago - 173210392 (a.n. Bahrum Nisar)"
+        )
 
         val paymentMethodAdapter = ArrayAdapter(this, R.layout.item_dropdown, paymentMethods)
         binding.inputPaymentMethod.setAdapter(paymentMethodAdapter)
@@ -59,14 +61,14 @@ class TicketFormActivity : AppCompatActivity() {
             getPaymentMethod = selectedPaymentMethod
         }
 
-        val price = intent.getIntExtra(EVENT_PRICE,0)
+        val price = intent.getIntExtra(EVENT_PRICE, 0)
 
         viewModel.totalPrice.observe(this) { totalPrice ->
             binding.tvTotalCost.text = totalPrice.toString().withCurrencyFormat()
         }
 
 
-        binding.inputTicketAmount.addTextChangedListener(object : TextWatcher{
+        binding.inputTicketAmount.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 val input = s.toString().toIntOrNull() ?: 0
@@ -74,6 +76,7 @@ class TicketFormActivity : AppCompatActivity() {
                 viewModel.onTotalPriceChanged(totalPrice)
                 binding.tvTotalCost.text = totalPrice.toString().withCurrencyFormat()
             }
+
             override fun afterTextChanged(s: Editable?) {}
         })
 
@@ -109,43 +112,77 @@ class TicketFormActivity : AppCompatActivity() {
     }
 
     private fun buyTicket() {
-        if (getFile != null) {
-            val file = downscaleImage(getFile as File)
-            val fileReduce = reduceFileImg(file as File)
+        if (binding.inputName.text.isNullOrEmpty()) {
+            showToast("Please input your name")
+            return
+        }
+        if (binding.inputEmail.text.isNullOrEmpty()) {
+            showToast("Please input your email")
+            return
+        }
+        if (binding.inputTicketAmount.text.isNullOrEmpty()) {
+            showToast("Please input your ticket amount")
+            return
+        }
+        if (binding.inputPaymentMethod.text.isNullOrEmpty()) {
+            showToast("Please input your payment method")
+            return
+        }
+        if (getFile == null) {
+            showToast(resources.getString(R.string.null_photo_message))
+            return
+        }
 
-            val requestImageFile = fileReduce.asRequestBody("image/jpeg".toMediaTypeOrNull())
-            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                "file",
-                fileReduce.name,
-                requestImageFile
-            )
-            val eventId = intent.getIntExtra(EVENT_ID,0)
-            binding.apply {
-                val ticketBought = inputTicketAmount.text.toString().toInt()
-                val name = inputName.text.toString()
-                val email = inputEmail.toString()
-                val paymentMethod = getPaymentMethod!!
-                viewModel.buyTicket(eventId,ticketBought,name,email,paymentMethod,imageMultipart).observe(this@TicketFormActivity) { result ->
-                    when (result) {
-                        is Result.Loading -> {}
-                        is Result.Success -> {
-                            val ticketStatus = result.data.message
-                            if(ticketStatus == "success"){
-                                val intent = Intent(this@TicketFormActivity, BuySuccessActivity::class.java)
-                                intent.putExtra(BuySuccessActivity.EVENT_ID, result.data.data.eventId)
-                                startActivity(intent)
-                            }
-                            showToast("Buy Ticket Success")
+        val file = downscaleImage(getFile as File)
+        val fileReduce = reduceFileImg(file as File)
+
+        val requestImageFile = fileReduce.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "file",
+            fileReduce.name,
+            requestImageFile
+        )
+        val eventId = intent.getIntExtra(EVENT_ID, 0)
+        binding.apply {
+            val ticketBought = inputTicketAmount.text.toString().toInt()
+            val name = inputName.text.toString()
+            val email = inputEmail.text.toString()
+            val paymentMethod = getPaymentMethod!!
+            viewModel.buyTicket(
+                eventId,
+                ticketBought,
+                name,
+                email,
+                paymentMethod,
+                imageMultipart
+            ).observe(this@TicketFormActivity) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        showLoadingVisibility(true)
+                    }
+
+                    is Result.Success -> {
+                        val ticketStatus = result.data.message
+                        if (ticketStatus == "success") {
+                            val intent =
+                                Intent(this@TicketFormActivity, BuySuccessActivity::class.java)
+                            intent.putExtra(
+                                BuySuccessActivity.EVENT_ID,
+                                result.data.data.eventId
+                            )
+                            startActivity(intent)
                         }
-                        is Result.Error -> {
-                            showToast("Buy Ticket Failed")
-                        }
+                        showToast("Buy Ticket Success")
+                    }
+
+                    is Result.Error -> {
+                        showLoadingVisibility(false)
+                        showToast("Buy Ticket Failed")
                     }
                 }
             }
-        } else {
-            showToast(resources.getString(R.string.null_photo_message))
         }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -153,6 +190,19 @@ class TicketFormActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showLoadingVisibility(isVisible: Boolean) {
+        binding.apply {
+            pbTicketForm.visibility = if (isVisible) View.VISIBLE else View.GONE
+            overlayPbTicketForm.visibility = if (isVisible) View.VISIBLE else View.GONE
+            inputName.isEnabled = !isVisible
+            inputEmail.isEnabled = !isVisible
+            inputTicketAmount.isEnabled = !isVisible
+            inputPaymentMethod.isEnabled = !isVisible
+            inputBtnProofOfPayment.isEnabled = !isVisible
+            btnBuyTicket.isEnabled = !isVisible
+        }
     }
 
     private fun showToast(text: String) {
@@ -163,7 +213,7 @@ class TicketFormActivity : AppCompatActivity() {
         ).show()
     }
 
-    companion object{
+    companion object {
         const val EVENT_ID = "event_id"
         const val EVENT_PRICE = "event_price"
     }
