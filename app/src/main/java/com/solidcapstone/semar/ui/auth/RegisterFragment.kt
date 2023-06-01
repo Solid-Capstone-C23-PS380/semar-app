@@ -1,7 +1,6 @@
 package com.solidcapstone.semar.ui.auth
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -75,12 +74,7 @@ class RegisterFragment : DialogFragment() {
                     Log.d(TAG, "createUserWithEmail:success")
 
                     val currentUser = auth.currentUser
-                    val profileUpdates = userProfileChangeRequest {
-                        displayName = userName
-                        photoUri = Uri.parse(
-                            "https://storage.googleapis.com/wayang-storage/pic/profile/${currentUser?.uid}.jpg"
-                        )
-                    }
+                    val profileUpdates = userProfileChangeRequest { displayName = userName }
                     currentUser?.updateProfile(profileUpdates)?.addOnSuccessListener {
                         val intent = Intent(requireContext(), MainActivity::class.java)
                         intent.flags =

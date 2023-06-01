@@ -76,6 +76,9 @@
     <string name="prediction_result">Hasil prediksi:</string>
     <string name="scanning">Memindai…</string>
     <string name="videos">Video Pementasan</string>
+    <string name="setting_edit_profile">Edit Profil</string>
+    <string name="forget_password_instruction">Apabila email yang dimasukkan telah terdaftar, Anda akan mendapatkan email untuk mereset password Anda</string>
+    <string name="submit">Kirim</string>
 
     <!--Pager Title-->
     <string-array name="tab_menu">

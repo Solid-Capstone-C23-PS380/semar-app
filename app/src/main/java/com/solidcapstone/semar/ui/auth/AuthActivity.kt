@@ -41,6 +41,9 @@ class AuthActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         binding.tvToRegister.setOnClickListener { clickToRegister() }
+        binding.tvForgetPassword.setOnClickListener {
+            ForgetPasswordFragment().show(supportFragmentManager, "ForgetPasswordFragment")
+        }
         binding.btnLogin.setOnClickListener { login() }
         binding.btnLoginGoogle.setOnClickListener { googleSignIn() }
     }
