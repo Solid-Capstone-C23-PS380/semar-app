@@ -3,6 +3,7 @@ package com.solidcapstone.semar.data.remote.retrofit
 import com.solidcapstone.semar.data.remote.response.EventResponse
 import com.solidcapstone.semar.data.remote.response.PredictResponse
 import com.solidcapstone.semar.data.remote.response.TicketResponse
+import com.solidcapstone.semar.data.remote.response.UploadProfilePhotoResponse
 import com.solidcapstone.semar.data.remote.response.VideoResponse
 import com.solidcapstone.semar.data.remote.response.WayangResponse
 import okhttp3.MultipartBody
@@ -56,4 +57,10 @@ interface ApiService {
         @Part file: MultipartBody.Part,
     ): TicketResponse
 
+    @Multipart
+    @POST("upload_profile")
+    suspend fun uploadProfilePicture(
+        @Part("uid") uid: RequestBody,
+        @Part file: MultipartBody.Part,
+    ): UploadProfilePhotoResponse
 }

@@ -38,6 +38,7 @@
                     android:layout_height="match_parent"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/home_content_desc_profile"
+                    android:scaleType="centerCrop"
                     android:src="@mipmap/ic_launcher"
                     tools:ignore="ImageContrastCheck" />
             </androidx.cardview.widget.CardView>

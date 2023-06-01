@@ -8,15 +8,15 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.net.Uri
 import android.os.Environment
+import com.solidcapstone.semar.R
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
-import java.text.SimpleDateFormat
-import java.util.*
-import com.solidcapstone.semar.R
-import java.io.ByteArrayOutputStream
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 
@@ -46,42 +46,43 @@ fun rotateBitmap(bitmap: Bitmap, isBackCamera: Boolean = false): Bitmap {
     val matrix = Matrix()
     return if (isBackCamera) {
         matrix.postRotate(90f)
-        Bitmap.createBitmap(bitmap, 0, 0, bitmap.width ,bitmap.height, matrix,  true)
+        Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     } else {
         matrix.postRotate(-90f)
         matrix.postScale(-1f, 1f, bitmap.width / 2f, bitmap.height / 2f) // flip gambar
         Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 }
-fun uriToFile(selectedImg: Uri, context: Context):File{
+
+fun uriToFile(selectedImg: Uri, context: Context): File {
     val contentResolver: ContentResolver = context.contentResolver
     val myFile = createTempFile(context)
 
     val inputStream = contentResolver.openInputStream(selectedImg) as InputStream
-    val outputStream :OutputStream = FileOutputStream(myFile)
+    val outputStream: OutputStream = FileOutputStream(myFile)
 
-    val buf =   ByteArray(1024)
-    var len : Int
+    val buf = ByteArray(1024)
+    var len: Int
     while (inputStream.read(buf).also { len = it } > 0) outputStream.write(buf, 0, len)
     outputStream.close()
     inputStream.close()
     return myFile
 }
 
-fun reduceFileImg(file: File) :File{
+fun reduceFileImg(file: File, maxSize: Int = 2000000): File {
     val bitmap = BitmapFactory.decodeFile(file.path)
 
     var compressQuality = 100
-    var streamLength : Int
+    var streamLength: Int
 
     do {
         val bmpStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG,compressQuality, bmpStream)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
         val bmpPicByteArray = bmpStream.toByteArray()
-        streamLength =bmpPicByteArray.size
+        streamLength = bmpPicByteArray.size
         compressQuality -= 5
-    }while (streamLength > 2000000)
-    bitmap.compress(Bitmap.CompressFormat.JPEG,compressQuality,FileOutputStream(file))
+    } while (streamLength > maxSize)
+    bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file
 }
 
@@ -98,7 +99,8 @@ fun downscaleImage(file: File): File? {
         BitmapFactory.decodeFile(file.path, options)
 
         // Tentukan faktor skala untuk downscale
-        val scaleFactor = calculateScaleFactor(options.outWidth, options.outHeight, targetWidth, targetHeight)
+        val scaleFactor =
+            calculateScaleFactor(options.outWidth, options.outHeight, targetWidth, targetHeight)
 
         // Konfigurasi opsi decoding untuk menghasilkan gambar downscale
         val decodeOptions = BitmapFactory.Options().apply {
@@ -127,7 +129,13 @@ fun downscaleImage(file: File): File? {
 }
 
 // Menghitung faktor skala untuk downscale
-private fun calculateScaleFactor(originalWidth: Int, originalHeight: Int, targetWidth: Int, targetHeight: Int): Int {
+@Suppress("SameParameterValue")
+private fun calculateScaleFactor(
+    originalWidth: Int,
+    originalHeight: Int,
+    targetWidth: Int,
+    targetHeight: Int
+): Int {
     return when {
         originalWidth > originalHeight -> originalWidth / targetWidth
         originalHeight > originalWidth -> originalHeight / targetHeight

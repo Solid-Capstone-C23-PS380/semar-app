@@ -79,6 +79,7 @@
     <string name="setting_edit_profile">Edit Profil</string>
     <string name="forget_password_instruction">Apabila email yang dimasukkan telah terdaftar, Anda akan mendapatkan email untuk mereset password Anda</string>
     <string name="submit">Kirim</string>
+    <string name="save">Simpan</string>
 
     <!--Pager Title-->
     <string-array name="tab_menu">

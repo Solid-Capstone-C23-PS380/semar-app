@@ -212,6 +212,19 @@ class WayangRepository private constructor(
         }
     }
 
+    fun uploadProfilePhoto(
+        uid: String,
+        imgMultipart: MultipartBody.Part
+    ) = liveData {
+        emit(Result.Loading)
+        try {
+            val uidRequestBody = uid.toRequestBody("text/plain".toMediaType())
+            val response = apiService.uploadProfilePicture(uidRequestBody, imgMultipart)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
+    }
 
     companion object {
         @Volatile

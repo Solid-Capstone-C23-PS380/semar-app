@@ -17,6 +17,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.ActivityProfileBinding
+import com.solidcapstone.semar.ui.profile.edit.EditProfileActivity
 import com.solidcapstone.semar.ui.splash.SplashActivity
 import com.solidcapstone.semar.utils.SettingsViewModelFactory
 
@@ -49,6 +50,10 @@ class ProfileActivity : AppCompatActivity() {
         initViewModel()
         observeViewModel()
 
+        binding.settingEditProfile.setOnClickListener {
+            val intent = Intent(this, EditProfileActivity::class.java)
+            startActivity(intent)
+        }
         binding.settingDarkMode.setOnClickListener {
             val isChecked = binding.switchDarkMode.isChecked
             binding.switchDarkMode.isChecked = !isChecked
