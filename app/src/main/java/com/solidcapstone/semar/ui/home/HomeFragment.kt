@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.solidcapstone.semar.R
 import com.solidcapstone.semar.adapter.HomeVideoListAdapter
 import com.solidcapstone.semar.adapter.HomeWayangListAdapter
 import com.solidcapstone.semar.data.Result
@@ -43,6 +45,10 @@ class HomeFragment : Fragment() {
 
         val currentUser = auth.currentUser
         binding.tvUserName.text = currentUser?.displayName
+        Glide.with(requireContext())
+            .load(currentUser?.photoUrl)
+            .placeholder(R.drawable.ic_person)
+            .into(binding.ivUserImage)
 
         binding.btnUserImage.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)

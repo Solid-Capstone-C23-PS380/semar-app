@@ -11,9 +11,11 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.ActivityProfileBinding
 import com.solidcapstone.semar.ui.splash.SplashActivity
 import com.solidcapstone.semar.utils.SettingsViewModelFactory
@@ -39,6 +41,10 @@ class ProfileActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         binding.tvName.text = currentUser?.displayName
         binding.tvEmail.text = currentUser?.email
+        Glide.with(this)
+            .load(currentUser?.photoUrl)
+            .placeholder(R.drawable.ic_person)
+            .into(binding.ivUserImage)
 
         initViewModel()
         observeViewModel()
