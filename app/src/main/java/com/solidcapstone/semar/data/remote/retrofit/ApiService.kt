@@ -2,6 +2,7 @@ package com.solidcapstone.semar.data.remote.retrofit
 
 import com.solidcapstone.semar.data.remote.response.EventResponse
 import com.solidcapstone.semar.data.remote.response.PredictResponse
+import com.solidcapstone.semar.data.remote.response.TicketResponse
 import com.solidcapstone.semar.data.remote.response.VideoResponse
 import com.solidcapstone.semar.data.remote.response.WayangResponse
 import okhttp3.MultipartBody
@@ -44,5 +45,15 @@ interface ApiService {
         @Part("field_id") id : RequestBody,
     ): EventResponse
 
+    @Multipart
+    @POST("ticket_event/{event_id}")
+    suspend fun uploadTicketEvent(
+        @Part("event_id") eventId : RequestBody,
+        @Part("tickets_bought") ticketsBought: RequestBody,
+        @Part("name") name : RequestBody,
+        @Part("email") email : RequestBody,
+        @Part("payment_method") paymentMethod : RequestBody,
+        @Part("file") file: MultipartBody.Part,
+    ) : TicketResponse
 
 }

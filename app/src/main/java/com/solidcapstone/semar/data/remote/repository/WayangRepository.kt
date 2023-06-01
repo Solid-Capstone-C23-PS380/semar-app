@@ -11,6 +11,7 @@ import com.solidcapstone.semar.data.local.room.WayangDatabase
 import com.solidcapstone.semar.data.remote.retrofit.ApiService
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 
 
@@ -179,6 +180,33 @@ class WayangRepository private constructor(
         val localData: LiveData<Result<EventEntity>> =
             database.eventDao().getEvent(id).map { Result.Success(it) }
         emitSource(localData)
+    }
+
+    fun buyTicket(
+        eventId : Int,
+        ticketsBought : Int,
+        name : String,
+        email : String,
+        paymentMethod : String,
+        imgMultipart: MultipartBody.Part) = liveData {
+        emit(Result.Loading)
+        try {
+            val eventIdRequestBody = eventId.toString().toRequestBody("text/plain".toMediaType())
+            val ticketsBoughtRequestBody = ticketsBought.toString().toRequestBody("text/plain".toMediaType())
+            val nameRequestBody = name.toRequestBody("text/plain".toMediaType())
+            val emailRequestBody = email.toRequestBody("text/plain".toMediaType())
+            val paymentMethodRequestBody = paymentMethod.toRequestBody("text/plain".toMediaType())
+            val response = apiService.uploadTicketEvent(
+                eventIdRequestBody,
+                ticketsBoughtRequestBody,
+                nameRequestBody,
+                emailRequestBody,
+                paymentMethodRequestBody,
+                imgMultipart)
+            emit(Result.Success(response))
+        } catch (e: Exception) {
+            emit(Result.Error(e.message.toString()))
+        }
     }
 
 
