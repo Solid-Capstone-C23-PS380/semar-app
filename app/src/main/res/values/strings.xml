@@ -80,6 +80,11 @@
     <string name="forget_password_instruction">Apabila email yang dimasukkan telah terdaftar, Anda akan mendapatkan email untuk mereset password Anda</string>
     <string name="submit">Kirim</string>
     <string name="save">Simpan</string>
+    <string name="message">message</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="logout_message">Apakah kamu serius ingin keluar?</string>
+    <string name="source">Sumber :</string>
 
     <!--Pager Title-->
     <string-array name="tab_menu">

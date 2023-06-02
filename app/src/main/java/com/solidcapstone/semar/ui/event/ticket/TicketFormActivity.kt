@@ -34,7 +34,6 @@ class TicketFormActivity : AppCompatActivity() {
     }
     private var getFile: File? = null
     private var getPaymentMethod: String? = null
-
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

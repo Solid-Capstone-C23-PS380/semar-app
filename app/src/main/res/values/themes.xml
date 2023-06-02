@@ -25,6 +25,11 @@
         <item name="titleTextColor">@color/brown_500</item>
     </style>
 
+    <style name="layout_card">
+        <item name="android:background">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
     <style name="header_home">
         <item name="android:background">@drawable/top_bar_home_bg</item>
         <item name="titleTextColor">@color/black</item>
@@ -32,6 +37,10 @@
 
     <style name="image_galery">
         <item name="srcCompat">@drawable/ic_gallery</item>
+    </style>
+
+    <style name="btn_capture">
+        <item name="srcCompat">@drawable/custom_btn_capture</item>
     </style>
 
     <style name="toolbar" parent="@style/Widget.AppCompat.Toolbar">

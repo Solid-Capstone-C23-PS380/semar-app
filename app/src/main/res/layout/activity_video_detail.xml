@@ -54,6 +54,7 @@
                     android:id="@+id/tv_name_video"
                     style="@style/subheader2_black"
                     android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="8dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"

@@ -16,5 +16,5 @@ data class VideoResponse(
     val videoDuration: String,
 
     @field:SerializedName("video_id")
-    val videoId: String
+    val videoId: String,
 )
