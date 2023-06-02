@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
@@ -52,7 +54,10 @@ class EditProfileActivity : AppCompatActivity() {
 
         binding.tvName.setText(currentUser?.displayName)
         binding.tvEmail.setText(currentUser?.email)
-        Glide.with(this).load(currentUser?.photoUrl).placeholder(R.drawable.ic_person)
+        Glide.with(this)
+            .load(currentUser?.photoUrl)
+            .placeholder(R.drawable.ic_person)
+            .signature(ObjectKey(System.currentTimeMillis().toString()))
             .into(binding.ivUserImage)
 
         if (signInMethod == GoogleAuthProvider.PROVIDER_ID) {
@@ -62,6 +67,15 @@ class EditProfileActivity : AppCompatActivity() {
                 tvPassword.isEnabled = false
                 tvPassword.alpha = 0.25f
             }
+        }
+
+        binding.tvEmail.addTextChangedListener { input ->
+            binding.tilPassword.visibility =
+                if (input.toString() == currentUser?.email.toString()) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
         }
 
         binding.btnChangeUserImage.setOnClickListener { startIntentGallery() }
@@ -98,9 +112,6 @@ class EditProfileActivity : AppCompatActivity() {
             currentUser?.reauthenticate(credential)?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     currentUser.updateEmail(binding.tvEmail.text.toString())
-                        .addOnCompleteListener {
-                            refreshProfileData()
-                        }
                 } else {
                     setLoadingVisibility(false)
                     showToast("Terjadi kesalahan")
@@ -115,7 +126,9 @@ class EditProfileActivity : AppCompatActivity() {
         }
         currentUser?.updateProfile(profileUpdates)
             ?.addOnCompleteListener { task ->
-                if (!task.isSuccessful) {
+                if (task.isSuccessful) {
+                    refreshProfileData()
+                } else {
                     setLoadingVisibility(false)
                     showToast("Terjadi kesalahan")
                 }

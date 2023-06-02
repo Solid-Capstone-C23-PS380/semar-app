@@ -18,6 +18,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -51,6 +52,7 @@ class ProfileActivity : AppCompatActivity() {
         Glide.with(this)
             .load(currentUser?.photoUrl)
             .placeholder(R.drawable.ic_person)
+            .signature(ObjectKey(System.currentTimeMillis().toString()))
             .into(binding.ivUserImage)
 
         initViewModel()

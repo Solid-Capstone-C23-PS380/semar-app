@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -48,6 +49,7 @@ class HomeFragment : Fragment() {
         Glide.with(requireContext())
             .load(currentUser?.photoUrl)
             .placeholder(R.drawable.ic_person)
+            .signature(ObjectKey(System.currentTimeMillis().toString()))
             .into(binding.ivUserImage)
 
         binding.btnUserImage.setOnClickListener {
