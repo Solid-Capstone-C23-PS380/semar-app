@@ -18,6 +18,16 @@
 
     <style name="Theme.Semar" parent="Base.Theme.Semar" />
 
+    <!-- Style for SplashScreenActivity -->
+    <style name="SplashTheme" parent="Base.Theme.Semar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <!-- Style for MainActivity -->
+    <style name="MainTheme" parent="Base.Theme.Semar">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
     <style name="layout">
         <item name="android:background">@color/brown_900</item>
         <item name="android:backgroundTint">@color/brown_900</item>

@@ -8,6 +8,8 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
+import android.transition.Slide
+import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -19,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.solidcapstone.semar.MainActivity
+import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.ActivitySplashBinding
 import com.solidcapstone.semar.ui.auth.AuthActivity
 import com.solidcapstone.semar.ui.profile.ProfileViewModel
@@ -73,6 +76,7 @@ class SplashActivity : AppCompatActivity() {
             }
         }
 
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up)
         // Splash screen loading
         Handler(mainLooper).postDelayed({
             startActivity(nextIntent)

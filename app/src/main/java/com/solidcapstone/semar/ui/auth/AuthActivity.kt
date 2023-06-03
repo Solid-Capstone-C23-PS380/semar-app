@@ -3,8 +3,10 @@ package com.solidcapstone.semar.ui.auth
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.transition.Slide
 import android.util.Log
 import android.util.Patterns
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,6 +32,8 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up)
 
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

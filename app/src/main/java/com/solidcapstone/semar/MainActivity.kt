@@ -1,6 +1,8 @@
 package com.solidcapstone.semar
 
 import android.os.Bundle
+import android.transition.Slide
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -12,6 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

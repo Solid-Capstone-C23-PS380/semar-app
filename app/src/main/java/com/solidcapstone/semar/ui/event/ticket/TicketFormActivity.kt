@@ -26,6 +26,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
+import java.util.*
 
 class TicketFormActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTicketFormBinding
@@ -212,7 +213,7 @@ class TicketFormActivity : AppCompatActivity() {
         ).show()
     }
 
-    companion object {
+    companion object{
         const val EVENT_ID = "event_id"
         const val EVENT_PRICE = "event_price"
     }
