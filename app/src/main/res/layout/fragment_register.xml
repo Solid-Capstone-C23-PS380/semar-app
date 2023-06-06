@@ -27,7 +27,7 @@
 
                 <TextView
                     android:id="@+id/tv_register"
-                    style="@style/subheader1"
+                    style="@style/text_subheader_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -72,7 +72,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tv_name"
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true" />
@@ -92,11 +92,11 @@
                 app:counterMaxLength="50"
                 app:errorEnabled="true"
                 app:startIconContentDescription="email"
-                app:startIconDrawable="@drawable/email_icon">
+                app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tv_email"
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -123,7 +123,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tv_password"
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -149,7 +149,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tv_confirm_password"
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -158,7 +158,7 @@
 
             <Button
                 android:id="@+id/btn_register"
-                style="@style/subheader2"
+                style="@style/text_subheader_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

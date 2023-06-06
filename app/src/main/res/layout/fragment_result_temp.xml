@@ -12,8 +12,7 @@
         android:id="@+id/iv_scanned_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:importantForAccessibility="no"
-        app:srcCompat="@drawable/ic_place_holder" />
+        android:importantForAccessibility="no" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_scan_ok"
@@ -24,7 +23,7 @@
         android:background="@null"
         android:foreground="?attr/selectableItemBackground"
         android:importantForAccessibility="no"
-        android:src="@drawable/baseline_check_24"
+        android:src="@drawable/ic_checkmark"
         tools:ignore="UnusedAttribute" />
 
     <androidx.appcompat.widget.AppCompatImageButton
@@ -36,7 +35,7 @@
         android:background="@null"
         android:foreground="?attr/selectableItemBackground"
         android:importantForAccessibility="no"
-        android:src="@drawable/baseline_close_24"
+        android:src="@drawable/ic_close_scan"
         tools:ignore="UnusedAttribute" />
 
     <androidx.cardview.widget.CardView
@@ -62,14 +61,14 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/prediction_result" />
 
                 <TextView
                     android:id="@+id/tv_prediction_result"
-                    style="@style/subheader1"
+                    style="@style/text_subheader_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:text="@string/prediction_result" />
@@ -81,10 +80,10 @@
                 style="@style/btn_goToDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:drawableEnd="@drawable/baseline_chevron_right_24"
+                android:drawableEnd="@drawable/ic_chevron_right"
                 android:gravity="center_vertical"
                 android:padding="16dp"
-                android:text="@string/detail"/>
+                android:text="@string/detail" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -104,7 +103,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            style="@style/regular_body"
+            style="@style/text_body_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/scanning"

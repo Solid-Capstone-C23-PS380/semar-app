@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:title="@string/setting_edit_profile"
-                app:titleTextAppearance="@style/header"
+                app:titleTextAppearance="@style/text_header"
                 app:titleTextColor="?attr/colorPrimary" />
 
             <!--  Profile Picture  -->
@@ -68,7 +68,7 @@
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
                         android:contentDescription="@string/home_content_desc_profile"
-                        android:src="@drawable/baseline_edit_24"
+                        android:src="@drawable/ic_edit"
                         app:tint="@color/white"
                         tools:ignore="ImageContrastCheck" />
                 </androidx.cardview.widget.CardView>
@@ -92,7 +92,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tv_name"
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true" />
@@ -113,11 +113,11 @@
                 app:counterMaxLength="50"
                 app:errorEnabled="true"
                 app:startIconContentDescription="email"
-                app:startIconDrawable="@drawable/email_icon">
+                app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tv_email"
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
@@ -147,7 +147,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tv_password"
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
@@ -157,7 +157,7 @@
             <!--   Save Button   -->
             <Button
                 android:id="@+id/btn_save"
-                style="@style/subheader2"
+                style="@style/text_subheader_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

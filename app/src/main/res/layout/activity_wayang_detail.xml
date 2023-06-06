@@ -13,7 +13,7 @@
         style="@style/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextAppearance="@style/subheader1"
+        app:titleTextAppearance="@style/text_subheader_1"
         tools:title="@string/wayang_names" />
 
     <!--  Content  -->
@@ -51,7 +51,7 @@
                 <!--  Wayang Description  -->
                 <TextView
                     android:id="@+id/tv_wayang_description"
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"

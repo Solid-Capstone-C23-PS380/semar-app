@@ -51,14 +51,14 @@
                 android:paddingEnd="16dp">
 
                 <TextView
-                    style="@style/regular_body"
+                    style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/home_greetings" />
 
                 <TextView
                     android:id="@+id/tv_user_name"
-                    style="@style/subheader2"
+                    style="@style/text_subheader_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -75,7 +75,7 @@
             android:paddingEnd="16dp">
 
             <TextView
-                style="@style/subheader1"
+                style="@style/text_subheader_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -90,7 +90,7 @@
 
             <TextView
                 android:id="@+id/btn_more_wayang"
-                style="@style/regular_body"
+                style="@style/text_body_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -133,7 +133,7 @@
             android:paddingEnd="16dp">
 
             <TextView
-                style="@style/subheader1"
+                style="@style/text_subheader_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -148,7 +148,7 @@
 
             <TextView
                 android:id="@+id/btn_more_videos"
-                style="@style/regular_body"
+                style="@style/text_body_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"

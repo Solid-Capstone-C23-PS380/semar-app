@@ -22,7 +22,7 @@
             style="@style/layout_event_item"
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:background="@drawable/card_video_bg"
+            android:background="@drawable/bg_card_video"
             android:contentDescription="@string/event_poster"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
@@ -30,7 +30,7 @@
 
         <TextView
             android:id="@+id/tv_name_event"
-            style="@style/bold_body"
+            style="@style/text_body_bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

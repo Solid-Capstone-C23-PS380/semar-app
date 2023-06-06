@@ -15,7 +15,7 @@
             android:id="@+id/toolbar"
             style="@style/toolbar"
             app:title="@string/wayang_show_videos"
-            app:titleTextAppearance="@style/subheader1"/>
+            app:titleTextAppearance="@style/text_subheader_1"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 

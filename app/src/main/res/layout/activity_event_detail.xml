@@ -14,7 +14,7 @@
         style="@style/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:titleTextAppearance="@style/subheader_ellipses"
+        app:titleTextAppearance="@style/text_subheader_ellipses"
         tools:title="@string/event_name" />
 
     <!--  Content  -->
@@ -62,7 +62,7 @@
                     android:layout_gravity="center"
                     android:text="@string/event_name"
                     android:gravity="center"
-                    style="@style/subheader2_black"/>
+                    style="@style/text_subheader_2_black"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        style="@style/bold_body"
+                        style="@style/text_body_bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start"
@@ -94,7 +94,7 @@
 
                     <TextView
                         android:id="@+id/tv_price"
-                        style="@style/light_body"
+                        style="@style/text_body_light"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
@@ -116,7 +116,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="5dp"
                     android:text="@string/lorem_ipsum"
-                    style="@style/regular_body"/>
+                    style="@style/text_body_regular"/>
 
             </LinearLayout>
         </ScrollView>
@@ -130,7 +130,7 @@
 
     <Button
         android:id="@+id/btn_buy_ticket"
-        style="@style/subheader2"
+        style="@style/text_subheader_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"

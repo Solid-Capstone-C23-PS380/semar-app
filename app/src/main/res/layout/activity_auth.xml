@@ -13,7 +13,7 @@
         android:layout_height="156dp"
         android:layout_marginTop="50dp"
         android:contentDescription="@string/logo_desc"
-        android:src="@drawable/ic_semar_app"
+        android:src="@drawable/img_logo_semar"
         android:transitionName="logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/tv_message"
-        style="@style/subheader1"
+        style="@style/text_subheader_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -51,11 +51,11 @@
         app:layout_constraintStart_toStartOf="@+id/tv_message"
         app:layout_constraintTop_toBottomOf="@+id/tv_message"
         app:startIconContentDescription="email"
-        app:startIconDrawable="@drawable/email_icon">
+        app:startIconDrawable="@drawable/ic_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_email"
-            style="@style/regular_body"
+            style="@style/text_body_regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -89,7 +89,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_password"
-            style="@style/regular_body"
+            style="@style/text_body_regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -99,7 +99,7 @@
 
     <TextView
         android:id="@+id/tv_forget_password"
-        style="@style/regular_body"
+        style="@style/text_body_regular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
@@ -109,7 +109,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
-        style="@style/subheader2"
+        style="@style/text_subheader_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -131,7 +131,7 @@
 
     <TextView
         android:id="@+id/tv_or"
-        style="@style/regular_body"
+        style="@style/text_body_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -143,7 +143,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login_google"
-        style="@style/regular_body"
+        style="@style/text_body_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -178,7 +178,7 @@
 
         <TextView
             android:id="@+id/tv_not_account"
-            style="@style/regular_body"
+            style="@style/text_body_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -187,7 +187,7 @@
 
         <TextView
             android:id="@+id/tv_to_register"
-            style="@style/bold_body"
+            style="@style/text_body_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="99dp"
-        android:src="@drawable/success_icon"
+        android:src="@drawable/img_success"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/tv_success"
-        style="@style/header"
+        style="@style/text_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/tv_success_des"
-        style="@style/regular_body"
+        style="@style/text_body_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/check_receipts"
@@ -41,7 +41,7 @@
 
     <Button
         android:id="@+id/btn_finish"
-        style="@style/subheader2"
+        style="@style/text_subheader_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

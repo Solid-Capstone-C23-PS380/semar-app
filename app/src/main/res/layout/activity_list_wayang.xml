@@ -16,7 +16,7 @@
             style="@style/toolbar"
             android:layout_height="?attr/actionBarSize"
             app:title="@string/wayang_list"
-            app:titleTextAppearance="@style/subheader1" />
+            app:titleTextAppearance="@style/text_subheader_1" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

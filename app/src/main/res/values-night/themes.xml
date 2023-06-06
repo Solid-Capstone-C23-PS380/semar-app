@@ -39,7 +39,7 @@
     </style>
 
     <style name="header_home">
-        <item name="android:background">@drawable/top_bar_home_bg_dark</item>
+        <item name="android:background">@drawable/bg_top_bar_home_dark</item>
         <item name="titleTextColor">@color/white</item>
     </style>
 
@@ -48,14 +48,14 @@
     </style>
 
     <style name="btn_capture">
-        <item name="srcCompat">@drawable/custom_btn_capture_dark</item>
+        <item name="srcCompat">@drawable/btn_capture_dark</item>
     </style>
 
     <style name="toolbar" parent="@style/Widget.AppCompat.Toolbar">
         <item name="android:background">@color/brown_500</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?actionBarSize</item>
-        <item name="titleTextAppearance">@style/subheader1</item>
+        <item name="titleTextAppearance">@style/text_subheader_1</item>
         <item name="titleTextColor">@color/white</item>
     </style>
 
@@ -68,21 +68,21 @@
     </style>
 
     <style name="layout_wayang_item">
-        <item name="android:background">@drawable/card_wayang_bg</item>
+        <item name="android:background">@drawable/bg_card_wayang</item>
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="layout_video_item">
         <item name="android:backgroundTint">@color/brown_500</item>
-        <item name="android:background">@drawable/card_video_bg_dark</item>
+        <item name="android:background">@drawable/bg_card_video_dark</item>
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="layout_event_item">
         <item name="android:backgroundTint">@color/brown_500</item>
-        <item name="android:background">@drawable/card_video_bg_dark</item>
+        <item name="android:background">@drawable/bg_card_video_dark</item>
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/white</item>
         <item name="round">8dp</item>
@@ -102,85 +102,85 @@
         <item name="android:backgroundTint">@color/orange_500</item>
         <item name="textAllCaps">false</item>
         <item name="android:textColor">@color/white</item>
-        <item name="titleTextAppearance">@style/regular_body</item>
+        <item name="titleTextAppearance">@style/text_body_regular</item>
     </style>
 
-    <style name="header" parent="@style/TextAppearance.AppCompat">
+    <style name="text_header" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">20sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanbold</item>
+        <item name="android:fontFamily">@font/hanuman_bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="subheader_ellipses" parent="@style/TextAppearance.AppCompat">
+    <style name="text_subheader_ellipses" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">18sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanbold</item>
+        <item name="android:fontFamily">@font/hanuman_bold</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="subheader1" parent="@style/TextAppearance.AppCompat">
+    <style name="text_subheader_1" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">18sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanbold</item>
+        <item name="android:fontFamily">@font/hanuman_bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="subheader2" parent="@style/TextAppearance.AppCompat">
+    <style name="text_subheader_2" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">16sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanbold</item>
+        <item name="android:fontFamily">@font/hanuman_bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="subheader2_black" parent="@style/TextAppearance.AppCompat">
+    <style name="text_subheader_2_black" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">16sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanbold</item>
+        <item name="android:fontFamily">@font/hanuman_bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="regular_body" parent="@style/TextAppearance.AppCompat">
+    <style name="text_body_regular" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">14sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanregular</item>
+        <item name="android:fontFamily">@font/hanuman_regular</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="bold_body" parent="@style/TextAppearance.AppCompat">
+    <style name="text_body_bold" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">14sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanbold</item>
+        <item name="android:fontFamily">@font/hanuman_bold</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="light_body" parent="@style/TextAppearance.AppCompat">
+    <style name="text_body_light" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">14sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanlight</item>
+        <item name="android:fontFamily">@font/hanuman_light</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="chip" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">12sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanlight</item>
+        <item name="android:fontFamily">@font/hanuman_light</item>
         <item name="android:textColor">@color/brown_100</item>
     </style>
 
     <style name="chip_video" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">12sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanlight</item>
+        <item name="android:fontFamily">@font/hanuman_light</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="chip_event" parent="@style/TextAppearance.AppCompat">
         <item name="android:textSize">12sp</item>
         <item name="android:includeFontPadding">false</item>
-        <item name="android:fontFamily">@font/hanumanlight</item>
+        <item name="android:fontFamily">@font/hanuman_light</item>
         <item name="android:textColor">@color/white</item>
     </style>
 </resources>
