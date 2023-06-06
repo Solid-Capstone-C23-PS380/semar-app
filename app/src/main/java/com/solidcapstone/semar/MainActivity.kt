@@ -1,8 +1,6 @@
 package com.solidcapstone.semar
 
 import android.os.Bundle
-import android.transition.Slide
-import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController

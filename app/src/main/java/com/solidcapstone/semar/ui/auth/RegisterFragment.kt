@@ -56,7 +56,7 @@ class RegisterFragment : DialogFragment() {
             showToast("Nama harus diisi!")
             return
         } else if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
-            showToast("Email format tidak valid!")
+            showToast("Format email tidak valid!")
             return
         } else if (userPassword.length < 8) {
             showToast("Password harus memiliki minimal 8 karakter!")

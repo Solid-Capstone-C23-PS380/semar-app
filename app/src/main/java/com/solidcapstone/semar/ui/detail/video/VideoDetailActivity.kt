@@ -38,7 +38,7 @@ class VideoDetailActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        showWayangDetail()
+        showVideoDetail()
         initializeVideoPlayer()
     }
 
@@ -49,7 +49,7 @@ class VideoDetailActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun showWayangDetail() {
+    private fun showVideoDetail() {
         val videoId = intent.getIntExtra(VIDEO_ID, 1)
         viewModel.getVideo(videoId).observe(this) { result ->
             when (result) {

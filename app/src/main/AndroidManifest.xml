@@ -62,12 +62,10 @@
         <activity
             android:name=".ui.auth.AuthActivity"
             android:theme="@style/MainTheme"
-            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/MainTheme"
-            android:screenOrientation="portrait"
             android:exported="false"
             android:launchMode="singleTask" />
     </application>

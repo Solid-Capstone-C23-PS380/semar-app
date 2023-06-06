@@ -3,10 +3,8 @@ package com.solidcapstone.semar.ui.auth
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.transition.Slide
 import android.util.Log
 import android.util.Patterns
-import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -61,7 +59,7 @@ class AuthActivity : AppCompatActivity() {
         val userPassword = binding.tvPassword.text.toString()
 
         if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
-            showToast("Email format tidak valid!")
+            showToast("Format Email tidak valid!")
             return
         } else if (userPassword.length < 8) {
             showToast("Password harus memiliki minimal 8 karakter!")

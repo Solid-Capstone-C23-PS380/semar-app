@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
             false
         )
 
-        viewModel.getListWayang(2).observe(viewLifecycleOwner) { result ->
+        viewModel.getListWayang(5).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> binding.pbWayang.visibility = View.VISIBLE
 
@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            viewModel.getListVideo(2).observe(viewLifecycleOwner) { result ->
+            viewModel.getListVideo(5).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Loading -> binding.pbVideo.visibility = View.VISIBLE
 
