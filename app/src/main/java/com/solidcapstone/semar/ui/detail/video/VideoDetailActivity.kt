@@ -21,7 +21,6 @@ import com.solidcapstone.semar.utils.WayangViewModelFactory
 
 
 class VideoDetailActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityVideoDetailBinding
 
     private val viewModel: DetailViewModel by viewModels {

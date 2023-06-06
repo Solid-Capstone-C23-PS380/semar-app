@@ -17,7 +17,7 @@
             style="@style/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="@string/videos"
+            app:title="@string/placeholder_video_name"
             app:titleTextAppearance="@style/text_subheader_ellipses" />
 
         <FrameLayout
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/video_name" />
+                    android:text="@string/placeholder_video_name" />
 
                 <View
                     android:layout_width="match_parent"

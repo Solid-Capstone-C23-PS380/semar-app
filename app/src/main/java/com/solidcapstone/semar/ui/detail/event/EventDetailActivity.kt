@@ -1,12 +1,13 @@
 package com.solidcapstone.semar.ui.detail.event
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.solidcapstone.semar.R
 import com.solidcapstone.semar.data.Result
@@ -20,13 +21,13 @@ import java.util.Locale
 
 class EventDetailActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityEventDetailBinding
+    private lateinit var binding: ActivityEventDetailBinding
 
     private val viewModel: DetailViewModel by viewModels {
         WayangViewModelFactory.getInstance(this)
     }
-    private var eventIdTemp : Int? = null
-    private var eventPriceTemp : Int? = null
+    private var eventIdTemp: Int? = null
+    private var eventPriceTemp: Int? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
@@ -44,6 +45,7 @@ class EventDetailActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             onBackPressedDispatcher.onBackPressed()
@@ -52,7 +54,7 @@ class EventDetailActivity : AppCompatActivity() {
     }
 
     private fun showEventDetail() {
-        val eventId = intent.getIntExtra(EVENT_ID,1)
+        val eventId = intent.getIntExtra(EVENT_ID, 1)
         viewModel.getEvent(eventId).observe(this) { result ->
             when (result) {
                 is Result.Loading -> binding.pbEventDetail.visibility = View.VISIBLE
@@ -62,24 +64,32 @@ class EventDetailActivity : AppCompatActivity() {
                     eventIdTemp = eventData.id
                     eventPriceTemp = eventData.price
                     val currentTime = Date()
-                    val dateFormat = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH)
+                    val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH)
                     val dateEvent = dateFormat.parse(eventData.time)
 
                     Glide.with(this)
                         .load(eventData.photoUrl)
                         .into(binding.ivEvent)
-                    binding.tvPrice.text ="Rp ${eventData.price}"
+                    binding.tvPrice.text = buildString {
+                        append(getString(R.string.ticket_event_rupiah))
+                        append(eventData.price)
+                    }
 
                     supportActionBar?.title = eventData.name
                     binding.tvName.text = eventData.name
                     binding.tvEventDescription.text = eventData.description
 
                     if (dateEvent != null) {
-                        if(dateEvent.after(currentTime)){
+                        if (dateEvent.after(currentTime)) {
                             binding.btnBuyTicket.isEnabled = true
-                        }else{
+                        } else {
                             binding.btnBuyTicket.isEnabled = false
-                            binding.btnBuyTicket.setBackgroundColor(resources.getColor(R.color.brown_100))
+                            binding.btnBuyTicket.setBackgroundColor(
+                                ContextCompat.getColor(
+                                    this,
+                                    R.color.brown_100
+                                )
+                            )
                         }
                     }
                     binding.pbEventDetail.visibility = View.GONE
@@ -87,7 +97,7 @@ class EventDetailActivity : AppCompatActivity() {
 
                 is Result.Error -> {
                     binding.pbEventDetail.visibility = View.GONE
-                    Log.d("EventDetailActivity", result.toString())
+                    Log.d(TAG, result.toString())
                 }
             }
         }
@@ -95,5 +105,7 @@ class EventDetailActivity : AppCompatActivity() {
 
     companion object {
         const val EVENT_ID = "event_id"
+        private const val DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss z"
+        private const val TAG = "EventDetailActivity"
     }
 }

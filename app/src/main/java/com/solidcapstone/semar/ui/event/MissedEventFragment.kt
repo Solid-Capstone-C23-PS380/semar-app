@@ -26,7 +26,7 @@ class MissedEventFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentMissedEventBinding.inflate(inflater, container, false)
         return binding.root

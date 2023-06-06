@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/icon_success"/>
+        android:contentDescription="@string/img_desc_buy_success"/>
 
     <TextView
         android:id="@+id/tv_success"
@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="42dp"
-        android:text="@string/buy_success"
+        android:text="@string/ticket_buy_success"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -34,7 +34,7 @@
         style="@style/text_body_regular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/check_receipts"
+        android:text="@string/ticket_check_your_receipt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_success" />
@@ -53,7 +53,7 @@
         android:minWidth="260dp"
         android:padding="16dp"
         android:stateListAnimator="@null"
-        android:text="@string/finish"
+        android:text="@string/ticket_finish"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

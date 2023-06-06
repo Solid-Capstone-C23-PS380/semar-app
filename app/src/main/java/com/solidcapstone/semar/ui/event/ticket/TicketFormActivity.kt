@@ -35,6 +35,7 @@ class TicketFormActivity : AppCompatActivity() {
     }
     private var getFile: File? = null
     private var getPaymentMethod: String? = null
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,15 +44,9 @@ class TicketFormActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Beli Tiket"
+        supportActionBar?.title = getString(R.string.title_buy_ticket)
 
-        val paymentMethods = listOf(
-            "Dana - 089507741841 (a.n Bahrum Nisar)",
-            "GoPay - 0895606819311 (a.n. Bahrum Nisar)",
-            "BNI - 3012830193 (a.n. Bahrum Nisar)",
-            "BRI - 187439402423042 (a.n. Bahrum Nisar)",
-            "Jago - 173210392 (a.n. Bahrum Nisar)"
-        )
+        val paymentMethods = resources.getStringArray(R.array.ticket_payment_methods)
 
         val paymentMethodAdapter = ArrayAdapter(this, R.layout.item_dropdown, paymentMethods)
         binding.inputPaymentMethod.setAdapter(paymentMethodAdapter)
@@ -91,7 +86,7 @@ class TicketFormActivity : AppCompatActivity() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        val chooser = Intent.createChooser(intent, getString(R.string.input_choose_from_gallery))
         launcherIntentGallery.launch(chooser)
     }
 
@@ -113,23 +108,23 @@ class TicketFormActivity : AppCompatActivity() {
 
     private fun buyTicket() {
         if (binding.inputName.text.isNullOrEmpty()) {
-            showToast("Please input your name")
+            showToast(getString(R.string.error_input_name_empty))
             return
         }
         if (binding.inputEmail.text.isNullOrEmpty()) {
-            showToast("Please input your email")
+            showToast(getString(R.string.error_input_email_empty))
             return
         }
         if (binding.inputTicketAmount.text.isNullOrEmpty()) {
-            showToast("Please input your ticket amount")
+            showToast(getString(R.string.ticket_error_ticket_amount_empty))
             return
         }
         if (binding.inputPaymentMethod.text.isNullOrEmpty()) {
-            showToast("Please input your payment method")
+            showToast(getString(R.string.ticket_error_payment_method_empty))
             return
         }
         if (getFile == null) {
-            showToast(resources.getString(R.string.null_photo_message))
+            showToast(resources.getString(R.string.error_choose_photo))
             return
         }
 
@@ -172,12 +167,12 @@ class TicketFormActivity : AppCompatActivity() {
                             )
                             startActivity(intent)
                         }
-                        showToast("Buy Ticket Success")
+                        showToast(getString(R.string.ticket_buy_success))
                     }
 
                     is Result.Error -> {
                         showLoadingVisibility(false)
-                        showToast("Buy Ticket Failed")
+                        showToast(getString(R.string.ticket_error_buy_failed))
                     }
                 }
             }
@@ -213,7 +208,7 @@ class TicketFormActivity : AppCompatActivity() {
         ).show()
     }
 
-    companion object{
+    companion object {
         const val EVENT_ID = "event_id"
         const val EVENT_PRICE = "event_price"
     }

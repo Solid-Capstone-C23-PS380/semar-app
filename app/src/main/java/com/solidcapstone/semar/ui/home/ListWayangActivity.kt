@@ -7,7 +7,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.solidcapstone.semar.adapter.HomeWayangListAdapter
+import com.solidcapstone.semar.adapter.WayangListAdapter
 import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.ActivityListWayangBinding
 import com.solidcapstone.semar.utils.WayangViewModelFactory
@@ -48,16 +48,20 @@ class ListWayangActivity : AppCompatActivity() {
                 is Result.Loading -> binding.pbWayang.visibility = View.VISIBLE
 
                 is Result.Success -> {
-                    val wayangListAdapter = HomeWayangListAdapter(result.data)
+                    val wayangListAdapter = WayangListAdapter(result.data)
                     binding.rvWayang.adapter = wayangListAdapter
                     binding.pbWayang.visibility = View.GONE
                 }
 
                 is Result.Error -> {
                     binding.pbWayang.visibility = View.GONE
-                    Log.d("ListWayangActivity", result.toString())
+                    Log.d(TAG, result.toString())
                 }
             }
         }
+    }
+
+    companion object {
+        private const val TAG = "ListWayangActivity"
     }
 }

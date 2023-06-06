@@ -17,8 +17,8 @@
             style="@style/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:titleTextAppearance="@style/text_subheader_1"
-            tools:title="@string/ticket_form" />
+            app:title="@string/title_ticket_form"
+            app:titleTextAppearance="@style/text_subheader_1" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -159,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="@string/placeholder_price" />
+                android:text="@string/placeholder_ticket_price" />
         </LinearLayout>
 
         <Button

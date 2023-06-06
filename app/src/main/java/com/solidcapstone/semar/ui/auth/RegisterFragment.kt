@@ -14,6 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.solidcapstone.semar.MainActivity
+import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.FragmentRegisterBinding
 
 
@@ -23,7 +24,7 @@ class RegisterFragment : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
@@ -53,16 +54,16 @@ class RegisterFragment : DialogFragment() {
         val userConfirmPassword = binding.tvConfirmPassword.text.toString()
 
         if (userName.isEmpty()) {
-            showToast("Nama harus diisi!")
+            showToast(getString(R.string.error_input_name_empty))
             return
         } else if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
-            showToast("Format email tidak valid!")
+            showToast(getString(R.string.error_input_email_invalid))
             return
         } else if (userPassword.length < 8) {
-            showToast("Password harus memiliki minimal 8 karakter!")
+            showToast(getString(R.string.error_input_password_not_enough_character))
             return
         } else if (userPassword != userConfirmPassword) {
-            showToast("Konfirmasi password tidak sama!")
+            showToast(getString(R.string.error_input_confirmation_password_not_same))
             return
         }
 
@@ -85,7 +86,7 @@ class RegisterFragment : DialogFragment() {
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
 
                     setLoadingVisibility(false)
-                    showToast("Autentikasi gagal")
+                    showToast(getString(R.string.auth_error_authentication))
                 }
             }
     }

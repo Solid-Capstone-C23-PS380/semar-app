@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/register"
+                    android:text="@string/auth_register"
                     android:textColor="?colorPrimary" />
 
                 <LinearLayout
@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/btn_close"
-                        android:contentDescription="@string/close_button" />
+                        android:contentDescription="@string/img_desc_btn_close" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -59,7 +59,7 @@
                 style="@style/input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_name"
+                android:hint="@string/input_hint_name"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
@@ -67,7 +67,7 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
                 app:errorEnabled="true"
-                app:startIconContentDescription="email"
+                app:startIconContentDescription="@string/input_hint_name"
                 app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -83,7 +83,7 @@
                 style="@style/input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_email"
+                android:hint="@string/input_hint_email"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
@@ -91,7 +91,7 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
                 app:errorEnabled="true"
-                app:startIconContentDescription="email"
+                app:startIconContentDescription="@string/input_hint_email"
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -108,7 +108,7 @@
                 style="@style/input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password"
+                android:hint="@string/input_hint_password"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -118,7 +118,7 @@
                 app:endIconCheckable="true"
                 app:errorEnabled="true"
                 app:passwordToggleEnabled="true"
-                app:startIconContentDescription="Password"
+                app:startIconContentDescription="@string/input_hint_password"
                 app:startIconDrawable="@drawable/ic_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -134,7 +134,7 @@
                 style="@style/input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password_confirmation"
+                android:hint="@string/input_hint_password_confirmation"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
                 app:boxCornerRadiusTopEnd="10dp"
@@ -144,7 +144,7 @@
                 app:endIconCheckable="true"
                 app:errorEnabled="true"
                 app:passwordToggleEnabled="true"
-                app:startIconContentDescription="Password"
+                app:startIconContentDescription="@string/input_hint_password_confirmation"
                 app:startIconDrawable="@drawable/ic_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -170,7 +170,7 @@
                 android:minWidth="260dp"
                 android:padding="16dp"
                 android:stateListAnimator="@null"
-                android:text="@string/register"
+                android:text="@string/auth_register"
                 android:textColor="@color/white"
                 tools:ignore="TextContrastCheck" />
         </LinearLayout>

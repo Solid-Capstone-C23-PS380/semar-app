@@ -15,8 +15,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.solidcapstone.semar.R
-import com.solidcapstone.semar.adapter.HomeVideoListAdapter
-import com.solidcapstone.semar.adapter.HomeWayangListAdapter
+import com.solidcapstone.semar.adapter.VideoListAdapter
+import com.solidcapstone.semar.adapter.WayangListAdapter
 import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.FragmentHomeBinding
 import com.solidcapstone.semar.ui.profile.ProfileActivity
@@ -33,7 +33,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         auth = Firebase.auth
@@ -78,14 +78,14 @@ class HomeFragment : Fragment() {
                 is Result.Loading -> binding.pbWayang.visibility = View.VISIBLE
 
                 is Result.Success -> {
-                    val wayangListAdapter = HomeWayangListAdapter(result.data)
+                    val wayangListAdapter = WayangListAdapter(result.data)
                     binding.rvWayang.adapter = wayangListAdapter
                     binding.pbWayang.visibility = View.GONE
                 }
 
                 is Result.Error -> {
                     binding.pbWayang.visibility = View.GONE
-                    Log.d("HomeFragmentWayang", result.toString())
+                    Log.d(TAG, result.toString())
                 }
             }
         }
@@ -103,18 +103,21 @@ class HomeFragment : Fragment() {
                     is Result.Loading -> binding.pbVideo.visibility = View.VISIBLE
 
                     is Result.Success -> {
-                        val videoListAdapter = HomeVideoListAdapter(result.data)
+                        val videoListAdapter = VideoListAdapter(result.data)
                         binding.rvVideos.adapter = videoListAdapter
                         binding.pbVideo.visibility = View.GONE
                     }
 
                     is Result.Error -> {
                         binding.pbVideo.visibility = View.GONE
-                        Log.d("HomeFragmentWayang", result.toString())
+                        Log.d(TAG, result.toString())
                     }
                 }
             }
         }
     }
 
+    companion object {
+        private const val TAG = "HomeFragmentWayang"
+    }
 }

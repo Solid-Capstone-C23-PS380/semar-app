@@ -21,7 +21,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:title="@string/setting_edit_profile"
+                app:title="@string/profile_setting_edit"
                 app:titleTextAppearance="@style/text_header"
                 app:titleTextColor="?attr/colorPrimary" />
 
@@ -79,7 +79,7 @@
                 style="@style/input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_name"
+                android:hint="@string/input_hint_name"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
@@ -87,7 +87,7 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
                 app:errorEnabled="true"
-                app:startIconContentDescription="email"
+                app:startIconContentDescription="@string/input_hint_name"
                 app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -104,7 +104,7 @@
                 style="@style/input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_email"
+                android:hint="@string/input_hint_email"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
@@ -112,7 +112,7 @@
                 app:counterEnabled="true"
                 app:counterMaxLength="50"
                 app:errorEnabled="true"
-                app:startIconContentDescription="email"
+                app:startIconContentDescription="@string/input_hint_email"
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -131,7 +131,7 @@
                 style="@style/input_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password_confirmation"
+                android:hint="@string/input_hint_password_confirmation"
                 android:visibility="gone"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
@@ -142,7 +142,7 @@
                 app:endIconCheckable="true"
                 app:errorEnabled="true"
                 app:passwordToggleEnabled="true"
-                app:startIconContentDescription="Password"
+                app:startIconContentDescription="@string/input_hint_password_confirmation"
                 app:startIconDrawable="@drawable/ic_lock">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -168,7 +168,7 @@
                 android:minWidth="260dp"
                 android:padding="16dp"
                 android:stateListAnimator="@null"
-                android:text="@string/save"
+                android:text="@string/profile_edit_btn_save"
                 android:textColor="@color/white"
                 tools:ignore="TextContrastCheck,VisualLintButtonSize" />
         </LinearLayout>

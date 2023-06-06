@@ -33,7 +33,7 @@ class ScanFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentScanBinding.inflate(inflater, container, false)
         return binding.root
@@ -63,7 +63,7 @@ class ScanFragment : Fragment() {
             if (results.containsValue(false)) {
                 Toast.makeText(
                     requireContext(),
-                    "Tidak mendapatkan izin.",
+                    getString(R.string.error_permission_denied),
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -76,7 +76,7 @@ class ScanFragment : Fragment() {
     private fun startGallery() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        val chooser = Intent.createChooser(intent, getString(R.string.input_choose_from_gallery))
         launcherIntentGallery.launch(chooser)
     }
 
@@ -134,7 +134,11 @@ class ScanFragment : Fragment() {
                 imageCapture
             )
         } catch (exc: Exception) {
-            Toast.makeText(requireContext(), "Failed to bind camera", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                getString(R.string.scan_error_bind_camera_fail),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -156,8 +160,11 @@ class ScanFragment : Fragment() {
                 }
 
                 override fun onError(exception: ImageCaptureException) {
-                    Toast.makeText(requireContext(), "Failed to capture photo", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.scan_error_capture_fail),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         )

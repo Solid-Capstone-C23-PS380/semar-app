@@ -9,9 +9,9 @@ import com.solidcapstone.semar.data.local.entity.WayangEntity
 import com.solidcapstone.semar.databinding.ItemWayangBinding
 import com.solidcapstone.semar.ui.detail.wayang.WayangDetailActivity
 
-class HomeWayangListAdapter(
+class WayangListAdapter(
     private val listWayangItem: List<WayangEntity>
-) : RecyclerView.Adapter<HomeWayangListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<WayangListAdapter.ViewHolder>() {
     class ViewHolder(var binding: ItemWayangBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

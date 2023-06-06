@@ -137,13 +137,13 @@ class ResultTempFragment : Fragment() {
                     }
 
                     is Result.Error -> {
-                        showToast("Prediction failed")
+                        showToast(getString(R.string.scan_error_prediction))
                         binding.loadingScan.visibility = View.GONE
                     }
                 }
             }
         } else {
-            showToast(resources.getString(R.string.null_photo_message))
+            showToast(resources.getString(R.string.error_choose_photo))
         }
     }
 

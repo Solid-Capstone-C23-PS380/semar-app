@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:titleTextAppearance="@style/text_subheader_ellipses"
-        tools:title="@string/event_name" />
+        tools:title="@string/placeholder_event_name" />
 
     <!--  Content  -->
     <FrameLayout
@@ -36,7 +36,7 @@
                     android:id="@+id/iv_event"
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
-                    android:contentDescription="@string/event_poster"
+                    android:contentDescription="@string/img_desc_event_poster"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_launcher_background"
                     tools:ignore="ImageContrastCheck" />
@@ -60,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@string/event_name"
+                    android:text="@string/placeholder_event_name"
                     android:gravity="center"
                     style="@style/text_subheader_2_black"/>
 
@@ -90,7 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="start"
-                        android:text="@string/price" />
+                        android:text="@string/event_detail_price" />
 
                     <TextView
                         android:id="@+id/tv_price"
@@ -98,7 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="@string/price_value"/>
+                        android:text="@string/placeholder_event_price"/>
 
                 </LinearLayout>
 
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="8dp"
                     android:layout_marginTop="5dp"
-                    android:text="@string/lorem_ipsum"
+                    android:text="@string/placeholder_lorem_ipsum"
                     style="@style/text_body_regular"/>
 
             </LinearLayout>
@@ -141,7 +141,7 @@
         android:minWidth="260dp"
         android:padding="8dp"
         android:stateListAnimator="@null"
-        android:text="@string/event_detail_btn_buy_ticket"
+        android:text="@string/event_detail_buy_ticket"
         android:textColor="@color/white"
         tools:ignore="TextContrastCheck" />
 

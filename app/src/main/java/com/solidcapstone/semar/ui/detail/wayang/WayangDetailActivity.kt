@@ -56,7 +56,7 @@ class WayangDetailActivity : AppCompatActivity() {
 
                 is Result.Error -> {
                     binding.pbWayangDetail.visibility = View.GONE
-                    Log.d("HomeFragmentWayang", result.toString())
+                    Log.d(TAG, result.toString())
                 }
             }
         }
@@ -64,5 +64,6 @@ class WayangDetailActivity : AppCompatActivity() {
 
     companion object {
         const val WAYANG_ID = "wayang_id"
+        private const val TAG = "HomeFragmentWayang"
     }
 }

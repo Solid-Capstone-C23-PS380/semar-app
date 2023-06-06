@@ -22,7 +22,7 @@
             android:layout_width="80dp"
             android:layout_height="96dp"
             android:background="@drawable/bg_card_video"
-            android:contentDescription="@string/wayang_video"
+            android:contentDescription="@string/img_desc_wayang_video"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background" />
 
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:text="@string/video_name" />
+                android:text="@string/placeholder_video_name" />
 
             <TextView
                 android:id="@+id/tv_duration_video"
@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom|end"
                 android:gravity="bottom|end"
-                android:text="@string/video_duration" />
+                android:text="@string/placeholder_video_duration" />
 
         </LinearLayout>
     </LinearLayout>

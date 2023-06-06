@@ -68,10 +68,14 @@ class ProfileActivity : AppCompatActivity() {
             settingsViewModel.saveThemeSetting(!isChecked)
         }
         binding.settingLanguage.setOnClickListener {
-            Toast.makeText(this, "Language", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                getString(R.string.profile_setting_language),
+                Toast.LENGTH_SHORT
+            ).show()
         }
         binding.btnLogout.setOnClickListener {
-            val message: String = resources.getString(R.string.logout_message)
+            val message: String = resources.getString(R.string.profile_log_out_message)
             showCustomDialogBox(message)
         }
     }
@@ -112,9 +116,9 @@ class ProfileActivity : AppCompatActivity() {
         dialog.setContentView(R.layout.custom_dialog_card)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        val tvMessage: TextView = dialog.findViewById(R.id.tvMessage)
-        val btnYes: Button = dialog.findViewById(R.id.btnYes)
-        val btnNo: Button = dialog.findViewById(R.id.btnNo)
+        val tvMessage: TextView = dialog.findViewById(R.id.tv_message)
+        val btnYes: Button = dialog.findViewById(R.id.btn_yes)
+        val btnNo: Button = dialog.findViewById(R.id.btn_no)
 
         tvMessage.text = message
 

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.FragmentForgetPasswordBinding
 
 class ForgetPasswordFragment : DialogFragment() {
@@ -15,7 +16,7 @@ class ForgetPasswordFragment : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentForgetPasswordBinding.inflate(inflater, container, false)
         return binding.root
@@ -31,10 +32,10 @@ class ForgetPasswordFragment : DialogFragment() {
             val emailAddress = binding.tvEmail.text.toString()
             Firebase.auth.sendPasswordResetEmail(emailAddress).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    showToast("Berhasil! Silakan periksa email Anda")
+                    showToast(getString(R.string.auth_forgot_password_success))
                     dialog?.dismiss()
                 } else {
-                    showToast("Gagal mengirim email reset password")
+                    showToast(getString(R.string.auth_error_sending_reset_password))
                     setLoadingVisibility(false)
                 }
             }

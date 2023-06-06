@@ -64,14 +64,14 @@
                     style="@style/text_body_regular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/prediction_result" />
+                    android:text="@string/scan_prediction_result" />
 
                 <TextView
                     android:id="@+id/tv_prediction_result"
                     style="@style/text_subheader_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="@string/prediction_result" />
+                    tools:text="@string/scan_prediction_result" />
 
             </LinearLayout>
 
@@ -83,7 +83,7 @@
                 android:drawableEnd="@drawable/ic_chevron_right"
                 android:gravity="center_vertical"
                 android:padding="16dp"
-                android:text="@string/detail" />
+                android:text="@string/scan_btn_detail" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -106,7 +106,7 @@
             style="@style/text_body_regular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/scanning"
+            android:text="@string/scan_processing"
             android:textColor="@color/white" />
     </LinearLayout>
 

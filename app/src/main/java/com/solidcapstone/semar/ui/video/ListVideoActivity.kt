@@ -1,13 +1,13 @@
 package com.solidcapstone.semar.ui.video
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.solidcapstone.semar.adapter.HomeVideoListAdapter
+import com.solidcapstone.semar.adapter.VideoListAdapter
 import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.ActivityListVideoBinding
 import com.solidcapstone.semar.ui.home.HomeViewModel
@@ -20,6 +20,7 @@ class ListVideoActivity : AppCompatActivity() {
     private val viewModel: HomeViewModel by viewModels {
         WayangViewModelFactory.getInstance(this)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListVideoBinding.inflate(layoutInflater)
@@ -30,7 +31,6 @@ class ListVideoActivity : AppCompatActivity() {
 
         showListVideo()
     }
-
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -47,21 +47,25 @@ class ListVideoActivity : AppCompatActivity() {
             false
         )
 
-        viewModel.getListVideo().observe(this){ result ->
+        viewModel.getListVideo().observe(this) { result ->
             when (result) {
                 is Result.Loading -> binding.pbVideo.visibility = View.VISIBLE
 
                 is Result.Success -> {
-                    val videoListAdapter = HomeVideoListAdapter(result.data)
+                    val videoListAdapter = VideoListAdapter(result.data)
                     binding.rvVideo.adapter = videoListAdapter
                     binding.pbVideo.visibility = View.GONE
                 }
 
                 is Result.Error -> {
                     binding.pbVideo.visibility = View.GONE
-                    Log.d("HomeFragmentWayang", result.toString())
+                    Log.d(TAG, result.toString())
                 }
             }
         }
+    }
+
+    companion object {
+        private const val TAG = "HomeFragmentWayang"
     }
 }

@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    style="@style/layout"
     tools:context=".ui.event.EventFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -14,15 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="Event"
-        app:titleTextAppearance="@style/text_subheader_1"/>
+        app:titleTextAppearance="@style/text_subheader_1" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
+        style="@style/nav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemTextColor="@drawable/selector_bottom_nav_icon"
-        style="@style/nav"
-        android:contentDescription="@string/scheadule_description"/>
+        android:contentDescription="@string/cont_desc_event_tab_schedule"
+        app:itemTextColor="@drawable/selector_bottom_nav_icon" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager"

@@ -44,14 +44,14 @@ class AuthActivity : AppCompatActivity() {
 
         binding.tvToRegister.setOnClickListener { clickToRegister() }
         binding.tvForgetPassword.setOnClickListener {
-            ForgetPasswordFragment().show(supportFragmentManager, "ForgetPasswordFragment")
+            ForgetPasswordFragment().show(supportFragmentManager, TAG_FORGET_PASSWORD)
         }
         binding.btnLogin.setOnClickListener { login() }
         binding.btnLoginGoogle.setOnClickListener { googleSignIn() }
     }
 
     private fun clickToRegister() {
-        RegisterFragment().show(supportFragmentManager, "RegisterFragment")
+        RegisterFragment().show(supportFragmentManager, TAG_REGISTER)
     }
 
     private fun login() {
@@ -59,10 +59,10 @@ class AuthActivity : AppCompatActivity() {
         val userPassword = binding.tvPassword.text.toString()
 
         if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
-            showToast("Format Email tidak valid!")
+            showToast(getString(R.string.error_input_email_invalid))
             return
         } else if (userPassword.length < 8) {
-            showToast("Password harus memiliki minimal 8 karakter!")
+            showToast(getString(R.string.error_input_password_not_enough_character))
             return
         }
 
@@ -75,7 +75,7 @@ class AuthActivity : AppCompatActivity() {
 
                     Log.d(TAG, "signInWithEmail:success")
                 } else {
-                    showToast("Autentikasi gagal!")
+                    showToast(getString(R.string.auth_error_authentication))
                     setLoadingVisibility(false)
 
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -101,7 +101,7 @@ class AuthActivity : AppCompatActivity() {
                 firebaseAuthWithGoogle(account.idToken!!)
             } catch (e: ApiException) {
                 setLoadingVisibility(false)
-                Log.w(TAG, "Google sign in failed", e)
+                Log.w(TAG, getString(R.string.auth_error_google_sign_in_fail), e)
             }
         }
     }
@@ -144,5 +144,7 @@ class AuthActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "AuthActivity"
+        private const val TAG_FORGET_PASSWORD = "ForgetPasswordFragment"
+        private const val TAG_REGISTER = "RegisterFragment"
     }
 }

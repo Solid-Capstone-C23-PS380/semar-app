@@ -9,9 +9,9 @@ import com.solidcapstone.semar.data.local.entity.VideoEntity
 import com.solidcapstone.semar.databinding.ItemVideoBinding
 import com.solidcapstone.semar.ui.detail.video.VideoDetailActivity
 
-class HomeVideoListAdapter(
+class VideoListAdapter(
     private val listVideoItem: List<VideoEntity>
-) : RecyclerView.Adapter<HomeVideoListAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
     class ViewHolder(var binding: ItemVideoBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

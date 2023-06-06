@@ -15,7 +15,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 class EventListAdapter(
-    private val listEventItem: List<EventEntity>
+    private val listEventItem: List<EventEntity>,
 ) : RecyclerView.Adapter<EventListAdapter.ViewHolder>() {
     class ViewHolder(var binding: ItemEventBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -29,8 +29,8 @@ class EventListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = listEventItem[position]
 
-        val dateFormat = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z", Locale.ENGLISH)
-        dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+        val dateFormat = SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH)
+        dateFormat.timeZone = TimeZone.getTimeZone(TIME_ZONE)
         val date = dateFormat.parse(currentItem.time) as Date
         dateFormat.timeZone = TimeZone.getDefault()
         val formattedDate = DateFormat.getDateTimeInstance().format(date)
@@ -49,5 +49,10 @@ class EventListAdapter(
             }
         }
 
+    }
+
+    companion object {
+        private const val DATE_FORMAT = "EEE, dd MMM yyyy HH:mm:ss z"
+        private const val TIME_ZONE = "UTC"
     }
 }

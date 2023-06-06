@@ -1,24 +1,65 @@
 <resources>
     <string name="app_name">Semar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="wayang_name">Gatot Kaca</string>
-    <string name="video_name">Video Pementasan</string>
-    <string name="video_duration">51.21</string>
+
+    <!--  Placeholder  -->
+    <string name="placeholder_event_name">Pementasan Wayang Kulit Jombang</string>
+    <string name="placeholder_event_date">12–11–2023</string>
+    <string name="placeholder_event_price">Rp </string>
+    <string name="placeholder_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui id ornare arcu odio ut sem. Venenatis lectus magna fringilla urna. Diam sollicitudin tempor id eu. Sagittis eu volutpat odio facilisis mauris. Risus sed vulputate odio ut. Ipsum consequat nisl vel pretium lectus quam. Vitae justo eget magna fermentum iaculis eu non diam phasellus. At quis risus sed vulputate odio ut enim blandit. Ornare suspendisse sed nisi lacus sed viverra tellus in hac. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Volutpat diam ut venenatis tellus. Ultricies lacus sed turpis tincidunt. Est velit egestas dui id ornare. Eget nullam non nisi est sit amet facilisis. Consequat id porta nibh venenatis cras sed felis eget. Mi in nulla posuere sollicitudin aliquam ultrices sagittis. Lectus sit amet est placerat in egestas erat imperdiet sed. Fringilla est ullamcorper eget nulla facilisi etiam dignissim. Euismod elementum nisi quis eleifend quam adipiscing. Quis commodo odio aenean sed adipiscing diam. Sem viverra aliquet eget sit amet tellus cras adipiscing enim. Nibh tellus molestie nunc non blandit massa enim. Urna neque viverra justo nec ultrices. Ipsum dolor sit amet consectetur. Vitae congue eu consequat ac felis donec et odio. Risus pretium quam vulputate dignissim suspendisse. Congue quisque egestas diam in arcu cursus euismod quis viverra. Eget aliquet nibh praesent tristique magna sit. Leo duis ut diam quam. Eget aliquet nibh praesent tristique magna. Nam libero justo laoreet sit amet cursus sit amet dictum. Mattis aliquam faucibus purus in massa tempor. Dolor magna eget est lorem ipsum. Cursus mattis molestie a iaculis at erat pellentesque. Nullam eget felis eget nunc lobortis mattis aliquam faucibus. Volutpat maecenas volutpat blandit aliquam etiam erat velit. Mauris cursus mattis molestie a iaculis at erat pellentesque. A diam maecenas sed enim ut sem viverra. Tristique et egestas quis ipsum suspendisse ultrices gravida dictum fusce. Non diam phasellus vestibulum lorem sed. Blandit turpis cursus in hac habitasse platea dictumst. Tempor orci eu lobortis elementum nibh tellus molestie. Faucibus purus in massa tempor nec feugiat nisl. Commodo nulla facilisi nullam vehicula ipsum a. Gravida in fermentum et sollicitudin ac orci phasellus. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Sem fringilla ut morbi tincidunt augue interdum velit euismod. Pellentesque habitant morbi tristique senectus et netus. Ipsum consequat nisl vel pretium lectus quam id. Sagittis orci a scelerisque purus semper eget duis at tellus. Enim neque volutpat ac tincidunt vitae. Nam aliquam sem et tortor consequat id porta nibh venenatis. At imperdiet dui accumsan sit amet nulla facilisi morbi. Diam quam nulla porttitor massa id neque aliquam. Sed arcu non odio euismod lacinia at. Semper viverra nam libero justo laoreet sit. Elementum integer enim neque volutpat ac tincidunt vitae. Dui vivamus arcu felis bibendum ut tristique et egestas quis. Libero justo laoreet sit amet. Nec ullamcorper sit amet risus nullam eget felis. Magna etiam tempor orci eu lobortis elementum nibh. Facilisi nullam vehicula ipsum a arcu cursus vitae congue. Pharetra vel turpis nunc eget. Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc consequat. Nibh tellus molestie nunc non blandit massa enim. Aliquam purus sit amet luctus venenatis lectus magna. Cum sociis natoque penatibus et. Nunc vel risus commodo viverra.</string>
+    <string name="placeholder_ticket_price">Rp0,00</string>
+    <string name="placeholder_video_duration">51.21</string>
+    <string name="placeholder_video_name">Video Pementasan</string>
+    <string name="placeholder_wayang">Wayang</string>
+
+    <!--  Content Description  -->
+    <string name="img_desc_btn_close">Tombol Tutup</string>
+    <string name="img_desc_event_poster">Poster Event</string>
+    <string name="img_desc_wayang_image">Gambar Wayang</string>
+    <string name="img_desc_wayang_video">Video Wayang</string>
+    <string name="img_desc_logo">Logo Aplikasi</string>
+    <string name="img_desc_logo_semar">Semar Logo</string>
+    <string name="img_desc_buy_success">Pembelian Sukses</string>
+    <string name="img_app_name_tagline">App Name Tagline</string>
+    <string name="cont_desc_event_tab_schedule">Tab Jadwal Event</string>
+
+    <!--  Common Inputs  -->
+    <string name="input_hint_name">Name</string>
+    <string name="input_hint_email">Email</string>
+    <string name="input_hint_password">Password</string>
+    <string name="input_hint_password_confirmation">Password Confirmation</string>
+    <string name="input_choose_from_gallery">Ambil dari galeri</string>
+
+    <!--  Common Errors  -->
+    <string name="error_input_name_empty">Mohon masukkan nama Anda</string>
+    <string name="error_input_email_empty">Mohon masukkan email Anda</string>
+    <string name="error_input_email_invalid">Format email tidak valid!</string>
+    <string name="error_input_password_not_enough_character">Password harus memiliki minimal 8 karakter!</string>
+    <string name="error_input_confirmation_password_not_same">Konfirmasi password tidak sama!</string>
+    <string name="error_happened">Terjadi kesalahan</string>
+    <string name="error_choose_photo">Mohon untuk memilih foto</string>
+    <string name="error_permission_denied">Tidak mendapatkan izin</string>
+
+    <!--  Authentication  -->
+    <string name="auth_login">Login</string>
+    <string name="auth_or">Atau</string>
+    <string name="auth_login_google">Log in dengan Google</string>
+    <string name="auth_no_account">Belum memiliki akun?</string>
+    <string name="auth_register">Register</string>
+    <string name="auth_forgot_password_instruction">Apabila email yang dimasukkan telah terdaftar, Anda akan mendapatkan email untuk mereset password Anda</string>
+    <string name="auth_forgot_password_submit">Kirim</string>
+    <string name="auth_create_account"> Buat Akun</string>
+    <string name="auth_forgot_password">Lupa Password?</string>
+    <string name="auth_forgot_password_success">Berhasil! Silakan periksa email Anda</string>
+
+    <string name="auth_error_sending_reset_password">Gagal mengirim email reset password</string>
+    <string name="auth_error_authentication">Autentikasi gagal!</string>
+    <string name="auth_error_google_sign_in_fail">Google sign in failed</string>
+
+    <!--  Menu  -->
     <string name="title_home">Beranda</string>
     <string name="title_scan">Pindai</string>
     <string name="title_event">Event</string>
-    <string name="event_name">Pementasan Wayang Kulit Jombang</string>
-    <string name="event_poster">event poster</string>
-    <string name="wayang_image">wayang image</string>
-    <string name="wayang_video">wayang video</string>
-    <string name="date_event">12–11–2023</string>
-    <string name="price">Harga :</string>
-    <string name="price_value">Rp </string>
-    <string name="event_description">Event Description</string>
-    <string name="event_detail_btn_buy_ticket">Beli Tiket</string>
-    <string name="wayang_list">Wayang List</string>
-    <string name="wayang_show_videos">Tampilkan video wayang</string>
 
     <!--  Home Screen  -->
     <string name="home_see_more">Lihat Selengkapnya</string>
@@ -29,67 +70,62 @@
 
     <!--  Profile  -->
     <string name="title_profile">Profil</string>
-    <string name="settings">Pengaturan</string>
-    <string name="setting_language">Bahasa Indonesia</string>
-    <string name="setting_dark_mode">Mode Gelap</string>
-    <string name="log_out">Keluar</string>
+    <string name="profile_settings">Pengaturan</string>
+    <string name="profile_setting_dark_mode">Mode Gelap</string>
+    <string name="profile_setting_edit">Edit Profil</string>
+    <string name="profile_setting_language">Bahasa Indonesia</string>
+    <string name="profile_log_out">Keluar</string>
+    <string name="profile_log_out_message">Apakah kamu serius ingin keluar?</string>
+    <string name="profile_edit_btn_save">Simpan</string>
 
-    <!--  Wayang Detail  -->
-    <string name="wayang_search_on_tokopedia">Cari di Tokopedia</string>
-    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dui id ornare arcu odio ut sem. Venenatis lectus magna fringilla urna. Diam sollicitudin tempor id eu. Sagittis eu volutpat odio facilisis mauris. Risus sed vulputate odio ut. Ipsum consequat nisl vel pretium lectus quam. Vitae justo eget magna fermentum iaculis eu non diam phasellus. At quis risus sed vulputate odio ut enim blandit. Ornare suspendisse sed nisi lacus sed viverra tellus in hac. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Volutpat diam ut venenatis tellus. Ultricies lacus sed turpis tincidunt. Est velit egestas dui id ornare. Eget nullam non nisi est sit amet facilisis. Consequat id porta nibh venenatis cras sed felis eget. Mi in nulla posuere sollicitudin aliquam ultrices sagittis. Lectus sit amet est placerat in egestas erat imperdiet sed. Fringilla est ullamcorper eget nulla facilisi etiam dignissim. Euismod elementum nisi quis eleifend quam adipiscing. Quis commodo odio aenean sed adipiscing diam. Sem viverra aliquet eget sit amet tellus cras adipiscing enim. Nibh tellus molestie nunc non blandit massa enim. Urna neque viverra justo nec ultrices. Ipsum dolor sit amet consectetur. Vitae congue eu consequat ac felis donec et odio. Risus pretium quam vulputate dignissim suspendisse. Congue quisque egestas diam in arcu cursus euismod quis viverra. Eget aliquet nibh praesent tristique magna sit. Leo duis ut diam quam. Eget aliquet nibh praesent tristique magna. Nam libero justo laoreet sit amet cursus sit amet dictum. Mattis aliquam faucibus purus in massa tempor. Dolor magna eget est lorem ipsum. Cursus mattis molestie a iaculis at erat pellentesque. Nullam eget felis eget nunc lobortis mattis aliquam faucibus. Volutpat maecenas volutpat blandit aliquam etiam erat velit. Mauris cursus mattis molestie a iaculis at erat pellentesque. A diam maecenas sed enim ut sem viverra. Tristique et egestas quis ipsum suspendisse ultrices gravida dictum fusce. Non diam phasellus vestibulum lorem sed. Blandit turpis cursus in hac habitasse platea dictumst. Tempor orci eu lobortis elementum nibh tellus molestie. Faucibus purus in massa tempor nec feugiat nisl. Commodo nulla facilisi nullam vehicula ipsum a. Gravida in fermentum et sollicitudin ac orci phasellus. Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Sem fringilla ut morbi tincidunt augue interdum velit euismod. Pellentesque habitant morbi tristique senectus et netus. Ipsum consequat nisl vel pretium lectus quam id. Sagittis orci a scelerisque purus semper eget duis at tellus. Enim neque volutpat ac tincidunt vitae. Nam aliquam sem et tortor consequat id porta nibh venenatis. At imperdiet dui accumsan sit amet nulla facilisi morbi. Diam quam nulla porttitor massa id neque aliquam. Sed arcu non odio euismod lacinia at. Semper viverra nam libero justo laoreet sit. Elementum integer enim neque volutpat ac tincidunt vitae. Dui vivamus arcu felis bibendum ut tristique et egestas quis. Libero justo laoreet sit amet. Nec ullamcorper sit amet risus nullam eget felis. Magna etiam tempor orci eu lobortis elementum nibh. Facilisi nullam vehicula ipsum a arcu cursus vitae congue. Pharetra vel turpis nunc eget. Pulvinar sapien et ligula ullamcorper malesuada proin libero nunc consequat. Nibh tellus molestie nunc non blandit massa enim. Aliquam purus sit amet luctus venenatis lectus magna. Cum sociis natoque penatibus et. Nunc vel risus commodo viverra.</string>
-    <string name="wayang_names">Wayang</string>
-    <string name="register">REGISTER</string>
-    <string name="hint_name">Name</string>
-    <string name="hint_email">Email</string>
-    <string name="close_button">Close Button</string>
+    <string name="profile_edit_error_fill_password">Isi password untuk mengganti data!</string>
+
+    <!--  Wayang  -->
+    <string name="title_wayang_list">Daftar Wayang</string>
+
+    <!--  Event  -->
+    <string name="title_list_video">Daftar Video Pementasan</string>
+    <string name="event_tab_missed">Terlewat</string>
+    <string name="event_tab_active">Berlangsung</string>
+    <string name="event_detail_price">Harga:</string>
+    <string name="event_detail_buy_ticket">Beli Tiket</string>
 
     <!--  Ticket Form  -->
+    <string name="title_buy_ticket">Beli Tiket</string>
+    <string name="title_ticket_form">Ticket Form</string>
     <string name="ticket_input_payment_method">Cara Pembayaran</string>
     <string name="ticket_input_amount">Jumlah</string>
     <string name="ticket_input_upload_proof_of_payment">Unggah Bukti Pembayaran</string>
     <string name="ticket_buy">Beli</string>
     <string name="ticket_input_email">Email</string>
     <string name="ticket_input_name">Nama</string>
-    <string name="logo_desc">Application Logo</string>
-    <string name="login">Login</string>
-    <string name="or">OR</string>
-    <string name="login_google">Log in with Google</string>
-    <string name="not_account">Belum memiliki akun?</string>
-    <string name="buy_success">Pembelian Berhasil</string>
-    <string name="check_receipts">Silahkan cek resi pembelian melalui email</string>
-    <string name="icon_success">Icon Success</string>
-    <string name="finish">Selesai</string>
+    <string name="ticket_buy_success">Pembelian Berhasil</string>
+    <string name="ticket_finish">Selesai</string>
+    <string name="ticket_check_your_receipt">Silahkan cek resi pembelian melalui email</string>
+    <string name="ticket_event_rupiah">Rp </string>
     <string name="ticket_total_price">Total Harga:</string>
-    <string name="placeholder_price">Rp0,00</string>
-    <string name="create_account"> Buat Akun</string>
-    <string name="password">Password</string>
-    <string name="forgot_password">Lupa Password?</string>
-    <string name="password_confirmation">Password Confirmation</string>
-    <string name="event_tab_missed">Terlewat</string>
-    <string name="event_tab_active">Berlangsung</string>
-    <string name="semar_logo">Semar Logo</string>
-    <string name="app_name_tagline">App Name Tagline</string>
-    <string name="null_photo_message"> Choose your photo</string>
-    <string name="ticket_form">Ticket Form</string>
-    <string name="scheadule_description">Scheadule Description</string>
-    <string name="detail">Detail</string>
-    <string name="prediction_result">Hasil prediksi:</string>
-    <string name="scanning">Memindai…</string>
-    <string name="videos">Video Pementasan</string>
-    <string name="setting_edit_profile">Edit Profil</string>
-    <string name="forget_password_instruction">Apabila email yang dimasukkan telah terdaftar, Anda akan mendapatkan email untuk mereset password Anda</string>
-    <string name="submit">Kirim</string>
-    <string name="save">Simpan</string>
-    <string name="message">message</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="logout_message">Apakah kamu serius ingin keluar?</string>
-    <string name="source">Sumber :</string>
-
-    <!--Pager Title-->
-    <string-array name="tab_menu">
-        <item>Terlewat</item>
-        <item>Berlangsung</item>
+    <string-array name="ticket_payment_methods">
+        <item>Dana - 089507741841 (a.n Bahrum Nisar)</item>
+        <item>GoPay - 0895606819311 (a.n. Bahrum Nisar)</item>
+        <item>BNI - 3012830193 (a.n. Bahrum Nisar)</item>
+        <item>BRI - 187439402423042 (a.n. Bahrum Nisar)</item>
+        <item>Jago - 173210392 (a.n. Bahrum Nisar)</item>
     </string-array>
 
+    <string name="ticket_error_ticket_amount_empty">Please input your ticket amount</string>
+    <string name="ticket_error_payment_method_empty">Please input your payment method</string>
+    <string name="ticket_error_buy_failed">Buy Ticket Failed</string>
+
+    <!--  Scan Screen  -->
+    <string name="scan_btn_detail">Detail</string>
+    <string name="scan_prediction_result">Hasil prediksi:</string>
+    <string name="scan_processing">Memindai…</string>
+
+    <string name="scan_error_capture_fail">Gagal memotret foto</string>
+    <string name="scan_error_bind_camera_fail">Gagal mengaktifkan kamera</string>
+    <string name="scan_error_prediction">Prediksi gagal</string>
+
+    <!--  Custom Dialog  -->
+    <string name="dialog_no">Tidak</string>
+    <string name="dialog_yes">Ya</string>
 </resources>

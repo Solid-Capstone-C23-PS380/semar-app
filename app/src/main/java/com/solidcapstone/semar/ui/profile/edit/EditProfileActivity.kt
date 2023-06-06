@@ -96,7 +96,7 @@ class EditProfileActivity : AppCompatActivity() {
             && signInMethod == EmailAuthProvider.PROVIDER_ID
             && binding.tvEmail.text.toString() != currentUser?.email
         ) {
-            showToast("Isi password untuk mengganti data!")
+            showToast(getString(R.string.profile_edit_error_fill_password))
             return
         }
 
@@ -114,9 +114,9 @@ class EditProfileActivity : AppCompatActivity() {
                     currentUser.updateEmail(binding.tvEmail.text.toString())
                 } else {
                     setLoadingVisibility(false)
-                    showToast("Terjadi kesalahan")
+                    showToast(getString(R.string.error_happened))
 
-                    Log.d("EditProfileActivity", task.result.toString())
+                    Log.d(TAG, task.result.toString())
                 }
             }
         }
@@ -130,7 +130,7 @@ class EditProfileActivity : AppCompatActivity() {
                     refreshProfileData()
                 } else {
                     setLoadingVisibility(false)
-                    showToast("Terjadi kesalahan")
+                    showToast(getString(R.string.error_happened))
                 }
             }
     }
@@ -144,7 +144,7 @@ class EditProfileActivity : AppCompatActivity() {
         val intent = Intent()
         intent.action = Intent.ACTION_GET_CONTENT
         intent.type = "image/*"
-        val chooser = Intent.createChooser(intent, "Ambil dari galeri")
+        val chooser = Intent.createChooser(intent, getString(R.string.input_choose_from_gallery))
         launcherIntentGallery.launch(chooser)
     }
 
@@ -186,16 +186,16 @@ class EditProfileActivity : AppCompatActivity() {
                                     )
                                 } else {
                                     setLoadingVisibility(false)
-                                    showToast("Terjadi kesalahan")
-                                    Log.w("UploadProfilePhoto", task.result.toString())
+                                    showToast(getString(R.string.error_happened))
+                                    Log.w(TAG, task.result.toString())
                                 }
                             }
                     }
 
                     is Result.Error -> {
                         setLoadingVisibility(false)
-                        showToast("Terjadi kesalahan")
-                        Log.w("UploadProfilePhoto", uploadResult.error)
+                        showToast(getString(R.string.error_happened))
+                        Log.w(TAG, uploadResult.error)
                     }
                 }
             }
@@ -216,5 +216,9 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun showToast(text: String) {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show()
+    }
+
+    companion object {
+        private const val TAG = "EditProfileActivity"
     }
 }

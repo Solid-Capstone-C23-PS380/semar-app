@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/layout_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="20dp"
-    style="@style/layout_card"
     app:cardCornerRadius="20dp">
 
     <LinearLayout
@@ -15,13 +15,13 @@
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/tvMessage"
+            android:id="@+id/tv_message"
+            style="@style/text_subheader_2_black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="@string/message"
-            style="@style/text_subheader_2_black" />
+            android:text="@string/profile_log_out_message" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,26 +31,26 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnYes"
+                android:id="@+id/btn_yes"
+                style="@style/btn_goToDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="@string/yes"
+                android:text="@string/dialog_yes"
                 android:textAllCaps="false"
-                style="@style/btn_goToDetail"
                 android:textSize="14sp" />
 
             <Button
-                android:id="@+id/btnNo"
+                android:id="@+id/btn_no"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:backgroundTint="#A4A4A4"
-                android:text="@string/no"
+                android:text="@string/dialog_no"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="14sp"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
