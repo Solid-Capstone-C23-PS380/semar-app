@@ -125,10 +125,11 @@ class ResultTempFragment : Fragment() {
 
                     is Result.Success -> {
                         val wayangName = result.data.result
-                        binding.tvPredictionResult.text = wayangName
-                        binding.cardPrediction.visibility = View.VISIBLE
-                        binding.loadingScan.visibility = View.GONE
-
+                        if(result.data.message == "success"){
+                            binding.tvPredictionResult.text = wayangName
+                            binding.cardPrediction.visibility = View.VISIBLE
+                            binding.loadingScan.visibility = View.GONE
+                        }
                         binding.btnWayangDetail.setOnClickListener {
                             val intent = Intent(requireActivity(), WayangDetailActivity::class.java)
                             intent.putExtra(WayangDetailActivity.WAYANG_ID, result.data.id)
