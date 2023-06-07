@@ -15,17 +15,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.signature.ObjectKey
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
-import com.solidcapstone.semar.MainActivity
 import com.solidcapstone.semar.R
 import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.ActivityEditProfileBinding
 import com.solidcapstone.semar.helper.reduceFileImg
 import com.solidcapstone.semar.helper.uriToFile
-import com.solidcapstone.semar.ui.profile.ProfileActivity
 import com.solidcapstone.semar.utils.WayangViewModelFactory
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -52,6 +51,7 @@ class EditProfileActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         signInMethod = currentUser?.providerData?.last()?.providerId.toString()
 
+        // Show user data
         binding.tvName.setText(currentUser?.displayName)
         binding.tvEmail.setText(currentUser?.email)
         Glide.with(this)
@@ -60,6 +60,7 @@ class EditProfileActivity : AppCompatActivity() {
             .signature(ObjectKey(System.currentTimeMillis().toString()))
             .into(binding.ivUserImage)
 
+        // Disable changing email if signing from Google
         if (signInMethod == GoogleAuthProvider.PROVIDER_ID) {
             binding.apply {
                 tvEmail.isEnabled = false
@@ -105,39 +106,48 @@ class EditProfileActivity : AppCompatActivity() {
         if (signInMethod == EmailAuthProvider.PROVIDER_ID
             && binding.tvEmail.text.toString() != currentUser?.email
         ) {
-            val credential = EmailAuthProvider.getCredential(
-                currentUser?.email.toString(),
-                binding.tvPassword.text.toString(),
-            )
-            currentUser?.reauthenticate(credential)?.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    currentUser.updateEmail(binding.tvEmail.text.toString())
-                } else {
-                    setLoadingVisibility(false)
-                    showToast(getString(R.string.error_happened))
+            try {
+                val credential = EmailAuthProvider.getCredential(
+                    currentUser?.email.toString(),
+                    binding.tvPassword.text.toString(),
+                )
+                currentUser?.reauthenticate(credential)?.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        currentUser.updateEmail(binding.tvEmail.text.toString())
+                            .addOnCompleteListener {
+                                updateUserNameAndFinish(currentUser)
+                            }
+                    } else {
+                        setLoadingVisibility(false)
+                        showToast(getString(R.string.error_happened))
 
-                    Log.d(TAG, task.result.toString())
+                        Log.d(TAG, task.result.toString())
+                    }
                 }
-            }
-        }
+            } catch (e: Exception) {
+                setLoadingVisibility(false)
+                showToast(getString(R.string.error_happened))
 
+                Log.d(TAG, e.message.toString())
+            }
+        } else {
+            updateUserNameAndFinish(currentUser)
+        }
+    }
+
+    private fun updateUserNameAndFinish(currentUser: FirebaseUser?) {
         val profileUpdates = userProfileChangeRequest {
             displayName = binding.tvName.text.toString()
         }
         currentUser?.updateProfile(profileUpdates)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    refreshProfileData()
+                    finish()
                 } else {
                     setLoadingVisibility(false)
                     showToast(getString(R.string.error_happened))
                 }
             }
-    }
-
-    private fun refreshProfileData() {
-        startActivity(Intent(this, MainActivity::class.java))
-        startActivity(Intent(this, ProfileActivity::class.java))
     }
 
     private fun startIntentGallery() {
@@ -177,13 +187,8 @@ class EditProfileActivity : AppCompatActivity() {
                         currentUser?.updateProfile(profileUpdates)
                             ?.addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    refreshProfileData()
-                                    startActivity(
-                                        Intent(
-                                            this,
-                                            EditProfileActivity::class.java
-                                        )
-                                    )
+                                    finish()
+                                    startActivity(intent)
                                 } else {
                                     setLoadingVisibility(false)
                                     showToast(getString(R.string.error_happened))

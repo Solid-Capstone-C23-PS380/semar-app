@@ -6,10 +6,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.Window
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -24,6 +23,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.solidcapstone.semar.R
 import com.solidcapstone.semar.databinding.ActivityProfileBinding
+import com.solidcapstone.semar.databinding.CustomDialogCardBinding
 import com.solidcapstone.semar.ui.profile.edit.EditProfileActivity
 import com.solidcapstone.semar.ui.splash.SplashActivity
 import com.solidcapstone.semar.utils.SettingsViewModelFactory
@@ -41,22 +41,14 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = Firebase.auth
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        auth = Firebase.auth
-
-        val currentUser = auth.currentUser
-        binding.tvName.text = currentUser?.displayName
-        binding.tvEmail.text = currentUser?.email
-        Glide.with(this)
-            .load(currentUser?.photoUrl)
-            .placeholder(R.drawable.ic_person)
-            .signature(ObjectKey(System.currentTimeMillis().toString()))
-            .into(binding.ivUserImage)
-
         initViewModel()
         observeViewModel()
+        refreshUserData()
 
         binding.settingEditProfile.setOnClickListener {
             val intent = Intent(this, EditProfileActivity::class.java)
@@ -76,7 +68,7 @@ class ProfileActivity : AppCompatActivity() {
         }
         binding.btnLogout.setOnClickListener {
             val message: String = resources.getString(R.string.profile_log_out_message)
-            showCustomDialogBox(message)
+            showLogOutDialog(message)
         }
     }
 
@@ -87,10 +79,24 @@ class ProfileActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onResume() {
+        super.onResume()
+        refreshUserData()
+    }
+
+    private fun refreshUserData() {
+        val currentUser = auth.currentUser
+        binding.tvName.text = currentUser?.displayName
+        binding.tvEmail.text = currentUser?.email
+        Glide.with(this)
+            .load(currentUser?.photoUrl)
+            .placeholder(R.drawable.ic_person)
+            .signature(ObjectKey(System.currentTimeMillis().toString()))
+            .into(binding.ivUserImage)
+    }
+
     private fun observeViewModel() {
-        settingsViewModel.getThemeSettings().observe(
-            this
-        ) { isDarkModeActive: Boolean? ->
+        settingsViewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean? ->
             if (isDarkModeActive == true) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 binding.switchDarkMode.isChecked = true
@@ -109,29 +115,26 @@ class ProfileActivity : AppCompatActivity() {
         )[ProfileViewModel::class.java]
     }
 
-    private fun showCustomDialogBox(message: String) {
+    private fun showLogOutDialog(message: String) {
         val dialog = Dialog(this)
+        val dialogBinding = CustomDialogCardBinding.inflate(LayoutInflater.from(this))
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
-        dialog.setContentView(R.layout.custom_dialog_card)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(dialogBinding.root)
 
-        val tvMessage: TextView = dialog.findViewById(R.id.tv_message)
-        val btnYes: Button = dialog.findViewById(R.id.btn_yes)
-        val btnNo: Button = dialog.findViewById(R.id.btn_no)
+        dialogBinding.tvMessage.text = message
 
-        tvMessage.text = message
-
-        btnYes.setOnClickListener {
+        dialogBinding.btnYes.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, SplashActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-
-        btnNo.setOnClickListener {
+        dialogBinding.btnNo.setOnClickListener {
             dialog.dismiss()
         }
+
         dialog.show()
     }
 }

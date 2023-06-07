@@ -43,14 +43,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         showListWayang()
         showListVideo()
-
-        val currentUser = auth.currentUser
-        binding.tvUserName.text = currentUser?.displayName
-        Glide.with(requireContext())
-            .load(currentUser?.photoUrl)
-            .placeholder(R.drawable.ic_person)
-            .signature(ObjectKey(System.currentTimeMillis().toString()))
-            .into(binding.ivUserImage)
+        refreshUserData()
 
         binding.btnUserImage.setOnClickListener {
             val intent = Intent(requireContext(), ProfileActivity::class.java)
@@ -66,14 +59,30 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        refreshUserData()
+    }
+
+    private fun refreshUserData() {
+        val currentUser = auth.currentUser
+        binding.tvUserName.text = currentUser?.displayName
+        Glide.with(requireContext())
+            .load(currentUser?.photoUrl)
+            .placeholder(R.drawable.ic_person)
+            .signature(ObjectKey(System.currentTimeMillis().toString()))
+            .into(binding.ivUserImage)
+    }
+
     private fun showListWayang() {
+        val videoLimit = 5
+
         binding.rvWayang.layoutManager = LinearLayoutManager(
             requireContext(),
             LinearLayoutManager.HORIZONTAL,
             false
         )
-
-        viewModel.getListWayang(5).observe(viewLifecycleOwner) { result ->
+        viewModel.getListWayang(videoLimit).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Loading -> binding.pbWayang.visibility = View.VISIBLE
 
@@ -92,13 +101,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun showListVideo() {
+        val videoLimit = 5
+
         binding.rvVideos.apply {
             layoutManager = LinearLayoutManager(
                 requireContext(),
                 LinearLayoutManager.VERTICAL,
                 false
             )
-            viewModel.getListVideo(5).observe(viewLifecycleOwner) { result ->
+            viewModel.getListVideo(videoLimit).observe(viewLifecycleOwner) { result ->
                 when (result) {
                     is Result.Loading -> binding.pbVideo.visibility = View.VISIBLE
 
