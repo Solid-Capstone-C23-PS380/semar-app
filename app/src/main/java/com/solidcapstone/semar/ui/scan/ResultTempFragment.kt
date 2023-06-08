@@ -129,6 +129,9 @@ class ResultTempFragment : Fragment() {
                             binding.tvPredictionResult.text = wayangName
                             binding.cardPrediction.visibility = View.VISIBLE
                             binding.loadingScan.visibility = View.GONE
+                        }else{
+                            showToast(getString(R.string.scan_error_prediction))
+                            binding.loadingScan.visibility = View.GONE
                         }
                         binding.btnWayangDetail.setOnClickListener {
                             val intent = Intent(requireActivity(), WayangDetailActivity::class.java)
