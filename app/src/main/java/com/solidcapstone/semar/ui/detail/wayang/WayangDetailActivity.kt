@@ -11,9 +11,13 @@ import com.solidcapstone.semar.data.Result
 import com.solidcapstone.semar.databinding.ActivityWayangDetailBinding
 import com.solidcapstone.semar.ui.detail.DetailViewModel
 import com.solidcapstone.semar.utils.WayangViewModelFactory
+import android.media.MediaPlayer
+import com.solidcapstone.semar.R
 
 class WayangDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWayangDetailBinding
+
+    private var mediaPlayer: MediaPlayer? = null
 
     private val viewModel: DetailViewModel by viewModels {
         WayangViewModelFactory.getInstance(this)
@@ -26,6 +30,10 @@ class WayangDetailActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.gamelan_music)
+        mediaPlayer?.isLooping = true
+        mediaPlayer?.start()
 
         showWayangDetail()
     }
@@ -60,6 +68,13 @@ class WayangDetailActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
     companion object {
