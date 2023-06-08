@@ -6,10 +6,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.Window
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
@@ -60,11 +60,7 @@ class ProfileActivity : AppCompatActivity() {
             settingsViewModel.saveThemeSetting(!isChecked)
         }
         binding.settingLanguage.setOnClickListener {
-            Toast.makeText(
-                this,
-                getString(R.string.profile_setting_language),
-                Toast.LENGTH_SHORT
-            ).show()
+            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
         }
         binding.btnLogout.setOnClickListener {
             val message: String = resources.getString(R.string.profile_log_out_message)
