@@ -64,7 +64,7 @@
 
     <!--  Home Screen  -->
     <string name="home_see_more">Lihat Selengkapnya</string>
-    <string name="home_greetings">Selamat datang,</string>
+    <string name="home_greetings">Selamat Datang!</string>
     <string name="home_header_wayang">Karakter Wayang</string>
     <string name="home_header_video">Video</string>
     <string name="home_content_desc_profile">Profil</string>

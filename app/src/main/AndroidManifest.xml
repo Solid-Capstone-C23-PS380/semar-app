@@ -19,25 +19,32 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.profile.edit.EditProfileActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.event.ticket.BuySuccessActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.event.ticket.TicketFormActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.profile.ProfileActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.video.ListVideoActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.home.ListWayangActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.detail.wayang.WayangDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.detail.video.VideoDetailActivity"
@@ -47,10 +54,12 @@
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.detail.event.EventDetailActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.splash.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
@@ -61,10 +70,12 @@
         </activity>
         <activity
             android:name=".ui.auth.AuthActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/MainTheme"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/MainTheme"
             android:exported="false"
             android:launchMode="singleTask" />
