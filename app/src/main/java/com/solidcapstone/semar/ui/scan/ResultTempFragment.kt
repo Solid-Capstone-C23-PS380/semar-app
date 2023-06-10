@@ -2,6 +2,7 @@ package com.solidcapstone.semar.ui.scan
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ import java.io.File
 class ResultTempFragment : Fragment() {
     private lateinit var binding: FragmentResultTempBinding
     private var getFile: File? = null
+    private var mediaPlayer: MediaPlayer? = null
 
     private val viewModel: ScanViewModel by viewModels {
         WayangViewModelFactory.getInstance(requireContext())
@@ -129,6 +131,9 @@ class ResultTempFragment : Fragment() {
                             binding.tvPredictionResult.text = wayangName
                             binding.cardPrediction.visibility = View.VISIBLE
                             binding.loadingScan.visibility = View.GONE
+                            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.predict_success_sound)
+                            mediaPlayer?.isLooping = false
+                            mediaPlayer?.start()
                         }else{
                             showToast(getString(R.string.scan_error_prediction))
                             binding.loadingScan.visibility = View.GONE
@@ -149,6 +154,12 @@ class ResultTempFragment : Fragment() {
         } else {
             showToast(resources.getString(R.string.error_choose_photo))
         }
+    }
+    override fun onStop() {
+        super.onStop()
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
     private fun showToast(text: String) {
