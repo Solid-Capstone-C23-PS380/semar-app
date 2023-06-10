@@ -33,7 +33,8 @@
                     android:id="@+id/youtube_player_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:enableAutomaticInitialization="false" />
+                    app:enableAutomaticInitialization="false"
+                    android:transitionName="video"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -58,7 +59,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/placeholder_video_name" />
+                    android:text="@string/placeholder_video_name"
+                    android:transitionName="videoName"/>
 
                 <View
                     android:layout_width="match_parent"

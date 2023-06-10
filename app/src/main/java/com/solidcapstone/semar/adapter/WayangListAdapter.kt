@@ -1,10 +1,16 @@
 package com.solidcapstone.semar.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.solidcapstone.semar.R
 import com.solidcapstone.semar.data.local.entity.WayangEntity
 import com.solidcapstone.semar.databinding.ItemWayangBinding
 import com.solidcapstone.semar.ui.detail.wayang.WayangDetailActivity
@@ -29,11 +35,20 @@ class WayangListAdapter(
             Glide.with(itemView.context)
                 .load(currentItem.photoUrl[0])
                 .into(binding.ivWayang)
-
+            var ivWayang : ImageView = itemView.findViewById(R.id.iv_wayang)
+            var tvWayang : TextView = itemView.findViewById(R.id.tv_wayang_name)
             itemView.setOnClickListener {
                 val intent = Intent(it.context, WayangDetailActivity::class.java)
                 intent.putExtra(WayangDetailActivity.WAYANG_ID, currentItem.id)
-                it.context.startActivity(intent)
+
+                val optionsCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        itemView.context as Activity,
+                        Pair(ivWayang, "wayangImage"),
+                        Pair(tvWayang,"wayangName"),
+                    )
+
+                it.context.startActivity(intent, optionsCompat.toBundle())
             }
         }
     }

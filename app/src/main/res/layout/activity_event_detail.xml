@@ -39,7 +39,8 @@
                     android:contentDescription="@string/img_desc_event_poster"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_launcher_background"
-                    tools:ignore="ImageContrastCheck" />
+                    tools:ignore="ImageContrastCheck"
+                    android:transitionName="imageEvent"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -62,7 +63,8 @@
                     android:layout_gravity="center"
                     android:text="@string/placeholder_event_name"
                     android:gravity="center"
-                    style="@style/text_subheader_2_black"/>
+                    style="@style/text_subheader_2_black"
+                    android:transitionName="eventName"/>
 
                 <View
                     android:layout_width="match_parent"

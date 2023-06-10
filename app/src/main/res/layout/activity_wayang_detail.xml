@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleTextAppearance="@style/text_subheader_1"
-        tools:title="@string/placeholder_wayang" />
+        tools:title="@string/placeholder_wayang"
+        android:transitionName="wayangName"/>
 
     <!--  Content  -->
     <FrameLayout
@@ -38,7 +39,8 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_wayang_images"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:transitionName="wayangImage"/>
 
                     <me.relex.circleindicator.CircleIndicator3
                         android:id="@+id/indicator_wayang_images"
