@@ -1,16 +1,10 @@
 package com.solidcapstone.semar.adapter
 
-import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.solidcapstone.semar.R
 import com.solidcapstone.semar.data.local.entity.EventEntity
 import com.solidcapstone.semar.databinding.ItemEventBinding
 import com.solidcapstone.semar.ui.detail.event.EventDetailActivity
@@ -47,20 +41,11 @@ class EventListAdapter(
                 .load(currentItem.photoUrl)
                 .into(binding.ivEvent)
             binding.tvDateEvent.text = formattedDate
-            var ivEvent : ImageView = itemView.findViewById(R.id.iv_event)
-            var tvEvent : TextView = itemView.findViewById(R.id.tv_name_event)
+
             itemView.setOnClickListener {
                 val intent = Intent(it.context, EventDetailActivity::class.java)
                 intent.putExtra(EventDetailActivity.EVENT_ID, currentItem.id)
-
-                val optionsCompat: ActivityOptionsCompat =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        itemView.context as Activity,
-                        Pair(ivEvent, "imageEvent"),
-                        Pair(tvEvent,"eventName"),
-                    )
-
-                it.context.startActivity(intent, optionsCompat.toBundle())
+                it.context.startActivity(intent)
             }
         }
 

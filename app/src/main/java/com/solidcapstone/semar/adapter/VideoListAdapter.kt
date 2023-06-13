@@ -1,22 +1,16 @@
 package com.solidcapstone.semar.adapter
 
-import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.solidcapstone.semar.R
 import com.solidcapstone.semar.data.local.entity.VideoEntity
 import com.solidcapstone.semar.databinding.ItemVideoBinding
 import com.solidcapstone.semar.ui.detail.video.VideoDetailActivity
 
 class VideoListAdapter(
-    private val listVideoItem: List<VideoEntity>
+    private val listVideoItem: List<VideoEntity>,
 ) : RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
     class ViewHolder(var binding: ItemVideoBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -37,21 +31,10 @@ class VideoListAdapter(
                 .load(currentItem.photoUrl)
                 .into(binding.ivVideoImage)
 
-            var tvName: TextView = itemView.findViewById(R.id.tv_name_video)
-            var ivVideo : ImageView = itemView.findViewById(R.id.iv_video_image)
-
             itemView.setOnClickListener {
                 val intent = Intent(it.context, VideoDetailActivity::class.java)
                 intent.putExtra(VideoDetailActivity.VIDEO_ID, currentItem.id)
-
-                val optionsCompat: ActivityOptionsCompat =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        itemView.context as Activity,
-                        Pair(tvName, "videoName"),
-                        Pair(ivVideo,"video"),
-                    )
-
-                it.context.startActivity(intent, optionsCompat.toBundle())
+                it.context.startActivity(intent)
             }
         }
     }
