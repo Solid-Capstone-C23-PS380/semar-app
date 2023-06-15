@@ -18,8 +18,5 @@ Figma : https://www.figma.com/file/ZHw5BuSlN0i2XZg9lMhtFO/Capstone-App?type=desi
 ## Application Repository
 Repo : https://github.com/orgs/Solid-Capstone-C23-PS380/repositories
 
-## Application Release
-APK : https://github.com/Solid-Capstone-C23-PS380/semar-app/tree/master/app/release
-
 ## Presentation's Video
 Youtube Link : 
