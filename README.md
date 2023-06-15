@@ -15,8 +15,11 @@ Google Docs : https://docs.google.com/document/d/1Qtl2zQNNccz35EjGjTj_L1RsrXAux4
 ## User Interface Design Concept
 Figma : https://www.figma.com/file/ZHw5BuSlN0i2XZg9lMhtFO/Capstone-App?type=design&node-id=244%3A2416&t=iJomg5vAGm0HgPgZ-1
 
-## Application progress repository
+## Application Repository
 Repo : https://github.com/orgs/Solid-Capstone-C23-PS380/repositories
+
+## Application Release
+APK : https://github.com/Solid-Capstone-C23-PS380/semar-app/tree/master/app/release
 
 ## Presentation's Video
 Youtube Link : 
